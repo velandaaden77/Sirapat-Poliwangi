@@ -51,7 +51,6 @@ class Pimpinan extends MX_Controller {
 		if($cek->num_rows() >  0){ //apabila password cocok
 
 			foreach ($cek->result() as $ck) {
-				
 				$session_data['id_dosen'] = $ck->id;
 				$session_data['nama_dosen'] = $ck->nama;
 				$session_data['username'] = $ck->username;
