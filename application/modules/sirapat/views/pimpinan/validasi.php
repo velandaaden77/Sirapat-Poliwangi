@@ -61,7 +61,7 @@
           <button class="btn btn-primary btn-sm" 
           data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-info"></i>Detail</button>
 
-          <?= anchor('sirapat/pimpinan/validasi/qrcode/'.$data->id, 
+          <?= anchor('sirapat/pimpinan/validasi/qrcode/'.$data->id_validasi, 
           '<button class="btn btn-danger btn-sm"><i class="fas fa-fw fa-file-signature"></i>Validasi</button>')?>
 
           </td>

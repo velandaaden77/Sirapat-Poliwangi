@@ -192,10 +192,12 @@ class Agenda extends MY_Controller {
 
 		$id_agenda = $this->input->post('id_agenda');
 		$id_pimpinan = $this->input->post('pimpinan');
+		$id_user = $this->session->userdata('id');
 
 		$data = [
 			'id_agenda' => $id_agenda,
 			'id_pimpinan' => $id_pimpinan,
+			'id_user' => $id_user,
 			'status' => 0,
 			'date_created' => time(),
 		];

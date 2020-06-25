@@ -50,23 +50,23 @@ class Validasi extends MY_Controller {
 
 	public function validasi_agenda(){
 
-		$id_agenda = $$this->input->post('id_validasi');
+		$id_validasi = $this->input->post('id_validasi');
 		$qrcode = $this->input->post('qrcode');
 
 		$data= [
-
-			'id_agenda' => $qrcode,
+			'id_validasi' => $id_validasi,
+			'id_pimpinan' => $this->session->userdata('id_dosen'),
 			'qrcode' => $qrcode,
 			'status' => 1,
-
+			'date_validasi' => time(),
 		];
 
 		$where= [
-			'id_agenda' => $id_agenda
+			'id_validasi' => $id_validasi,
 		];
+		
 
-		$this->db->where($where);
-		$this->db->update('validasi_agenda', $data);
+		$this->Pimpinan_m->update_data($data,$where, 'validasi_agenda');
 
 		$this->session->set_flashdata('message', 
 		'<div class="alert alert-success" role="alert">Agenda telah divalidasi</div>');

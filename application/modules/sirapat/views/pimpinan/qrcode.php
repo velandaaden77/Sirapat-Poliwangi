@@ -43,11 +43,16 @@
 
         <form method="post" action="<?= base_url('sirapat/pimpinan/validasi/validasi_agenda')?>">
 
-        <input type="text" class="form-control" 
+        
+        <input type="hidden" class="form-control" 
+        id="formGroupExampleInput2" placeholder="qrcode" name="id_validasi" value="<?= 
+        $this->uri->segment(5) ?>">
+
+        <input type="hidden" class="form-control" 
         id="formGroupExampleInput2" placeholder="qrcode" name="qrcode" value="item-<?= 
         $this->session->userdata('username') ?>.png">
 
-        <input type="hidden" class="form-control" name="id_validasi" value="<?= $this->uri->segment(5) ?>">
+        <input type="hidden" class="form-control" id="validasi" name="id_validasi" value="<?= $this->uri->segment(5) ?>">
 
         <button class="btn btn-primary" type="submit" name="validasi" id="validasi">Validasi</button>
         </div>

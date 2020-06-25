@@ -43,7 +43,13 @@ class Agenda_m extends CI_Model {
 
     public function daftar_validasi(){
 	
-        $this->db->select('dosen.nama,validasi_agenda.id, validasi_agenda.status,validasi_agenda.id_agenda');
+        $this->db->select('
+        dosen.nama,
+        validasi_agenda.id_validasi, 
+        validasi_agenda.status,
+        validasi_agenda.id_agenda,
+        validasi_agenda.qrcode
+        ');
         $this->db->from('validasi_agenda');
         $this->db->join('dosen', 'validasi_agenda.id_pimpinan = dosen.id ');
         $this->db->where(['id_agenda' => $this->uri->segment(5)]);

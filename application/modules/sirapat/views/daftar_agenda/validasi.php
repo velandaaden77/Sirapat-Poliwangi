@@ -79,6 +79,8 @@
           <th scope="col">NO</th>
           <th scope="col">NAMA DOSEN</th>
           <th scope="col">STATUS</th>
+          <th scope="col">QR CODE</th>
+
           <th scope="col">AKSI</th>
         </tr>
       </thead>
@@ -91,10 +93,9 @@
           <th scope="row"><?= $i ?></th>
           <td><?= $data->nama; ?></td>
           <td><?= $data->status; ?></td>
-          
-          
+          <td><img src="<?= base_url('assets/file/qr-code/'.$data->qrcode)  ?>" width="90%"></td>
           <td>
-            <a href="<?= base_url('sirapat/admin/agenda/delvalidasi/'.$data->id); ?>" 
+            <a href="<?= base_url('sirapat/admin/agenda/delvalidasi/'.$data->id_validasi); ?>" 
             class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></a>
           </td>
         </tr>

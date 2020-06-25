@@ -102,6 +102,7 @@
   </div>
 
   <div class="col-lg-6">
+
   <div class="form-group">
     <label for="formGroupExampleInput2">Hal</label>
     <textarea  class="form-control" 
