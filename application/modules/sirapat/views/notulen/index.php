@@ -90,7 +90,18 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <tr>
+                <th></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                  <td >
+                  <a href="<?= base_url('sirapat/admin/notulen/tambahnotulen'); ?>" 
+                  class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Notulen"><i class="fa fa-file-signature"></i>Notulen</a>
+                  </td>
+                </tr>
             </tbody>
             </table>
             </div>

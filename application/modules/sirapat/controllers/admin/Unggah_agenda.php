@@ -54,6 +54,7 @@ class Unggah_agenda extends MY_Controller {
 		if($this->form_validation->run() == false){
 
 		$data['title'] = 'Unggah Agenda';
+		
 		$this->load->model('m_jenisrapat', 'jenisrapat');
 		$data['agenda'] = $this->jenisrapat->getjenisrapat();
 		$data['jenisrapat'] = $this->db->get('jenis_rapat')->result_array();
