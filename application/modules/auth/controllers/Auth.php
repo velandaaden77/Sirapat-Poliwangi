@@ -101,7 +101,8 @@ class Auth extends MX_Controller {
 
 			foreach ($cek->result() as $ck) {
 				
-				$session_data['id'] = $ck->iduser;
+				$session_data['iduser'] = $ck->iduser;
+				$session_data['nama'] = $ck->nama;
 				$session_data['email'] = $ck->email;
 				$session_data['role_id'] = $ck->role_id;
 
@@ -338,8 +339,9 @@ class Auth extends MX_Controller {
 
 	public function logout()
 	{
-		$this->session->unset_userdata('id');
+		$this->session->unset_userdata('iduser');
 		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('nama');
         $this->session->unset_userdata('role_id');
         
         $this->session->set_flashdata('message', 

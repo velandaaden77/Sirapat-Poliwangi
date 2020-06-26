@@ -39,6 +39,8 @@ class Login_model extends CI_Model{
             foreach ($query_cekLogin->result() as $ck) {
                 $session_data['logged_in'] = TRUE;
                 $session_data['email'] = $ck->email;
+                $session_data['nama'] = $ck->nama;
+                $session_data['iduser'] = $ck->iduser;
                 $session_data['password'] = $ck->password;
                 $session_data['role_id'] = $ck->role_id;
 

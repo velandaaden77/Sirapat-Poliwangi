@@ -90,19 +90,29 @@
                 </tr>
             </thead>
             <tbody>
+
+            <?php $i=1; ?>
+            <?php foreach ($data_agenda as $key => $data) : ?>
+            
                 <tr>
-                <th></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th scope="row"><?= $i ?></th>
+                <td><?= $data->nama_agenda ?></td>
+                <td><?= $data->tanggal; ?></td>
+                <td><?= $data->tempat ?></td>
+                <td><?= $data->nomor_agenda; ?></td>
+                <td><?= $data->hal; ?></td>
                   <td >
-                  <a href="<?= base_url('sirapat/admin/notulen/tambahnotulen'); ?>" 
+                  <a href="<?= base_url('sirapat/admin/notulen/viewnotulen/'.$data->id); ?>" 
                   class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Notulen"><i class="fa fa-file-signature"></i>Notulen</a>
                   </td>
                 </tr>
+
+                <?php $i++; ?>
+            <?php endforeach; ?>
             </tbody>
+
+           
+
             </table>
             </div>
 
