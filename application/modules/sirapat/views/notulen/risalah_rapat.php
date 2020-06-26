@@ -16,8 +16,8 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Subtopik</label>
     <input type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Subtopik" name="subtopik" value="<?= set_value('pic'); ?>">
-    <?= form_error('pic', '<small class="text-danger pl-1">', '</small>'); ?>
+    id="formGroupExampleInput2" placeholder="Subtopik" name="subtopik" value="<?= set_value('subtopik'); ?>">
+    <?= form_error('subtopik', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
 
@@ -25,8 +25,8 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Catatan Kaki</label>
     <textarea  type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Catatan Kaki" name="catatankaki" value="<?= set_value('ringkasan'); ?>"></textarea>
-    <?= form_error('ringkasan', '<small class="text-danger pl-1">', '</small>'); ?>
+    id="formGroupExampleInput2" placeholder="Catatan Kaki" name="catatankaki" value="<?= set_value('catatankaki'); ?>"></textarea>
+    <?= form_error('catatankaki', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
 

@@ -128,6 +128,17 @@ class Notulen extends MY_Controller {
       
         $this->template->load('layout/template', 'notulen/risalah_rapat', $data);
 
+    }
+
+    public function psbw(){
+        
+        $data['title'] = 'Permasalahan, Solusi, Dan Batas Waktu';
+        
+        $data['data_agenda']= $this->notulen_m->getdata()->result();
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+      
+        $this->template->load('layout/template', 'notulen/psbw', $data);
 
     }
 }
