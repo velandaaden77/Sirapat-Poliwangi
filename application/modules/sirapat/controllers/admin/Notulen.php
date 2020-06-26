@@ -19,7 +19,7 @@ class Notulen extends MY_Controller {
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         
         $data['data_agenda']= $this->notulen_m->getagenda()->result();
-    //    var_dump($data['data_agenda']); die;
+    // var_dump($data['user']); die;
 
         $this->template->load('layout/template', 'notulen/index', $data);
 
@@ -141,4 +141,23 @@ class Notulen extends MY_Controller {
         $this->template->load('layout/template', 'notulen/psbw', $data);
 
     }
+
+    public function detail_notulen($id){
+
+        $where = array('id' => $id);
+
+		$data = [
+			'agenda' =>  $this->notulen_m->detail_data($where, 'agenda_rapat')->result(),
+		];
+
+        $data['title'] = 'Detail Notulen';
+        
+        $data['data_agenda']= $this->notulen_m->getdata()->result();
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+      
+        $this->template->load('layout/template', 'notulen/detail_notulen', $data);
+
+    }
+
 }

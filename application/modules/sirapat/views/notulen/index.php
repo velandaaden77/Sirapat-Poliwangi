@@ -104,6 +104,9 @@
                   <td >
                   <a href="<?= base_url('sirapat/admin/notulen/viewnotulen/'.$data->id); ?>" 
                   class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Notulen"><i class="fa fa-file-signature"></i>Notulen</a>
+                  
+                  <a href="<?= base_url('sirapat/admin/notulen/detail_notulen/'.$data->id); ?>" 
+                  class="btn btn-dark btn-sm"><i class="fa fa-forward"></i></a>
                   </td>
                 </tr>
 

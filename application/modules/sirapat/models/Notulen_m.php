@@ -17,10 +17,14 @@ class Notulen_m extends CI_Model {
     $this->db->select('*');
     $this->db->from('agenda_rapat');
     $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
-    $this->db->where(['validasi_agenda.id_user' => $this->session->userdata('id')], 
+    $this->db->where(['validasi_agenda.id_user' => $this->session->userdata('iduser')], 
     ['validasi_agenda.status' => 1]);
     $query = $this->db->get();
     return $query;
 
     }
+
+    public function detail_data($where,$table){
+		return $this->db->get_where($table, $where);
+	}
 }

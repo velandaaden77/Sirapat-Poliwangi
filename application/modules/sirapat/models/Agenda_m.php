@@ -5,7 +5,7 @@ class Agenda_m extends CI_Model {
     public function get($id = null){
 
         // $this->db->from('agenda_rapat');
-        return $this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('id')]);
+        return $this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')]);
         // if($id != null){
         //     $this->db->where('id', $id);
         // }
