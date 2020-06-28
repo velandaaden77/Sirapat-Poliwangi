@@ -63,15 +63,23 @@
                 <img src="<?= base_url('assets/dashboard/img/book.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Notulensi Rapat</h2>
+
                 <?php $notulen = $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->row(); 
                 if(empty($notulen)){
                 ?>
                 <a href="<?= base_url('sirapat/admin/notulen/tambahnotulen/'.$a->id); ?>"
                 class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+
                 <?php }else{ ?>
+
                 <button type='button'
                 class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
+
+                <button type="button" data-toggle="modal" data-target="#lihatmodal<?= 1 ?>"
+                class="btn btn-danger"><i class="fas fa-file"></i> Lihat</button>
+
                 <?php } ?>
+
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Last updated 3 mins ago</small>
@@ -151,7 +159,7 @@
                 <img src="<?= base_url('assets/dashboard/img/book4.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Berita Acara Rapat</h2>
-                <a href="<?= base_url('sirapat/admin/notulen/risalahrapat/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                <a href="<?= base_url('sirapat/admin/notulen/beritaacara/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Last updated 3 mins ago</small>
@@ -170,4 +178,132 @@
           </div>
           </div>
           </div>
+
+            <!-- Modal -->
+      <div class="modal fade" id="lihatmodal<?= 1 ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Notulensi Rapat</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="container-fluid">
+
+              <div class="row">
+                <div class="col-sm-3">
+                   <h3>Tanggal</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->tanggal ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Ruang Rapat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->ruang_rapat ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Waktu Mulai</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->waktu_mulai ?> WIB</span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Waktu Selesai</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->waktu_selesai ?> WIB</span>
+                </div>
+                </div>
+            
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Nomor Surat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->nomor_surat ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Jenis Rapat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->jenis_rapat ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Daftar Hadir</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->daftar_hadir ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Total Hadir</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->total_hadir ?></span>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Ringkasan</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->ringkasan ?></span>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Ketua Rapat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->ketua_rapat ?></span>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Notulen</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->notulen ?></span>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>PIC</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $notulen->pic ?></span>
+                </div>
+                </div>
+
+                <div class="modal-footer">
+                <button type="button"
+                class="btn btn-primary float-left"><i class="fas fa-update"></i> Update</button>
+                <button type="button"
+                class="btn btn-light float-left"><i class="fas fa-update"></i> Close</button>
+                </div>
+          </div>
+        </div>
+      </div>
 

@@ -269,6 +269,74 @@ class Notulen extends MY_Controller {
 
     }
 
+    public function beritaacara(){
+        
+        $data['title'] = 'Berita Acara';
+        
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+      
+        $this->template->load('layout/template', 'notulen/berita_acara', $data);
+
+    }
+
+
+    public function tambahberitaacara(){
+        
+        $id = $this->input->post('idnotulen');
+        $tanggal = $this->input->post('tanggal');
+        $hasil = $this->input->post('hasil');
+
+        $data = [
+            'id_notulen' => $id,
+            'tanggal' => $tanggal,
+            'hasil' => $hasil,
+            'date_created' => time(),
+        ];
+
+        $this->db->insert('berita_acara', $data);
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-success" role="alert">Data Telah di Ditambahkan</div>');
+		redirect('sirapat/admin/notulen/beritaacara/'.$id);
+       
+    }
+
+    public function delberitaacara($id, $idnotulen)
+    {
+        $this->db->where('id_beritaacara', $id);
+        $this->db->delete('berita_acara');
+
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-danger" role="alert">Data Telah di Dihapus</div>');
+		redirect('sirapat/admin/notulen/beritaacara/'.$idnotulen);
+
+    }
+
+    public function updateberitaacara($idnotulen){
+        
+        $id = $this->input->post('id');
+        $tanggal = $this->input->post('tanggal');
+        $hasil = $this->input->post('hasil');
+
+        $data = [
+
+            'tanggal' => $tanggal,
+            'hasil' => $hasil,
+            'date_created' => time(),
+        ];
+
+        $where=['id_beritaacara' => $id];
+
+        $this->db->where($where);
+        $this->db->update('berita_acara', $data);
+
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-success" role="alert">Data Telah di Di Update</div>');
+		redirect('sirapat/admin/notulen/beritaacara/'.$idnotulen);
+       
+    }
+
+
+
     public function detail_notulen($id){
 
         $where = array('id' => $id);
