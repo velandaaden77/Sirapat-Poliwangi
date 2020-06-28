@@ -26,5 +26,38 @@ class Notulen_m extends CI_Model {
 
     public function detail_data($where,$table){
 		return $this->db->get_where($table, $where);
-	}
+    }
+    
+    public function getnotulen(){
+
+        return $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->result();
+    
+    }
+
+    public function getrisalah(){
+
+    $this->db->select('*');
+    $this->db->from('risalah_rapat');
+    $this->db->join('notulen', 'risalah_rapat.id_notulen = notulen.idnotulen');
+    $this->db->where(['risalah_rapat.id_notulen' => $this->uri->segment(5)]);
+    $query = $this->db->get();
+    return $query;
+    
+    }
+
+    public function getpbsw(){
+
+    $this->db->select('*');
+    $this->db->from('permasalahan');
+    $this->db->join('notulen', 'permasalahan.id_notulen = notulen.idnotulen');
+    $this->db->where(['permasalahan.id_notulen' => $this->uri->segment(5)]);
+    $query = $this->db->get();
+    return $query;
+    
+    }
+
+    public function delrisalah($id){
+        $this->db->where('id_risalahrapat', $id);
+        $this->db->delete('risalah_rapat');
+    }
 }

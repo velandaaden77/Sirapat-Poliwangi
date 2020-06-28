@@ -123,6 +123,8 @@ class Notulen extends MY_Controller {
         $data['title'] = 'Risalah Rapat';
         
         $data['data_agenda']= $this->notulen_m->getdata()->result();
+        $data['getnotulen'] = $this->notulen_m->getnotulen();
+        $data['risalah_rapat']= $this->notulen_m->getrisalah()->result();
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       
@@ -130,15 +132,140 @@ class Notulen extends MY_Controller {
 
     }
 
+    public function tambahrisalah(){
+
+        $idnotulen = $this->input->post('idnotulen');
+        $subtopik = $this->input->post('subtopik');
+        $catatankaki = $this->input->post('catatankaki');
+
+        $data = [
+            'id_notulen' =>$idnotulen,
+            'subtopik' =>$subtopik,
+            'catatan_kaki' =>$catatankaki,
+            'date_created' => time(),
+        ];
+
+        $this->db->insert('risalah_rapat', $data);
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-success" role="alert">Risalah Rapat Telah Ditambahkan</div>');
+		redirect('sirapat/admin/notulen/risalahrapat/'.$idnotulen);
+
+    }
+
+    public function updaterisalah($idnotulen){
+
+        $id = $this->input->post('id');
+        $subtopik = $this->input->post('subtopik');
+        $catatankaki = $this->input->post('catatankaki');
+
+        $data = [
+
+            'subtopik' =>$subtopik,
+            'catatan_kaki' =>$catatankaki,
+    
+        ];
+
+        $where = ['id_risalahrapat'=>$id];
+
+        $this->db->where($where);
+        $this->db->update('risalah_rapat', $data);
+
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-success" role="alert">Risalah Rapat Telah di Update</div>');
+		redirect('sirapat/admin/notulen/risalahrapat/'.$idnotulen);
+
+    }
+
+    public function delrisalah($id, $idnotulen){
+
+        $this->notulen_m->delrisalah($id);
+        if($this->db->affected_rows() > 0){
+            $this->session->set_flashdata('message', 
+            '<div class="alert alert-success" role="alert">Risalah Telah Dihapus</div>');
+            redirect('sirapat/admin/notulen/risalahrapat');
+        }else{
+            redirect('sirapat/admin/notulen/risalahrapat/'.$idnotulen);
+        }
+
+    }
+
     public function psbw(){
         
         $data['title'] = 'Permasalahan, Solusi, Dan Batas Waktu';
         
-        $data['data_agenda']= $this->notulen_m->getdata()->result();
+        $data['pbsw']= $this->notulen_m->getpbsw()->result();
 
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       
         $this->template->load('layout/template', 'notulen/psbw', $data);
+
+    }
+
+    public function tambahpsbw(){
+
+        $id = $this->input->post('id_notulen');
+        $topikbahasan = $this->input->post('topikbahasan');
+        $uraian = $this->input->post('uraian');
+        $solusi = $this->input->post('solusi');
+        $pic = $this->input->post('pic');
+        $bataswaktu = $this->input->post('bataswaktu');
+
+        $data = [
+            'id_notulen' => $id,
+            'topik_bahasan' => $topikbahasan,
+            'uraian' => $uraian,
+            'solusi' => $solusi,
+            'pic' => $pic,
+            'bataswaktu' => $bataswaktu,
+            'date_created' => time()
+        ];
+
+        $this->db->insert('permasalahan', $data);
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-success" role="alert">Data Telah Ditambahkan</div>');
+		redirect('sirapat/admin/notulen/psbw/'.$id);
+
+    }
+
+    public function updatepsbw($idnotulen){
+
+        // $idnotulen = $this->input->post('idnotulen');
+        $id = $this->input->post('id');
+        $topikbahasan = $this->input->post('topikbahasan');
+        $uraian = $this->input->post('uraian');
+        $solusi = $this->input->post('solusi');
+        $pic = $this->input->post('pic');
+        $bataswaktu = $this->input->post('bataswaktu');
+
+        $data = [
+
+            'topik_bahasan' => $topikbahasan,
+            'uraian' => $uraian,
+            'solusi' => $solusi,
+            'pic' => $pic,
+            'bataswaktu' => $bataswaktu,
+            'date_updated' => time()
+    
+        ];
+
+        $where = ['idpermasalahan'=>$id];
+
+        $this->db->where($where);
+        $this->db->update('permasalahan', $data);
+
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-success" role="alert">Risalah Rapat Telah di Update</div>');
+		redirect('sirapat/admin/notulen/psbw/'.$idnotulen);
+    }
+
+    public function delpsbw($id, $idnotulen){
+
+        $this->db->where('idpermasalahan', $id);
+        $this->db->delete('permasalahan');
+
+        $this->session->set_flashdata('message', 
+		'<div class="alert alert-danger" role="alert">Data Telah di Hapus</div>');
+		redirect('sirapat/admin/notulen/psbw/'.$idnotulen);
 
     }
 
@@ -152,8 +279,8 @@ class Notulen extends MY_Controller {
 
         $data['title'] = 'Detail Notulen';
         
-        $data['data_agenda']= $this->notulen_m->getdata()->result();
-
+        // $data['data_agenda']= $this->notulen_m->getdata()->result();
+       
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
       
         $this->template->load('layout/template', 'notulen/detail_notulen', $data);

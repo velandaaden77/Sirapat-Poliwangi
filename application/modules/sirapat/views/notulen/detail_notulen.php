@@ -51,6 +51,7 @@
 
             </div>
             </div>
+           
             <!-- endcard -->
             </div>
             </div>
@@ -62,29 +63,42 @@
                 <img src="<?= base_url('assets/dashboard/img/book.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Notulensi Rapat</h2>
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</button>
+                <?php $notulen = $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->row(); 
+                if(empty($notulen)){
+                ?>
+                <a href="<?= base_url('sirapat/admin/notulen/tambahnotulen/'.$a->id); ?>"
+                class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                <?php }else{ ?>
+                <button type='button'
+                class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
+                <?php } ?>
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Last updated 3 mins ago</small>
                 </div>
             </div>
-           
+            <?php } ?>
+
+          <?php
+           if(empty($notulen)){ ?>
+
             <div class="card text-center">
                 <img src="<?= base_url('assets/dashboard/img/book2.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Risalah Rapat</h2>
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</button>
+                <button type="button"
+                class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Last updated 3 mins ago</small>
                 </div>
             </div>
-          
+
             <div class="card text-center">
                 <img src="<?= base_url('assets/dashboard/img/book5.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">Permasalahan, Solusi, Batas Waktu</h5>
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</button>
+                <button type="button" class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Last updated 3 mins ago</small>
@@ -95,16 +109,61 @@
                 <img src="<?= base_url('assets/dashboard/img/book4.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Berita Acara Rapat</h2>
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</button>
+                <button type="button" class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Last updated 3 mins ago</small>
                 </div>
             </div>
+            
+           <?php }else{ 
+
+            $getnotulen = $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->row();
+       
+          ?>
+
+          <div class="card text-center">
+                <img src="<?= base_url('assets/dashboard/img/book2.jpg')?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h2 class="card-title">Risalah Rapat</h2>
+                <a href="<?= base_url('sirapat/admin/notulen/risalahrapat/'.$getnotulen->idnotulen); ?>"
+                class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                </div>
+                <div class="card-footer" >
+                <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+         
+
+
+            <div class="card text-center">
+                <img src="<?= base_url('assets/dashboard/img/book5.jpg')?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title">Permasalahan, Solusi, Batas Waktu</h5>
+                <a href="<?= base_url('sirapat/admin/notulen/psbw/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                </div>
+                <div class="card-footer" >
+                <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <img src="<?= base_url('assets/dashboard/img/book4.jpg')?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h2 class="card-title">Berita Acara Rapat</h2>
+                <a href="<?= base_url('sirapat/admin/notulen/risalahrapat/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                </div>
+                <div class="card-footer" >
+                <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+
+           <?php } ?>
+            
             </div>
        
     <!-- end -->
-        <?php } ?>
+        
           </div>
           </div>
           </div>
