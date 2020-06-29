@@ -28,10 +28,10 @@ function is_login(){
         'menu_id' => $menu_id
         ]);
 
-        if($userAccess->num_rows() < 1){
+        // if($userAccess->num_rows() < 1){
 
-            redirect('auth/blocked');
-        }
+        //     redirect('auth/blocked');
+        // }
     }
 }
 

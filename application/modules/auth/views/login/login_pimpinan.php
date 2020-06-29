@@ -25,7 +25,7 @@
             <div class="card-body px-lg-7 py-lg-6">
               <div class="text-center text-muted mb-4">
                 <h2>LOGIN PIMPINAN</h2>
-                <a href="" class="btn btn-outline-primary btn-sm">Login Sebagai pimpinan ?</a>
+               
               </div>
               <hr>
 

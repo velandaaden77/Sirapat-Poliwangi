@@ -26,6 +26,18 @@
 
   <div class="col-lg-3">
   <div class="form-group">
+  <label for="formGroupExampleInput2">Jenis Rapat</label>
+  <select name="jenis_rapat" id="jenis_rapat" class="form-control">
+            <option value=""><?= $da->idjenis_rapat ?></option>
+            <?php foreach ($jenisrapat as $m) : ?>
+            <option value="<?= $m['id']; ?>"><?= $m['rapat']; ?></option>
+            <?php endforeach; ?>
+            </select>
+            </div>
+            </div>
+
+  <div class="col-lg-3">
+  <div class="form-group">
     <label for="formGroupExampleInput2">Tanggal</label>
     <input type="date" class="form-control" 
     id="formGroupExampleInput2" placeholder="Another input placeholder" name="tanggal"
@@ -34,21 +46,39 @@
   </div>
   </div>
 
-  <div class="col-lg-3">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Waktu</label>
-    <input type="text" class="form-control" 
-    id="waktu" placeholder="Contoh : 12:00 Wib" name="waktu" value="<?= $da->waktu ?>">
-  <?= form_error('tanggal', '<small class="text-danger pl-1">', '</small>'); ?>
-  </div>
-  </div>
-  
   <div class="col-lg-6">
   <div class="form-group">
     <label for="formGroupExampleInput2">Tempat</label>
     <input type="text" class="form-control" 
     id="formGroupExampleInput2" placeholder="Tempat" name="tempat" 
     value="<?= $da->tempat ?>">
+  </div>
+  </div>
+
+  <div class="col-lg-3">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Jam Mulai</label>
+    <input type="text" class="form-control" 
+    id="waktu" placeholder="" name="jam_mulai" value="<?= $da->jam_mulai ?>">
+  <?= form_error('jam_mulai', '<small class="text-danger pl-1">', '</small>'); ?>
+  </div>
+  </div>
+
+  <div class="col-lg-3">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Jam Selesai</label>
+    <input type="text" class="form-control" 
+    id="waktu" placeholder="" name="jam_selesai" value="<?= $da->jam_selesai ?>">
+  <?= form_error('jam_selesai', '<small class="text-danger pl-1">', '</small>'); ?>
+  </div>
+  </div>
+
+  <div class="col-lg-6">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Peserta Rapat</label>
+    <input type="text" class="form-control" 
+    id="formGroupExampleInput2" placeholder="Peserta Rapat" name="peserta_rapat" 
+    value="<?= $da->peserta_rapat ?>">
   </div>
   </div>
 
@@ -66,28 +96,9 @@
               </div>
   </div>
 
-  <div class="col-lg-3">
-  <div class="form-group">
-  <label for="formGroupExampleInput2">Jenis Rapat</label>
-  <select name="jenis_rapat" id="jenis_rapat" class="form-control">
-            <option value=""><?= $da->idjenis_rapat ?></option>
-            <?php foreach ($jenisrapat as $m) : ?>
-            <option value="<?= $m['id']; ?>"><?= $m['rapat']; ?></option>
-            <?php endforeach; ?>
-            </select>
-            </div>
-            </div>
  
-  <div class="col-lg-6">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Peserta Rapat</label>
-    <input type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Peserta Rapat" name="peserta_rapat" 
-    value="<?= $da->peserta_rapat ?>">
-  </div>
-  </div>
 
-  <div class="col-lg-6">
+  <div class="col-lg-3">
   <div class="form-group">
     <label for="formGroupExampleInput2">Nomor Agenda</label>
     <input type="text" class="form-control" 

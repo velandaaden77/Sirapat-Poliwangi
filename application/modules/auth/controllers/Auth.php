@@ -354,7 +354,10 @@ class Auth extends MX_Controller {
 
 	public function blocked(){
 
+
+		$this->load->view('layout/auth_header');
 		$this->load->view('login/blocked');
+		$this->load->view('layout/auth_footer');
 	}
 
 	public function indexpimpinan()

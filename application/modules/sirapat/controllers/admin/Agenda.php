@@ -72,7 +72,8 @@ class Agenda extends MY_Controller {
 		$nama_agenda = $this->input->post('nama_agenda');
 		$tanggal = $this->input->post('tanggal');
         $tempat = $this->input->post('tempat');
-        $waktu = $this->input->post('waktu');
+        $jam_mulai = $this->input->post('jam_mulai');
+        $jam_selesai = $this->input->post('jam_selesai');
 		$prodi = $this->input->post('prodi');
 		$jenis_rapat = $this->input->post('jenis_rapat');
 		$peserta_rapat = $this->input->post('peserta_rapat');
@@ -114,7 +115,8 @@ class Agenda extends MY_Controller {
 			'nama_agenda' => $nama_agenda,
 			'tanggal' => $tanggal,
             'tempat' => $tempat,
-            'waktu' => $waktu,
+            'jam_mulai' => $jam_mulai,
+            'jam_selesai' => $jam_selesai,
 			'id_prodi' => $prodi,
 			'idjenis_rapat' => $jenis_rapat,
 			'peserta_rapat' => $peserta_rapat,
@@ -192,7 +194,7 @@ class Agenda extends MY_Controller {
 
 		$id_agenda = $this->input->post('id_agenda');
 		$id_pimpinan = $this->input->post('pimpinan');
-		$id_user = $this->session->userdata('id');
+		$id_user = $this->session->userdata('iduser');
 
 		$data = [
 			'id_agenda' => $id_agenda,

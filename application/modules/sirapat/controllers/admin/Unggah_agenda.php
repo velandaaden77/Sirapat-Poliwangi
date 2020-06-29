@@ -121,7 +121,7 @@ class Unggah_agenda extends MY_Controller {
 				'id_pimpinan' => $pimpinan,
 				'lampiran' => $lampiran,
 				'file' => $file,
-				'id_user' => $this->session->userdata('id'),
+				'id_user' => $this->session->userdata('iduser'),
 				'date_created' => $date_created,
 			];
 	
