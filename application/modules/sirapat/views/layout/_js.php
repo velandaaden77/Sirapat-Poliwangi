@@ -18,6 +18,7 @@
         $(document).ready(function() { 
           $("#prodi").select2();
           $("#pimpinan").select2();
+          $("#karyawan").select2();
           
         });
     </script>
