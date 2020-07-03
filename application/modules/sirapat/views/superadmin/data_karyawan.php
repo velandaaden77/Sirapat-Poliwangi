@@ -8,12 +8,11 @@
             <div class="col-lg-12 text-center">
              <h1 class="text-white"><i class="fas fa-users"></i> Data Karyawan</h1>
             </div>
-          </div>
-            
+            </div>
           
           </div>
             </div>
-            </div>
+             </div>
     <!-- Page content -->
     <div class="container-fluid mt--5">
       <div class="row">
@@ -32,6 +31,7 @@
             <?= $this->session->flashdata('message'); ?>
 
               <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addkaryawan">Tambah Karyawan</a>
+              <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addunit">Tambah Unit</a>
               <div class="col-lg-12">
               
               <div class="table-responsive">
@@ -305,6 +305,41 @@
             </div>
 
             </div>
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Tambah</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addunit" tabindex="-1" role="dialog" aria-labelledby="addunit" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addunit">Tambah Karyawan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <div class="container-fluid">
+      <form action="<?= base_url('sirapat/superadmin/data_karyawan/addunit'); ?>" method="post">
+
+            <div class="form-group">
+              <label for="formGroupExampleInput2">NAMA UNIT</label>
+              <input type="text" class="form-control" 
+              id="unit" placeholder="Nama Unit" name="unit" value="<?= set_value('unit'); ?>">
+              <span class="help-block"><?= form_error('unit', '<small class="text-danger pl-1">', '</small>'); ?></span>
+            </div>
+
             </div>
 
       </div>

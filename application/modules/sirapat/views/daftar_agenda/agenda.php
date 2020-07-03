@@ -1,26 +1,17 @@
-  <!-- Header -->
-  <div class="header bg-transparent pb-6">
+     <!-- Header -->
+ <div class="header bg-default pb-6">
       <div class="container-fluid">
         <div class="header-body">
-        
-          <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0 align-center">Daftar Agenda</h6>
-              
+          <div class="row align-items-center py-5">
+         
+            <div class="col-lg-12 text-center">
+             <h1 class="text-white"><i class="fas fa-book"></i> Agenda Rapat</h1>
             </div>
+            </div>
+          
           </div>
-            
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                  
-        </div>
-      </div>
-    </div>
-        </div>
-      </div>
-    </div>
+            </div>
+             </div>
 
     <!-- Page content -->
     <div class="container-fluid mt--5">
@@ -31,55 +22,60 @@
 
             <div class="card-header bg-transparent">
 
-            <h2 class="box-title mt-3">Daftar Agenda</h2>
-            
-            <a href="<?= base_url('sirapat/admin/UnggahAgenda'); ?>" class="btn btn-primary btn-flat mb-5">
+          <div class="row mt-3 mb-3">
+          <div class="col">
+            <h2 class="box-title">Daftar Agenda Rapat</h2>
+          </div>
+
+          <div class="col">
+            <div class="float-right">
+            <a href="<?= base_url('sirapat/admin/UnggahAgenda'); ?>" class="btn btn-primary btn-sm">
             <i class="fa fa-plus "></i>Tambah Agenda
             </a>
-
+            </div>
+            </div>
+            </div>
           <?= $this->session->flashdata('message') ?>        
 
         <section class="content">
+        <div class="table-responsive">
       <table class="table table-hover">
-      <thead>
+      <thead class="thead-light">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NAMA AGENDA</th>
           <th scope="col">TANGGAL</th>
           <th scope="col">TEMPAT</th>
-          <th scope="col">NOMOR AGENDA</th>
-          <th scope="col">HAL</th>
+          <th scope="col">GRUP</th>
           <th scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
 
       <?php $i=1; ?>
-      <?php foreach ($row->result() as $key => $data) : ?>
+      <?php foreach ($getagenda as $key => $data) : ?>
       
         <tr>
           <th scope="row"><?= $i ?></th>
           <td><?= $data->nama_agenda; ?></td>
           <td><?= $data->tanggal; ?></td>
           <td><?= $data->tempat ?></td>
-          <td><?= $data->nomor_agenda; ?></td>
-          <td><?= $data->hal; ?></td>
+          <td><?= $data->nama_grup; ?></td>
 
           <td>
           <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i></button>
-          </td>
-
-          <td class="pl-0">
+          
+          
           <?= anchor('sirapat/admin/agenda/edit/'.$data->id, 
           '<button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="edit"><i class="fa fa-edit"></i></button>')?>
-          </td>
+         
 
-          <td class="pl-0">
+         
           <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
           '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="validasi"><i class="fa fa-check"></i></button>')?>
-          </td>
+         
 
-          <td class="pl-0">
+         
             <a href="<?= base_url('sirapat/admin/agenda/del/' . $data->id); ?>" 
             class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" data-placement="bottom" title="hapus"><i class="fa fa-trash"></i></a>
           </td>
@@ -90,7 +86,7 @@
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Detail Agenda</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Detail Agenda Rapat</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -101,55 +97,10 @@
 
               <div class="row">
                 <div class="col-sm-3">
-                   <h3>Nomor Agenda</h3>
+                   <h3>Nomor Surat</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $data->nomor_agenda ?></span>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Nama Agenda</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span><?= $data->nama_agenda ?></span>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Tanggal</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span><?= $data->tanggal ?></span>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Tempat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span><?= $data->tempat ?></span>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Jenis Rapat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span><?= $data->idjenis_rapat ?></span>
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Peserta Rapat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span><?= $data->peserta_rapat ?></span>
+                    <span>: <?= $data->nomor_agenda ?></span>
                 </div>
                 </div>
 
@@ -158,7 +109,7 @@
                    <h3>Lampiran</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $data->lampiran ?></span>
+                    <span>: <?= $data->lampiran ?></span>
                 </div>
                 </div>
 
@@ -167,7 +118,82 @@
                    <h3>Hal</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $data->hal ?></span>
+                    <span>: <?= $data->hal ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Tanggal</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->tanggal ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Jam Mulai</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->jam_mulai ?> WIB</span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Jam Selesai</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->jam_selesai ?> WIB</span>
+                </div>
+                </div>
+
+                
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Tempat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->tempat ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Grup Rapat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->nama_grup ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Unit</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->unit ?></span>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Peserta Rapat</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span>: <?= $data->peserta_rapat ?></span>
+                </div>
+                </div>
+
+                
+
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Nama Agenda</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text-weight-bold">: <?= $data->nama_agenda ?></span>
                 </div>
                 </div>
 
@@ -196,8 +222,10 @@
         
       </tbody>
       </table> 
+      </div>
+      <!-- endtabel -->
 
-      <?= $this->pagination->create_links(); ?> 
+    
       
       </section>
       </div>

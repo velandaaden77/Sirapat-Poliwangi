@@ -3,9 +3,11 @@
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-5">
-         
+         <?php $agenda = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row()?>
             <div class="col-lg-12 text-center">
-             <h1 class="text-white"><i class="fas fa-users"></i> Absensi Karyawan</h1>
+             <h1 class="text-white"><i class="fas fa-users"></i> Absensi Rapat</h1>
+             <span class="text-white"><?= $agenda->nama_agenda?></span><br>
+             <span class="text-white"><?= $agenda->tanggal?></span>
             </div>
 
             </div>
@@ -24,14 +26,13 @@
 
           <div class="row mt-3 mb-3">
           <div class="col">
-            <h2 class="box-title">Daftar Agenda Rapat</h2>
+            <h3 class="box-title">Anggota Rapat</h3>
           </div>
 
           <div class="col">
             <div class="float-right">
-            <a href="<?= base_url('sirapat/admin/UnggahAgenda'); ?>" class="btn btn-primary btn-sm">
-            <i class="fa fa-plus "></i>Tambah Agenda
-            </a>
+           <button type="button" class="btn btn-danger btn-sm mb-3">PDF</button> 
+           <button type="button" class="btn btn-primary btn-sm mb-3">PRINT ABSENSI</button> 
             </div>
             </div>
             </div>
@@ -43,35 +44,37 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">NO</th>
-          <th scope="col">NAMA AGENDA</th>
-          <th scope="col">TANGGAL</th>
-          <th scope="col">TEMPAT</th>
-          <th scope="col">GRUP</th>
+          <th scope="col">NAMA KARYAWAN</th>
           <th scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
-
+     
       <?php $i=1; ?>
-      <?php foreach ($getagenda as $key => $data) : ?>
+      <?php foreach ($getanggota as $key => $data) : ?>
       
         <tr>
           <th scope="row"><?= $i ?></th>
-          <td><?= $data->nama_agenda; ?></td>
-          <td><?= $data->tanggal; ?></td>
-          <td><?= $data->tempat ?></td>
-          <td><?= $data->nama_grup; ?></td>
-
+         
           <td>
-          <a href="<?= base_url('sirapat/admin/absensi/detail_absensi/'.$data->id); ?>" 
-          class="btn btn-dark btn-sm"><i class="fa fa-forward"></i></a>
+         <!-- <input type="hidden" name="idkaryawan" value="<?= $data->idkaryawan ?>" > -->
+          <?= $data->nama_karyawan; ?>
           </td>
 
+          <td>
+          
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" <?= checkabsen($data->id, $data->idkaryawan); ?>
+            data-karyawan="<?= $data->idkaryawan?>" data-agenda="<?= $data->id?>">
+          </div>
+
+          </td>
         </tr>
 
       <?php $i++; ?>
       <?php endforeach; ?>
-        
+      
+      
       </tbody>
       </table> 
       </div>

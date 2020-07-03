@@ -14,6 +14,18 @@ class Agenda_m extends CI_Model {
         // return $query;
     }
 
+    public function getagenda(){
+
+        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup, karyawan_unit.unit');
+        $this->db->from('agenda_rapat');
+        $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
+        $this->db->join('karyawan_unit', 'agenda_rapat.id_unit = karyawan_unit.id ');
+        $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $query = $this->db->get();
+        return $query;
+
+    }
+
     public function update_data($where,$data,$table){
 		$this->db->where($where);
         $this->db->update($table, $data);

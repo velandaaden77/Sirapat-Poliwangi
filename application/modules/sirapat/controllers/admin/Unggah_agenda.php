@@ -17,16 +17,7 @@ class Unggah_agenda extends MY_Controller {
 	{ 
 
 		$data['title'] = 'Unggah Agenda';
-
-		$this->load->model('m_jenisrapat', 'jenisrapat');
-		$data['agenda'] = $this->jenisrapat->getjenisrapat();
-		$data['jenisrapat'] = $this->db->get('jenis_rapat')->result_array();
 		
-		$data['agenda'] = $this->jenisrapat->getprodi();
-		$data['prodi'] = $this->db->get('prodi')->result_array();
-
-		
-
 		// var_dump($data); die;
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['dosen'] = $this->db->get('dosen')->result_array();
@@ -41,16 +32,14 @@ class Unggah_agenda extends MY_Controller {
 		$this->form_validation->set_rules('tempat', 'Tempat', 'required');
 		$this->form_validation->set_rules('jmmulai', 'Jam Mulai', 'required');
 		$this->form_validation->set_rules('jmselesai', 'Jam Selesai', 'required');
-		$this->form_validation->set_rules('prodi', 'Prodi', 'required');
-		$this->form_validation->set_rules('jenis_rapat', 'Jenis Rapat', 'required');
+		$this->form_validation->set_rules('unit', 'Unit', 'required');
+		$this->form_validation->set_rules('gruprapat', 'Grup Rapat', 'required');
 		$this->form_validation->set_rules('peserta_rapat', 'Peserta Rapat', 'required');
 		$this->form_validation->set_rules('nomor_agenda', 'Nomor Agenda', 'required');
 		$this->form_validation->set_rules('hal', 'Hal', 'required');
 		$this->form_validation->set_rules('pimpinan', 'Pimpinan', 'required');
 		// $this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
 
-		$this->form_validation->set_error_delimiters('<span class="help-block">','</span>');
-		
 		if($this->form_validation->run() == false){
 
 		$data['title'] = 'Unggah Agenda';
@@ -73,12 +62,13 @@ class Unggah_agenda extends MY_Controller {
 			$tempat = $this->input->post('tempat');
 			$jammulai = $this->input->post('jmmulai');
 			$jamselesai = $this->input->post('jmselesai');
-			$prodi = $this->input->post('prodi');
-			$jenis_rapat = $this->input->post('jenis_rapat');
+			$unit = $this->input->post('unit');
+			$gruprapat = $this->input->post('gruprapat');
 			$peserta_rapat = $this->input->post('peserta_rapat');
 			$nomor_agenda = $this->input->post('nomor_agenda');
 			$hal = $this->input->post('hal');
 			$pimpinan = $this->input->post('pimpinan');
+			$lampiran1 = $this->input->post('lampiran1');
 			$lampiran = $_FILES['lampiran']['name'];
 
 			if($lampiran){
@@ -105,7 +95,7 @@ class Unggah_agenda extends MY_Controller {
 			}
 
 			$file = 'default.doc';
-			$date_created = time();
+			$date_created = date('Y-m-d h:i:s');
 
 			$data = [
 				'nama_agenda' => $nama_agenda,
@@ -113,13 +103,14 @@ class Unggah_agenda extends MY_Controller {
 				'tempat' => $tempat,
 				'jam_mulai' => $jammulai,
 				'jam_selesai' => $jamselesai,
-				'id_prodi' => $prodi,
-				'idjenis_rapat' => $jenis_rapat,
+				'id_unit' => $unit,
+				'id_tipegrup' => $gruprapat,
 				'peserta_rapat' => $peserta_rapat,
 				'nomor_agenda' => $nomor_agenda,
 				'hal' => $hal,
 				'id_pimpinan' => $pimpinan,
-				'lampiran' => $lampiran,
+				'lampiran' => $lampiran1,
+				'lampiran_file' => $lampiran,
 				'file' => $file,
 				'id_user' => $this->session->userdata('iduser'),
 				'date_created' => $date_created,

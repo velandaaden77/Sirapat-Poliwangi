@@ -14,29 +14,11 @@ class Agenda extends MY_Controller {
 
     public function index(){
 
-        $data['title'] = 'Agenda';
-        // $data['daftar_agenda'] = $this->m_unggah_agenda->tampil_data()->result();
-        
-        $this->load->model('m_jenisrapat', 'jenisrapat');
-		$data['agenda'] = $this->jenisrapat->getjenisrapat();
-		$data['jenisrapat'] = $this->db->get('jenis_rapat')->result_array();
-		
+        $data['title'] = 'Agenda Rapat';
+       
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        
-        //Pagination
-        $this->load->library('pagination');
-
-        //config
-        $config['base_url'] = 'http://localhost/poliwangi/sirapat/admin/agenda/index';
-        $config['total_rows'] = $this->agenda_m->countAllAgenda();
-        $config['per_page'] = 3;
-
-        //Initilize
-        $this->pagination->initialize($config);
-
-        $data['start'] = $this->uri->segment(5);
-        // $data['row'] = $this->agenda_m->getAllAgenda($config['per_page'], $data['start']);
-        $data['row']= $this->agenda_m->get();
+ 
+		$data['getagenda'] = $this->agenda_m->getagenda()->result();
 
         $this->template->load('layout/template','daftar_agenda/agenda', $data);
 
@@ -44,22 +26,12 @@ class Agenda extends MY_Controller {
 
     public function edit($id)
 	{
-		$where = array(
-			
-			'id' => $id,
-		);
+		$where = array('id' => $id);
 
 		$data = [
 			'title' => 'Edit Data',
 			'daftar_agenda' =>  $this->m_unggah_agenda->edit_data($where, 'agenda_rapat')->result(),
 		];
-
-		$this->load->model('m_jenisrapat', 'jenisrapat');
-		$data['agenda'] = $this->jenisrapat->getjenisrapat();
-        $data['jenisrapat'] = $this->db->get('jenis_rapat')->result_array();
-        
-		$data['agenda'] = $this->jenisrapat->getprodi();
-		$data['prodi'] = $this->db->get('prodi')->result_array();
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 

@@ -51,3 +51,17 @@ function check_access($role_id, $menu_id){
 
 }
 
+function checkabsen($id, $idkaryawan){
+    $ci = get_instance();
+
+    $ci->db->where('id_agenda', $id);
+    $ci->db->where('id_karyawan', $idkaryawan);
+
+    $result = $ci->db->get('absensi');
+
+    if($result->num_rows() > 0 ){
+        return "checked='checked'";
+    }
+
+}
+

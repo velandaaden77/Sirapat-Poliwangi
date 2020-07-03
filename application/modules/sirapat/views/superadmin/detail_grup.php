@@ -114,8 +114,11 @@
 
       </div>
 
-      
+      <div class="modal-footer">
+      <div class="text-center">
         <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+        </div>
       </form>
     </div>
   </div>

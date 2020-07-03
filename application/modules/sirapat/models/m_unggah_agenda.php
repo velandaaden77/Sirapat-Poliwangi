@@ -25,7 +25,7 @@ class M_unggah_agenda extends CI_Model {
 		// $this->db->where($where);
 		// $this->db->delete($table);
 	}
-
+  
 	public function edit_data($where,$table){
 		return $this->db->get_where($table, $where);
 	}

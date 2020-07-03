@@ -5,9 +5,9 @@ class m_jenisrapat extends CI_Model {
 
     public function getjenisrapat(){
 
-        $query ="SELECT `agenda_rapat`.*, `jenis_rapat`.`rapat`
-                FROM `agenda_rapat` JOIN `jenis_rapat`
-                ON `agenda_rapat`.`idjenis_rapat` = `jenis_rapat`.`id`
+        $query ="SELECT `agenda_rapat`.*, `grup_tipe`.`nama_grup`
+                FROM `agenda_rapat` JOIN `grup_tipe`
+                ON `agenda_rapat`.`id_tipegrup` = `grup_tipe`.`id`
                 ";
 
         return $this->db->query($query)->result_array();

@@ -151,4 +151,36 @@ class Data_karyawan extends MY_Controller {
         $data['karyawan'] = $this->superadmin_m->detail($id)->row();
 
     }
+
+    public function addunit(){
+
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+
+        if ($this->form_validation->run() == false){
+
+            $data['title'] = 'Data Karyawan';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['karyawan'] = $this->db->get('karyawan')->result_array();
+            $this->session->set_flashdata('message', 
+            '<div class="alert alert-danger" role="alert">Data Belum Terisi Lengkap</div>');
+            $this->template->load('layout/template', 'superadmin/data_karyawan', $data);
+        }else {
+            
+            $unit = $this->input->post('unit');
+
+            $data = [
+                'unit' => $unit,
+            ];
+
+            $this->db->insert('karyawan_unit', $data);
+            $this->session->set_flashdata('message', 
+            
+            '<div class="alert alert-success" role="alert">Unit Ditambahkan</div>');
+    
+            redirect('sirapat/superadmin/data_karyawan');
+
+        }
+
+
+    }
 }
