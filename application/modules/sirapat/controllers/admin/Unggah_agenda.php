@@ -43,16 +43,7 @@ class Unggah_agenda extends MY_Controller {
 		if($this->form_validation->run() == false){
 
 		$data['title'] = 'Unggah Agenda';
-		
-		$this->load->model('m_jenisrapat', 'jenisrapat');
-		$data['agenda'] = $this->jenisrapat->getjenisrapat();
-		$data['jenisrapat'] = $this->db->get('jenis_rapat')->result_array();
-
-		$data['agenda'] = $this->jenisrapat->getprodi();
-		$data['prodi'] = $this->db->get('prodi')->result_array();
-		// var_dump($data); die;
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		
 		$this->template->load('layout/template', 'unggah_agenda/index', $data);
 
 		}else {

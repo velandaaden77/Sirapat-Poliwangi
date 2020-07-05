@@ -1,26 +1,19 @@
-  <!-- Header -->
-  <div class="header bg-transparent pb-6">
+       <!-- Header -->
+ <div class="header bg-default pb-6">
       <div class="container-fluid">
         <div class="header-body">
-        
-          <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0 align-center">Daftar Agenda</h6>
-              
+          <div class="row align-items-center py-5">
+          <?php $agenda = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row()?>
+            <div class="col-lg-12 text-center">
+             <h1 class="text-white"><i class="fas fa-book"></i> Validasi Agenda Rapat</h1>
+             <span class="text-white"><?= $agenda->nama_agenda?></span><br>
+             <span class="text-white"><?= $agenda->tanggal?></span>
             </div>
+            </div>
+          
           </div>
-            
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                  
-        </div>
-      </div>
-    </div>
-        </div>
-      </div>
-    </div>
+            </div>
+             </div>
 
     <!-- Page content -->
     <div class="container-fluid mt--5">
@@ -40,8 +33,10 @@
 
                     <select name="pimpinan" id="pimpinan" class="form-control">
                     <option value="">Pilih Pimpinan</option>
-                    <?php foreach ($pimpinan as $p) : ?>
-                    <option value="<?= $p['id']; ?>"><?= $p['nama']; ?></option>
+                    <?php 
+                    $karyawan = $this->db->get('karyawan')->result_array();
+                    foreach ($karyawan as $k) : ?>
+                    <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
                     <?php endforeach; ?>
                     </select>
                     <?= form_error('pimpinan', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -92,8 +87,20 @@
         <tr>
           <th scope="row"><?= $i ?></th>
           <td><?= $data->nama; ?></td>
-          <td><?= $data->status; ?></td>
+
+          <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $this->uri->segment(5)])->row();
+          if($data->status = 1){
+          ?>
+          <td> <span class="text-danger">Belum Di Validasi</span></td>
+          <?php }else{ ?>
+          <td><span class="text-primary">Sudah Di Validasi</span></td>
+          <?php } ?>
+
+          <?php if($data->qrcode = null){ ?>
           <td><img src="<?= base_url('assets/file/qr-code/'.$data->qrcode)  ?>" width="90%"></td>
+          <?php }else{ ?>
+          <td>-</td>
+          <?php } ?>
           <td>
             <a href="<?= base_url('sirapat/admin/agenda/delvalidasi/'.$data->id_validasi); ?>" 
             class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></a>

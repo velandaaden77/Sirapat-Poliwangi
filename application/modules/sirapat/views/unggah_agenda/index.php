@@ -15,7 +15,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Nomor Surat</label>
     <input type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Nomor Surat" name="nomor_agenda">
+    id="formGroupExampleInput2" placeholder="Nomor Surat" name="nomor_agenda" value="<?= set_value('nomor_agenda'); ?>">
     <?= form_error('nomor_agenda', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -24,7 +24,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Kepada </label>
     <input type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Kepada" name="peserta_rapat">
+    id="formGroupExampleInput2" placeholder="Kepada" name="peserta_rapat" value="<?= set_value('peserta_rapat'); ?>">
     <?= form_error('peserta_rapat', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -33,7 +33,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Tanggal</label>
     <input type="text" class="form-control" 
-    id="datepicker" placeholder="Masukan Tanggal" name="tanggal">
+    id="datepicker" placeholder="Masukan Tanggal" name="tanggal" autocomplete="off" value="<?= set_value('tanggal'); ?>">
   <?= form_error('tanggal', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -42,7 +42,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Jam Mulai</label>
     <input type="time" class="form-control" 
-    id="waktu" placeholder="Contoh : 12:00 Wib" name="jmmulai">
+    id="waktu" placeholder="Contoh : 12:00 Wib" name="jmmulai" value="<?= set_value('jmmulai'); ?>">
   <?= form_error('tanggal', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -51,7 +51,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Jam Selesai</label>
     <input type="time" class="form-control" 
-    id="waktu" placeholder="Contoh : 12:00 Wib" name="jmselesai">
+    id="waktu" placeholder="Contoh : 12:00 Wib" name="jmselesai"value="<?= set_value('jmselesai'); ?>">
   <?= form_error('tanggal', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -60,7 +60,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Tempat</label>
     <input type="text" class="form-control" 
-    id="tempat" placeholder="Tempat" name="tempat">
+    id="tempat" placeholder="Tempat" name="tempat" value="<?= set_value('tempat'); ?>">
   <?= form_error('tempat', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -71,7 +71,7 @@
   <div class="form-group <?= form_error('nama_agenda') ? 'has-error' : null?>">
     <label for="formGroupExampleInput2">Nama Agenda</label>
     <input type="text" class="form-control" 
-    id="nama_agenda" placeholder="Agenda" name="nama_agenda">
+    id="nama_agenda" placeholder="Agenda" name="nama_agenda" value="<?= set_value('nama_agenda'); ?>">
     <span class="help-block"><?= form_error('nama_agenda', '<small class="text-danger pl-1">', '</small>'); ?></span>
   </div>
   </div>
@@ -80,7 +80,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Hal</label>
     <input type="text"  class="form-control" 
-    id="formGroupExampleInput2" placeholder="Hal" name="hal"></input>
+    id="formGroupExampleInput2" placeholder="Hal" name="hal" value="<?= set_value('hal'); ?>"></input>
     <?= form_error('hal', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -89,7 +89,7 @@
   <div class="form-group">
     <label for="formGroupExampleInput2">Lampiran</label>
     <input type="text"  class="form-control" 
-    id="formGroupExampleInput2" placeholder="Lampiran" name="lampiran1"></input>
+    id="formGroupExampleInput2" placeholder="Lampiran" name="lampiran1" value="<?= set_value('lampiran1'); ?>"></input>
     <?= form_error('lampiran1', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -110,7 +110,7 @@
   <label for="formGroupExampleInput2">Grup Rapat</label>
 
               <select name="gruprapat" id="gruprapat" class="form-control">
-              <option value="">Select Menu</option>
+              <option value="<?= set_value('gruprapat'); ?>">Select Menu</option>
               <?php 
               $grup = $this->db->get('grup_tipe')->result_array();
               foreach ($grup as $g) : ?>
@@ -126,7 +126,7 @@
   <label for="formGroupExampleInput2">Unit</label>
               
               <select name="unit" id="unit" class="form-control">
-              <option value="">Pilih Unit</option>
+              <option value="<?= set_value('unit'); ?>">Pilih Unit</option>
               <?php 
               $unit = $this->db->get('karyawan_unit')->result_array();
               foreach ($unit as $u) : ?>
@@ -142,13 +142,15 @@
   <label for="formGroupExampleInput2">Pimpinan</label>
 
               <select name="pimpinan" id="pimpinan" class="form-control">
-              <option value="">Pilih Pimpinan</option>
-              <?php foreach ($dosen as $d) : ?>
-              <option value="<?= $d['id']; ?>"><?= $d['nama']; ?></option>
+              <option value="<?= set_value('pimpinan'); ?>">Pilih Pimpinan</option>
+              <?php 
+              $karyawan = $this->db->get('karyawan')->result_array();
+              foreach ($karyawan as $k) : ?>
+              <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
               <?php endforeach; ?>
               </select>
               <?= form_error('pimpinan', '<small class="text-danger pl-1">', '</small>'); ?>
-              </div>
+  </div>
   </div>
 
   </div>

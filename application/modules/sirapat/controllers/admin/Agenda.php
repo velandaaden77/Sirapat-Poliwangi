@@ -40,18 +40,19 @@ class Agenda extends MY_Controller {
 
     public function update(){
 
-		$id = $this->input->post('id');
-		$nama_agenda = $this->input->post('nama_agenda');
-		$tanggal = $this->input->post('tanggal');
-        $tempat = $this->input->post('tempat');
-        $jam_mulai = $this->input->post('jam_mulai');
-        $jam_selesai = $this->input->post('jam_selesai');
-		$prodi = $this->input->post('prodi');
-		$jenis_rapat = $this->input->post('jenis_rapat');
-		$peserta_rapat = $this->input->post('peserta_rapat');
-		$nomor_agenda = $this->input->post('nomor_agenda');
-		$hal = $this->input->post('hal');
-		$lampiran = $_FILES['lampiran']['name'];
+			$nama_agenda = $this->input->post('nama_agenda');
+			$tanggal = $this->input->post('tanggal');
+			$tempat = $this->input->post('tempat');
+			$jammulai = $this->input->post('jmmulai');
+			$jamselesai = $this->input->post('jmselesai');
+			$unit = $this->input->post('unit');
+			$gruprapat = $this->input->post('gruprapat');
+			$peserta_rapat = $this->input->post('peserta_rapat');
+			$nomor_agenda = $this->input->post('nomor_agenda');
+			$hal = $this->input->post('hal');
+			$pimpinan = $this->input->post('pimpinan');
+			$lampiran1 = $this->input->post('lampiran1');
+			$lampiran = $_FILES['lampiran']['name'];
 
 			if($lampiran){
 				$config['allowed_types'] = 'doc|xls|pdf';
@@ -67,7 +68,6 @@ class Agenda extends MY_Controller {
 					if($old_lampiran != 'default.doc'){
 						unlink(FCPATH . 'assets/dashboard/file/' . $old_lampiran);
 					}
-
 					//insert data file ke database
 					$new_lampiran = $this->upload->data('file_name');
 					$this->db->set('lampiran', $new_lampiran);
@@ -77,30 +77,30 @@ class Agenda extends MY_Controller {
 				}
 			}
 
-		$file = 'default.doc';
-		$date_created = time();
-		$date_update = time();
+			$file = 'default.doc';
+			$date_created = date('Y-m-d h:i:s');
 
-		$data = [
-
-			'id' => $id,
-			'nama_agenda' => $nama_agenda,
-			'tanggal' => $tanggal,
-            'tempat' => $tempat,
-            'jam_mulai' => $jam_mulai,
-            'jam_selesai' => $jam_selesai,
-			'id_prodi' => $prodi,
-			'idjenis_rapat' => $jenis_rapat,
-			'peserta_rapat' => $peserta_rapat,
-			'nomor_agenda' => $nomor_agenda,
-			'hal' => $hal,
-			'lampiran' => $lampiran,
-			'file' => $file,
-			'date_update' => $date_update
-		];
+			$data = [
+				'nama_agenda' => $nama_agenda,
+				'tanggal' => $tanggal,
+				'tempat' => $tempat,
+				'jam_mulai' => $jammulai,
+				'jam_selesai' => $jamselesai,
+				'id_unit' => $unit,
+				'id_tipegrup' => $gruprapat,
+				'peserta_rapat' => $peserta_rapat,
+				'nomor_agenda' => $nomor_agenda,
+				'hal' => $hal,
+				'id_pimpinan' => $pimpinan,
+				'lampiran' => $lampiran1,
+				'lampiran_file' => $lampiran,
+				'file' => $file,
+				'id_user' => $this->session->userdata('iduser'),
+				'date_created' => $date_created,
+			];
 
 		$where = [
-			'id' => $id
+			'id' => $this->uri->segment(5),
 		];
 		
 		$this->m_unggah_agenda->update_data($where,$data, 'agenda_rapat');
