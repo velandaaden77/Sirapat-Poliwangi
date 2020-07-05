@@ -9,6 +9,7 @@ class Absensi extends MY_Controller {
 		is_logged_in();
         $this->load->model('agenda_m');
         $this->load->model('absensi_m');
+        $this->load->library('pdf_generator');
     }
 
     public function index(){
@@ -31,26 +32,6 @@ class Absensi extends MY_Controller {
 
     public function addabsensi(){
 
-        // $data = $this->input->post('cekabsen');
-        
-        // foreach ($data as $key => $d) {
-           
-        //     $d=[
-
-        //         'id_agenda' => $this->uri->segment(5),
-        //         'id_karyawan' => $this->input->post('idkaryawan'),
-        //         'id_user' => $this->session->userdata('iduser'),
-        //         'date_created' => date('Y-m-d h:i:s'),
-        //     ];
-    
-        //     $this->db->insert('absensi', $d);
-
-        // }
-
-        // $this->session->set_flashdata('message', 
-		// '<div class="alert alert-success" role="alert">Absensi berhasil</div>');
-		// redirect('sirapat/admin/absensi/detail_absensi');
-
        $agenda_id = $this->input->post('agendaId');
        $karyawan_id = $this->input->post('karyawanId');
 
@@ -69,14 +50,26 @@ class Absensi extends MY_Controller {
        if($result->num_rows() < 1 ){
            $this->db->insert('absensi', $data);
        }else{
-
-          
            $this->db->delete('absensi',$where);
        }
-
         $this->session->set_flashdata('message', 
 		'<div class="alert alert-success" role="alert">Absensi berhasil</div>');
+    }
 
+    public function printabsensi(){
 
+        $data['getabsensi'] = $this->absensi_m->getabsensi()->result();
+        $this->load->view('absensi/print_absen', $data);
+
+    }
+
+    public function pdf(){
+
+        $data['getabsensi'] = $this->absensi_m->getabsensi()->result();
+        // $html = $this->load->view('daftar_agenda/laporan_pdf', $data, true);
+
+        $html = $this->load->view('absensi/print_absen', $data, true);
+
+        $this->pdf_generator->generate($html, 'Absensi','A4', 'potrait');
     }
 }

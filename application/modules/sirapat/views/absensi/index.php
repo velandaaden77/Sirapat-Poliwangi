@@ -29,9 +29,7 @@
 
           <div class="col">
             <div class="float-right">
-            <a href="<?= base_url('sirapat/admin/UnggahAgenda'); ?>" class="btn btn-primary btn-sm">
-            <i class="fa fa-plus "></i>Tambah Agenda
-            </a>
+            
             </div>
             </div>
             </div>

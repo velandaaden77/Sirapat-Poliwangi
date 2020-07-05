@@ -14,8 +14,18 @@ class Absensi_m extends CI_Model {
         $this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
         $query = $this->db->get();
         return $query;
+        
+}
 
-     
+    public function getabsensi(){
+
+        $this->db->select ('*');
+        $this->db->from('absensi');
+        $this->db->join('agenda_rapat', 'absensi.id_agenda = agenda_rapat.id');
+        $this->db->join('karyawan', 'absensi.id_karyawan = karyawan.idkaryawan ');
+        $this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
+        $query = $this->db->get();
+        return $query;
 
 }
 

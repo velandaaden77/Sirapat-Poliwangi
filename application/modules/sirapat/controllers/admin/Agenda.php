@@ -132,7 +132,6 @@ class Agenda extends MY_Controller {
 
         $this->pdf_generator->generate($html, 'Agenda-'.$data['row']->nama_agenda,'A4', 'landscape');
 
-
     }
 
     // public function print($id){

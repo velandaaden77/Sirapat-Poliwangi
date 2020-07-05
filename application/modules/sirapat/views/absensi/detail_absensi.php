@@ -31,8 +31,8 @@
 
           <div class="col">
             <div class="float-right">
-           <button type="button" class="btn btn-danger btn-sm mb-3">PDF</button> 
-           <button type="button" class="btn btn-primary btn-sm mb-3">PRINT ABSENSI</button> 
+           <a href="<?= base_url('sirapat/admin/absensi/pdf/'.$agenda->id)?>" target="_blank" class="btn btn-danger btn-sm mb-3">PDF</a> 
+           <a href="<?= base_url('sirapat/admin/absensi/printabsensi/'.$agenda->id)?>" target="_blank" class="btn btn-primary btn-sm mb-3">PRINT ABSENSI</a> 
             </div>
             </div>
             </div>
@@ -57,7 +57,6 @@
           <th scope="row"><?= $i ?></th>
          
           <td>
-         <!-- <input type="hidden" name="idkaryawan" value="<?= $data->idkaryawan ?>" > -->
           <?= $data->nama_karyawan; ?>
           </td>
 
