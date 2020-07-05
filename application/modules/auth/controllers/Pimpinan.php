@@ -15,11 +15,11 @@ class Pimpinan extends MX_Controller {
 	public function index()
 	{
 
-		if($this->session->userdata('username')){
-			redirect('sirapat/pimpinan/dashboard');
+		if($this->session->userdata('email')){
+		redirect('sirapat/pimpinan/dashboard');
 		}
 		//Set rules form validation
-		$this->form_validation->set_rules('username', 'Username', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 		//Memvalidasi form
@@ -40,25 +40,25 @@ class Pimpinan extends MX_Controller {
 	{
 
 		$this->load->model('Pimpinan_m');
-		$username = $this->input->post('username');
+		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
-		$user = $username;
+		$email = $email;
 		$pass = MD5($password);
 
-		$cek = $this->Pimpinan_m->cek_login($user, $pass);
+		$cek = $this->Pimpinan_m->cek_login($email, $pass);
 
 		if($cek->num_rows() >  0){ //apabila password cocok
 
 			foreach ($cek->result() as $ck) {
-				$session_data['id_dosen'] = $ck->id;
-				$session_data['nama_dosen'] = $ck->nama;
-				$session_data['username'] = $ck->username;
+				$session_data['id_dosen'] = $ck->idkaryawan;
+				$session_data['nama_dosen'] = $ck->nama_karyawan;
+				$session_data['email_dosen'] = $ck->email;
 				$session_data['role_id_dosen'] = $ck->role_id;
 
 				$this->session->set_userdata($session_data);
 			}
-			if($session_data['role_id'] == 2 ){
+			if($session_data['role_id_dosen'] == 2 ){
 				
 				redirect('sirapat/pimpinan/dashboard');
 				
@@ -85,6 +85,7 @@ class Pimpinan extends MX_Controller {
 	{
 
 		$this->session->unset_userdata('id_dosen');
+		$this->session->unset_userdata('email_dosen');
 		$this->session->unset_userdata('nama_dosen');
 		$this->session->unset_userdata('username');
         $this->session->unset_userdata('role_id_dosen');

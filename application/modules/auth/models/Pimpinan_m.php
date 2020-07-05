@@ -14,30 +14,31 @@ class Pimpinan_m extends CI_Model{
 
     }
 
-    public function cek_login($username, $password){
+    public function cek_login($email, $password){
 
-        $this->db->where('username', $username);
+        $this->db->where('email', $email);
         $this->db->where('password', $password);
-        return $this->db->get('dosen');
+        return $this->db->get('karyawan');
 
-        echo $username, $password;
+        echo $email, $password;
     }
     
-    public function getLoginData($user, $pass){
+    public function getLoginData($email, $pass){
 
-        $u = $user;
+        $u = $email;
         $p = MD5($pass);
 
-        $query_cekLogin = $this->db->get_where('dosen', array('username' => $u, 'password' =>$p));
+        $query_cekLogin = $this->db->get_where('karyawan', array('email' => $u, 'password' =>$p));
 
         if(count($query_cekLogin->result()) > 0){
 
             foreach ($query_cekLogin->result() as $qck) {
             foreach ($query_cekLogin->result() as $ck) {
                 $session_data['logged_in'] = TRUE;
-                $session_data['id_dosen'] = $ck->id;
-                $session_data['nama_dosen'] = $ck->nama;
-                $session_data['username'] = $ck->username;
+                $session_data['id_dosen'] = $ck->idkaryawan;
+                $session_data['email_dosen'] = $ck->email;
+                $session_data['nama_dosen'] = $ck->nama_karyawan;
+                // $session_data['username'] = $ck->username;
                 $session_data['password'] = $ck->password;
                 $session_data['role_id_dosen'] = $ck->role_id;
 

@@ -17,7 +17,7 @@ class Validasi extends MY_Controller {
 	
 		$this->load->model('pimpinan_m');
 		$data['title'] = 'Validasi';
-		$data['dosen'] = $this->db->get_where('dosen', ['username' => $this->session->userdata('username')])->row_array();
+		$data['karyawan'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_dosen')])->row_array();
 		$data['row']= $this->pimpinan_m->get();
 
 		$data['validasi']= $this->pimpinan_m->getvalidasi()->result();
@@ -30,7 +30,7 @@ class Validasi extends MY_Controller {
 		$this->load->model('pimpinan_m');
 	
 		$data['title'] = 'QR Code';
-		$data['dosen'] = $this->db->get_where('dosen', ['username' => $this->session->userdata('username')])->row_array();
+		$data['karyawan'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_dosen')])->row_array();
 
 		$data['row']= $this->pimpinan_m->get()->row();
 		$data['validasi']= $this->pimpinan_m->getvalidasi()->result();

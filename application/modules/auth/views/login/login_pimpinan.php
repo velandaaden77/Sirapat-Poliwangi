@@ -39,10 +39,10 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Username" type="text" id="username" name="username" 
-                    value="<?= set_value('username'); ?>">
+                    <input class="form-control" placeholder="email" type="text" id="email" name="email" 
+                    value="<?= set_value('email'); ?>">
                   </div>
-                  <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?> 
+                  <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?> 
                 </div>
 
                 <div class="form-group">

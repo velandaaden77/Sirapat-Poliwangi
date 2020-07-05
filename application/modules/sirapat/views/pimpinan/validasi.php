@@ -1,39 +1,32 @@
-  <!-- Header -->
-  <div class="header bg-transparent pb-6">
+<!-- Header -->
+ <div class="header bg-default pb-6">
       <div class="container-fluid">
         <div class="header-body">
-        
-          <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0 align-center">Halaman Validasi</h6>
-              
+          <div class="row align-items-center py-5">
+         
+            <div class="col-lg-12 text-center">
+             <h1 class="text-white"><i class="fas fa-file-signature"></i> Daftar Validasi Agenda</h1>
             </div>
+            </div>
+          
           </div>
-            
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                  
-        </div>
-      </div>
-    </div>
-        </div>
-      </div>
-    </div>
+            </div>
+             </div>
 
     <!-- Page content -->
     <div class="container-fluid mt--5">
       <div class="row">
         <div class="col-xl-12">
 
-          <div class="card">
+        <div class="card">
         <div class="card-header">
             <h4>Daftar Agenda Yang Perlu di Validasi</h4>
         </div>
+
+        <div class="card-body">
           <?= $this->session->flashdata('message') ?>        
 
-        <section class="content">
+      <section class="content">
       <table class="table table-hover table-responsive-md">
       <thead>
         <tr>
@@ -180,6 +173,7 @@
 
       
       </section>
+      </div>
       </div>
 
           </div>

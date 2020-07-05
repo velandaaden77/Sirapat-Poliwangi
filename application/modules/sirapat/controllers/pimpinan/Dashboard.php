@@ -15,7 +15,7 @@ class Dashboard extends MY_Controller {
 	{ 
 	
 		$data['title'] = 'Dashboard';
-		$data['dosen'] = $this->db->get_where('dosen', ['username' => $this->session->userdata('username')])->row_array();
+		$data['karyawan'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_dosen')])->row_array();
 		
         $this->template->load('layout/pimpinan/template', 'pimpinan/dashboard', $data);
 

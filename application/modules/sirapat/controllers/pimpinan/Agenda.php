@@ -16,7 +16,7 @@ class Agenda extends MY_Controller {
 	{ 
 	
 		$data['title'] = 'Agenda';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['karyawan'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_dosen')])->row_array();
 
         $this->template->load('layout/template', 'pimpinan/agenda', $data);
 

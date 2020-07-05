@@ -5,7 +5,7 @@ function is_login(){
     $ci = get_instance(); //pemanggilanlibrary CI
 
     //Apabila tidak ada session
-    if (!$ci->session->userdata('username')){
+    if (!$ci->session->userdata('email_dosen')){
 
         //Redirect ke halaman login
         redirect('auth/pimpinan/index');
@@ -28,10 +28,10 @@ function is_login(){
         'menu_id' => $menu_id
         ]);
 
-        // if($userAccess->num_rows() < 1){
+        if($userAccess->num_rows() < 1){
 
-        //     redirect('auth/blocked');
-        // }
+            redirect('auth/blocked');
+        }
     }
 }
 

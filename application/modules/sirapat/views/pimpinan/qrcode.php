@@ -34,10 +34,10 @@
         <div class="col-lg-4 text-center">
         
         <?php 
-        $qrCode = new Endroid\QrCode\QrCode($dosen = $this->session->userdata('nama_dosen'));
-        $qrCode->writeFile('assets/file/qr-code/item-'.$this->session->userdata('username').'.png');
+        $qrCode = new Endroid\QrCode\QrCode($karyawan = $this->session->userdata('nama_dosen'));
+        $qrCode->writeFile('assets/file/qr-code/item-'.$this->session->userdata('nama_dosen').'.png');
         ?>
-        <img src="<?= base_url('assets/file/qr-code/item-'.$this->session->userdata('username').'.png') ?>"><br>
+        <img src="<?= base_url('assets/file/qr-code/item-'.$this->session->userdata('nama_dosen').'.png') ?>"><br>
 
         <h3><?= $this->session->userdata('nama_dosen') ?></h3><br>
 
@@ -50,7 +50,7 @@
 
         <input type="hidden" class="form-control" 
         id="formGroupExampleInput2" placeholder="qrcode" name="qrcode" value="item-<?= 
-        $this->session->userdata('username') ?>.png">
+        $this->session->userdata('nama_dosen') ?>.png">
 
         <input type="hidden" class="form-control" id="validasi" name="id_validasi" value="<?= $this->uri->segment(5) ?>">
 
