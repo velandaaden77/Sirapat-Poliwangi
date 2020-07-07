@@ -70,10 +70,15 @@
           '<button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="edit"><i class="fa fa-edit"></i></button>')?>
          
 
-         
+         <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $data->id])->row(); 
+         if(empty($validasi)){
+         ?>
           <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
-          '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="validasi"><i class="fa fa-check"></i></button>')?>
-         
+          '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Belum dikirim"><i class="fa fa-check"></i></button>')?>
+         <?php }else{ ?>
+          <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
+          '<button class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="bottom" title="Dikirim ke pimpinan"><i class="fa fa-check"></i></button>')?>
+         <?php } ?>
 
          
             <a href="<?= base_url('sirapat/admin/agenda/del/' . $data->id); ?>" 
@@ -83,7 +88,7 @@
 
       <!-- Modal -->
       <div class="modal fade" id="detailmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Detail Agenda Rapat</h5>
@@ -93,112 +98,131 @@
             </div>
             <div class="modal-body">
               
-              <div class="container-fluid">
+            <div class="container-fluid">
+           
 
-              <div class="row">
-                <div class="col-sm-3">
-                   <h3>Nomor Surat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->nomor_agenda ?></span>
-                </div>
-                </div>
+            <div class="row">
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Lampiran</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->lampiran ?></span>
-                </div>
-                </div>
+            <?php if($data->status == 1) { ?>
+            <div class="col-lg-4 text-center">
+            <img src="<?= base_url('assets/file/qr-code/').$data->qrcode ?>" class="img-thumbnail"><br>
+            <h5><?= $data->nama_karyawan ?></h5>
+            </div>
+            <?php }else{ ?>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Hal</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->hal ?></span>
-                </div>
-                </div>
+            <?php } ?>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Tanggal</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->tanggal ?></span>
-                </div>
-                </div>
+            <div class="col-lg-8">
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Nomor Surat</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->nomor_agenda ?></span>
+            </div>
+            </div>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Jam Mulai</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->jam_mulai ?> WIB</span>
-                </div>
-                </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Lampiran</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->lampiran ?></span>
+            </div>
+            </div>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Jam Selesai</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->jam_selesai ?> WIB</span>
-                </div>
-                </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Hal</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->hal ?></span>
+            </div>
+            </div>
 
-                
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Tempat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->tempat ?></span>
-                </div>
-                </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Tanggal</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->tanggal ?></span>
+            </div>
+            </div>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Grup Rapat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->nama_grup ?></span>
-                </div>
-                </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Jam Mulai</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->jam_mulai ?> WIB</span>
+            </div>
+            </div>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Unit</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->unit ?></span>
-                </div>
-                </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Jam Selesai</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->jam_selesai ?> WIB</span>
+            </div>
+            </div>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Peserta Rapat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span>: <?= $data->peserta_rapat ?></span>
-                </div>
-                </div>
 
-                
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Tempat</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->tempat ?></span>
+            </div>
+            </div>
 
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Nama Agenda</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span class="text-weight-bold">: <?= $data->nama_agenda ?></span>
-                </div>
-                </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Grup Rapat</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->nama_grup ?></span>
+            </div>
+            </div>
 
-              </div>
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Unit</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->unit ?></span>
+            </div>
+            </div>
 
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Peserta Rapat</h5>
+            </div>
+            <div class="col-sm-9">
+                <span>: <?= $data->peserta_rapat ?></span>
+            </div>
+            </div>
+
+
+
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Nama Agenda</h5>
+            </div>
+            <div class="col-sm-9">
+                <span class="text-weight-bold">: <?= $data->nama_agenda ?></span>
+            </div>
+            </div>
+
+            </div>
+
+            </div>
+            <!-- end row -->
+
+            </div>
+
+        
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>

@@ -1,11 +1,11 @@
-<!-- Header -->
- <div class="header bg-default pb-6">
+     <!-- Header -->
+     <div class="header bg-default pb-6">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-5">
          
             <div class="col-lg-12 text-center">
-             <h1 class="text-white"><i class="fas fa-file-signature"></i> Daftar Validasi Agenda</h1>
+             <h1 class="text-white"><i class="fas fa-book"></i> Agenda Rapat</h1>
             </div>
             </div>
           
@@ -18,72 +18,53 @@
       <div class="row">
         <div class="col-xl-12">
 
-        <div class="card">
-        <div class="card-header">
-            <h4>Daftar Agenda Yang Perlu di Validasi</h4>
-        </div>
+          <div class="card">
 
-        <div class="card-body">
+            <div class="card-header bg-transparent">
+
+          <div class="row mt-3 mb-3">
+          <div class="col">
+            <h2 class="box-title">Daftar Agenda Rapat</h2>
+          </div>
+
+          <div class="col">
+            <div class="float-right">
+           
+            </div>
+            </div>
+            </div>
           <?= $this->session->flashdata('message') ?>        
 
-      <section class="content">
-      <table class="table table-hover table-responsive-md">
+        <section class="content">
+        <div class="table-responsive">
+      <table class="table table-hover">
       <thead class="thead-light">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NAMA AGENDA</th>
           <th scope="col">TANGGAL</th>
           <th scope="col">TEMPAT</th>
-          <th scope="col">STATUS</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
+          <th scope="col">GRUP</th>
+          <th scope="col">AKSI</th>
         </tr>
       </thead>
       <tbody>
 
       <?php $i=1; ?>
-      <?php foreach ($validasi as $data) : ?>
+      <?php foreach ($getallagenda as $key => $data) : ?>
       
         <tr>
           <th scope="row"><?= $i ?></th>
           <td><?= $data->nama_agenda; ?></td>
           <td><?= $data->tanggal; ?></td>
-          <td><?= $data->tempat; ?></td>
+          <td><?= $data->tempat ?></td>
+          <td><?= $data->nama_grup; ?></td>
 
-          <?php $validasi = $this->db->get_where('validasi_agenda', ['id_pimpinan' => $this->session->userdata('role_id_dosen')])->result();
-          if($data->status == 1){
-          ?>
-          <td><span class="text-primary">Sudah Di Validasi</span></td>
-          <?php }else{ ?>
-          <td> <span class="text-danger">Belum Di Validasi</span></td>
-          <?php } ?>
-    
-          <td >
-
-          <button class="btn btn-primary btn-sm" 
-          data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-info"></i> Detail</button>
-
-          <?php if($data->status == 1 ){ ?>
-          <?php }else{ ?>
-            <?= anchor('sirapat/pimpinan/validasi/qrcode/'.$data->id_validasi, 
-          '<button class="btn btn-dark btn-sm"><i class="fas fa-fw fa-qrcode"></i> QR Code</button>')?>
-          <?php } ?>
-          </td>
-
-          <?php if($data->status == 1 ){ ?>
-          <?php }else{ ?>
           <td>
-
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" 
-            data-validasi="<?=$data->id_validasi?>" data-agenda="<?=$data->id_agenda?>">
-            <span>Validasi Manual</span>
-          </div>
-          
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i></button>
           </td>
-          <?php } ?>
 
-           
+
       <!-- Modal -->
       <div class="modal fade" id="detailmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -96,10 +77,9 @@
             </div>
             <div class="modal-body">
               
-            <div class="container-fluid">
+              <div class="container-fluid">
 
-            
-            <div class="row">
+              <div class="row">
 
             <?php if($data->status == 1) { ?>
             <div class="col-lg-4 text-center">
@@ -217,13 +197,14 @@
 
             </div>
             <!-- end row -->
-            </div>
+
+              </div>
 
             </div>
             <div class="modal-footer">
               <a href="<?= base_url('sirapat/admin/agenda/print/'.$data->id) ?>" target="_blank" class="btn btn-primary btn-sm" >
-              <i class="fa fa-print">Print</i></a>
 
+              <i class="fa fa-print">Print</i></a>
               <a href="<?= base_url('sirapat/admin/agenda/pdf/'.$data->id) ?>" target="_blank" class="btn btn-danger btn-sm" >
               <i class="fa fa-file">PDF</i></a>
             </div>
@@ -239,17 +220,16 @@
         
       </tbody>
       </table> 
+      </div>
+      <!-- endtabel -->
 
+    
       
       </section>
       </div>
-      </div>
 
           </div>
           </div>
           </div>
           </div>
           </div>
-
-
-        

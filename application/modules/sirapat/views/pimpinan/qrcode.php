@@ -1,26 +1,18 @@
   <!-- Header -->
-  <div class="header bg-transparent pb-6">
+ <div class="header bg-default pb-6">
       <div class="container-fluid">
         <div class="header-body">
-        
-          <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0 align-center">QR CODE</h6>
-              
+          <div class="row align-items-center py-5">
+         
+            <div class="col-lg-12 text-center">
+             <h1 class="text-white"><i class="fas fa-qrcode"></i> QRCODE</h1>
+             <p class="text-white text-italic"> Validasi agenda rapat dengan menambahkan tanda tangan digital</p>
             </div>
+            </div>
+          
           </div>
-            
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                  
-        </div>
-      </div>
-    </div>
-        </div>
-      </div>
-    </div>
+            </div>
+             </div>
 
     <!-- Page content -->
     <div class="container-fluid mt--5">
@@ -59,117 +51,123 @@
 
         </form>
 
+        
         <div class="col-lg-8">
+
         <div class="row pt-2">
-                <div class="col-3">
-                   <h3>Nomor Agenda</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->nomor_agenda ?></span> -->
-                </div>
-                </div>
+                
 
-                <div class="row">
-                <div class="col-3">
-                   <h3>Nama Agenda</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->nama_agenda ?></span> -->
-                </div>
-                </div>
+                <?php foreach($detailagenda as $da) { ?>
+        <div class="col-sm-3">
+                <h3>Nomor Surat</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->nomor_agenda ?></span>
+              </div>
+              </div>
 
-                <div class="row">
-                <div class="col-3">
-                   <h3>Tanggal</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->tanggal ?></span> -->
-                </div>
-                </div>
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Lampiran</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->lampiran ?></span>
+              </div>
+              </div>
 
-                <div class="row">
-                <div class="col-3">
-                   <h3>Tempat</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->tempat ?></span> -->
-                </div>
-                </div>
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Hal</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->hal ?></span>
+              </div>
+              </div>
 
-                <div class="row">
-                <div class="col-3">
-                   <h3>Jenis Rapat</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->idjenis_rapat ?></span> -->
-                </div>
-                </div>
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Tanggal</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->tanggal ?></span>
+              </div>
+              </div>
 
-                <div class="row">
-                <div class="col-3">
-                   <h3>Peserta Rapat</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->peserta_rapat ?></span> -->
-                </div>
-                </div>
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Jam Mulai</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->jam_mulai ?> WIB</span>
+              </div>
+              </div>
 
-                <div class="row">
-                <div class="col-3">
-                   <h3>Lampiran</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->lampiran ?></span> -->
-                </div>
-                </div>
-
-                <div class="row">
-                <div class="col-3">
-                   <h3>Hal</h3>
-                </div>
-                <div class="col-6">
-                    <!-- <span><?= $data->hal ?></span> -->
-                </div>
-                </div>
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Jam Selesai</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->jam_selesai ?> WIB</span>
+              </div>
+              </div>
 
               
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Tempat</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->tempat ?></span>
+              </div>
+              </div>
+
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Grup Rapat</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->nama_grup ?></span>
+              </div>
+              </div>
+
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Unit</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->unit ?></span>
+              </div>
+              </div>
+
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Peserta Rapat</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span>: <?= $da->peserta_rapat ?></span>
+              </div>
+              </div>
+
+              
+
+              <div class="row">
+              <div class="col-sm-3">
+                <h3>Nama Agenda</h3>
+              </div>
+              <div class="col-sm-9">
+                  <span class="text-weight-bold">: <?= $da->nama_agenda ?></span>
+              </div>
+              </div>
+              
         </div>
-        
+                <?php } ?>
         </div>
 
         
         </div>
         </div>
 
-          <div class="card">
           
-            <div class="card-header bg-transparent">
-
-            <h2 class="box-title mt-3">-</h2>
-
-          <?= $this->session->flashdata('message') ?>        
-
-        <section class="content">
-      <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">NO</th>
-          <th scope="col">NAMA DOSEN</th>
-          <th scope="col">STATUS</th>
-          <th scope="col">AKSI</th>
-        </tr>
-      </thead>
-      <tbody>
-
-      
-        
-      </tbody>
-      </table> 
-      
-      </section>
-      </div>
-
-          </div>
           </div>
           </div>
           </div>

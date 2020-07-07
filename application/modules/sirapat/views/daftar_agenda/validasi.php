@@ -34,13 +34,15 @@
                     <select name="pimpinan" id="pimpinan" class="form-control">
                     <option value="">Pilih Pimpinan</option>
                     <?php 
-                    $karyawan = $this->db->get('karyawan')->result_array();
-                    foreach ($karyawan as $k) : ?>
-                    <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
+                    
+                    foreach ($pimpinan as $p) : ?>
+                   
+                      <option value="<?= $p['idkaryawan']; ?>"><?= $p['nama_karyawan']; ?></option>
+                    
                     <?php endforeach; ?>
                     </select>
                     <?= form_error('pimpinan', '<small class="text-danger pl-1">', '</small>'); ?>
-
+                   
                     <button type="submit" class="btn btn-primary mt-3">Kirim ke pimpinan</button>
         </div>
         </div>
@@ -86,23 +88,26 @@
       
         <tr>
           <th scope="row"><?= $i ?></th>
-          <td><?= $data->nama; ?></td>
-
+          <td><?= $data->nama_karyawan; ?></td>
+          
           <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $this->uri->segment(5)])->row();
-          if($data->status = 1){
+          if($data->status == 1){
           ?>
-          <td> <span class="text-danger">Belum Di Validasi</span></td>
-          <?php }else{ ?>
           <td><span class="text-primary">Sudah Di Validasi</span></td>
+          <?php }else{ ?>
+          <td> <span class="text-danger">Belum Di Validasi</span></td>
+          
           <?php } ?>
 
-          <?php if($data->qrcode = null){ ?>
-          <td><img src="<?= base_url('assets/file/qr-code/'.$data->qrcode)  ?>" width="90%"></td>
+          <?php if($data->status == 1) { ?>
+          <td><img src="<?= base_url('assets/file/qr-code/').$data->qrcode ?>" class="img-thumbnail"
+          style="width: 50px;"></td>
           <?php }else{ ?>
           <td>-</td>
           <?php } ?>
+          
           <td>
-            <a href="<?= base_url('sirapat/admin/agenda/delvalidasi/'.$data->id_validasi); ?>" 
+            <a href="<?= base_url('sirapat/admin/agenda/delvalidasi/'.$data->id_validasi.'/'.$this->uri->segment(5)); ?>" 
             class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-trash"></i></a>
           </td>
         </tr>

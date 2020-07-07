@@ -36,9 +36,9 @@ class Pimpinan_m extends CI_Model{
             foreach ($query_cekLogin->result() as $ck) {
                 $session_data['logged_in'] = TRUE;
                 $session_data['id_dosen'] = $ck->idkaryawan;
-                $session_data['email_dosen'] = $ck->email;
                 $session_data['nama_dosen'] = $ck->nama_karyawan;
-                // $session_data['username'] = $ck->username;
+                $session_data['email_dosen'] = $ck->email;
+                $session_data['unit_dosen'] = $ck->unit_id;
                 $session_data['password'] = $ck->password;
                 $session_data['role_id_dosen'] = $ck->role_id;
 

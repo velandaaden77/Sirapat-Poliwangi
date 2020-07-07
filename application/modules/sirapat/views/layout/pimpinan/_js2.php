@@ -12,9 +12,8 @@
   <script src="<?= base_url('assets/'); ?>dashboard/dist/sweetalert2.min.js"></script>
   
   <script src="<?= base_url('assets/'); ?>dashboard/js/myscript.js"></script>
-  <script src="<?= base_url('assets/'); ?>vendor/select2.js"></script>
 
-    <script>
+    <!-- <script>
         $(document).ready(function() { 
           $("#prodi").select2();
           $("#pimpinan").select2();
@@ -26,31 +25,23 @@
     $(function () {
     $('[data-toggle="tooltip"]').tooltip()
     });
-    </script>
+    </script> -->
 
-  <script>
+    <script>
+    $('.form-check-input').on('click', function(){
+      const agendaId=$(this).data('agenda');
+      const validasiId=$(this).data('validasi');
 
-  $('.custom-file-input').on('change', function(){
-    left fileName = $(this).val().split('\\').pop();
-    $(this).next('.custom-file-label').addClass("selected").html(fileName);
-  });
+      // ajax
+      $.ajax({
+        url: "<?= base_url('sirapat/pimpinan/validasi/validasimanual');?>",
+        type:'post',
+        data: {agendaId: agendaId, validasiId: validasiId },
+        // ketika berhasil
+        success: function(){
+          document.location.href="<?= base_url('sirapat/pimpinan/validasi/')?>" + agendaId;
+        }
 
-  $('.form-check-input').on('click', function(){
-
-    const menuId = $(this).data('menu');
-    const roleId = $(this).data('role');
-
-    $.ajax({
-      url: "<?= base_url('sirapat/superadmin/role/changeaccess'); ?>",
-      type: 'post',
-      data: {
-        menuId: menuId,
-        roleId: roleId
-      },
-      success: function(){
-        document.location.href = "<?= base_url('sirapat/superadmin/role/roleaccess/'); ?>" + roleId;
-      }
+      });
     });
-
-  });
-  </script>
+    </script>

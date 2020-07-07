@@ -11,7 +11,7 @@ class Notulen extends MY_Controller {
         $this->load->model('notulen_m');
         $this->load->library('pdf_generator');
     }
-
+ 
     public function index(){
 
         $data['title'] = 'Notulen';

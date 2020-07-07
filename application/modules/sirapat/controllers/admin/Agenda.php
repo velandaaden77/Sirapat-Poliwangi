@@ -19,6 +19,7 @@ class Agenda extends MY_Controller {
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
  
 		$data['getagenda'] = $this->agenda_m->getagenda()->result();
+		$data['detailagenda'] = $this->agenda_m->detailagenda()->result();
 
         $this->template->load('layout/template','daftar_agenda/agenda', $data);
 
@@ -147,14 +148,15 @@ class Agenda extends MY_Controller {
 	}
 	
 	public function validasi(){
-
+ 
 		$data['title'] = 'Validasi';
 		
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 		$data['daftar'] = $this->agenda_m->daftar_validasi()->result();
 
-		$data['pimpinan'] = $this->db->get('dosen')->result_array();
+		$data['pimpinan'] = $this->agenda_m->getpimpinan()->result_array();
+		// var_dump($data['pimpinan']);
         // $data['row']= $this->agenda_m->get();
 
         $this->template->load('layout/template','daftar_agenda/validasi', $data);
@@ -183,16 +185,16 @@ class Agenda extends MY_Controller {
 
 	}
 
-	public function delvalidasi($id){
+	public function delvalidasi($id,$id_agenda){
 
 		$this->agenda_m->delval($id);
 		
         if($this->db->affected_rows() > 0){
             $this->session->set_flashdata('message', 
             '<div class="alert alert-success" role="alert">Validasi telah dibatalkan</div>');
-            redirect('sirapat/admin/agenda/validasi');
+            redirect('sirapat/admin/agenda/validasi/'.$id_agenda);
         }else{
-            redirect('sirapat/admin/agenda/validasi');
+            redirect('sirapat/admin/agenda/validasi/'.$id_agenda);
         }
     }
 

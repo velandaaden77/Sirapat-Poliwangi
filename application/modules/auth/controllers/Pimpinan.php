@@ -54,6 +54,7 @@ class Pimpinan extends MX_Controller {
 				$session_data['id_dosen'] = $ck->idkaryawan;
 				$session_data['nama_dosen'] = $ck->nama_karyawan;
 				$session_data['email_dosen'] = $ck->email;
+				$session_data['unit_dosen'] = $ck->unit_id;
 				$session_data['role_id_dosen'] = $ck->role_id;
 
 				$this->session->set_userdata($session_data);
@@ -86,6 +87,7 @@ class Pimpinan extends MX_Controller {
 
 		$this->session->unset_userdata('id_dosen');
 		$this->session->unset_userdata('email_dosen');
+		$this->session->unset_userdata('unit_dosen');
 		$this->session->unset_userdata('nama_dosen');
 		$this->session->unset_userdata('username');
         $this->session->unset_userdata('role_id_dosen');

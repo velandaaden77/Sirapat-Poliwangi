@@ -34,7 +34,8 @@
 
 	
 	<!-- js -->
-	<?php require_once('_js.php') ;?>
+	<?php require_once('_js2.php') ;?>
+	
 </body>
 
 </html>

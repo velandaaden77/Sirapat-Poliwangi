@@ -50,7 +50,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" id="password" name="password" >
+                    <input class="form-control" placeholder="Password" type="password" id="password" name="password" 
+                    autocomplete="off">
                   </div>
                   <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?> 
                 </div>
