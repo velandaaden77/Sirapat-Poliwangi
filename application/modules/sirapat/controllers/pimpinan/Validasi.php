@@ -83,6 +83,7 @@ class Validasi extends MY_Controller {
 
 		$where = ['id_agenda' => $agenda_id, 'id_validasi' =>$validasi_id];
  
+		// var_dump($where); die;
 		$data = [
 
 			'id_validasi' => $validasi_id,
@@ -95,18 +96,20 @@ class Validasi extends MY_Controller {
 		];
 
 		
-		// $data2 = [
+		$data2 = [
 
-		// 	'id_validasi' => $validasi_id,
-		// 	'id_pimpinan' => $this->session->userdata('id_dosen'),
-		// 	'qrcode' => null,
-		// 	'status' => 0,
-		// ];
+			'id_validasi' => $validasi_id,
+			'id_pimpinan' => $this->session->userdata('id_dosen'),
+			'qrcode' => null,
+			'status' => 0,
+		];
  
 		$result = $this->db->get_where('validasi_agenda', $where);
  
 		if($result->status == 0 ){
 			$this->db->update('validasi_agenda', $data);
+		}else{
+			$this->db->update('validasi_agenda', $data2);
 		}
 
 		 $this->session->set_flashdata('message', 
