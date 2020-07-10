@@ -16,7 +16,7 @@ class Unggah_agenda extends MY_Controller {
 	public function index()
 	{ 
 
-		$data['title'] = 'Unggah Agenda';
+		$data['title'] = 'Create Agenda';
 		
 		// var_dump($data); die;
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -37,7 +37,7 @@ class Unggah_agenda extends MY_Controller {
 		$this->form_validation->set_rules('peserta_rapat', 'Peserta Rapat', 'required');
 		$this->form_validation->set_rules('nomor_agenda', 'Nomor Agenda', 'required');
 		$this->form_validation->set_rules('hal', 'Hal', 'required');
-		$this->form_validation->set_rules('pimpinan', 'Pimpinan', 'required');
+		
 		// $this->form_validation->set_rules('lampiran', 'Lampiran', 'required');
 
 		if($this->form_validation->run() == false){
@@ -58,7 +58,7 @@ class Unggah_agenda extends MY_Controller {
 			$peserta_rapat = $this->input->post('peserta_rapat');
 			$nomor_agenda = $this->input->post('nomor_agenda');
 			$hal = $this->input->post('hal');
-			$pimpinan = $this->input->post('pimpinan');
+			
 			$lampiran1 = $this->input->post('lampiran1');
 			$lampiran = $_FILES['lampiran']['name'];
 
@@ -99,7 +99,7 @@ class Unggah_agenda extends MY_Controller {
 				'peserta_rapat' => $peserta_rapat,
 				'nomor_agenda' => $nomor_agenda,
 				'hal' => $hal,
-				'id_pimpinan' => $pimpinan,
+				
 				'lampiran' => $lampiran1,
 				'lampiran_file' => $lampiran,
 				'file' => $file,

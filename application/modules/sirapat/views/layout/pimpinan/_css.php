@@ -10,24 +10,4 @@
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>dashboard/dist/sweetalert2.min.css">
   <link href="<?= base_url('assets/'); ?>vendor/select2.css" rel="stylesheet"/>
 
-  <script>
-    $('.form-check-input').on('click', function(){
-      const agendaId= $(this).data('agenda');
-      const validasiId= $(this).data('validasi');
-
-      // ajax
-      $.ajax({
-        url: "<?= base_url('sirapat/pimpinan/validasi/validasimanual');?>",
-        type:'post',
-        data: {
-          agendaId: agendaId, 
-          validasiId: validasiId },
-        // ketika berhasil
-        success: function(){
-          document.location.href= "<?= base_url('sirapat/pimpinan/validasi/')?>" + agendaId;
-        }
-
-      });
-    });
-    </script>
     

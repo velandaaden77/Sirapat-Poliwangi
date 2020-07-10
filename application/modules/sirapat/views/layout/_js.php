@@ -4,36 +4,39 @@
   <script src="<?= base_url('assets/'); ?>dashboard/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="<?= base_url('assets/'); ?>dashboard/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Optional JS -->
-  <script src="<?= base_url('assets/'); ?>dashboard/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="<?= base_url('assets/'); ?>dashboard/vendor/chart.js/dist/Chart.extension.js"></script>
+  
   <!-- Argon JS -->
   <script src="<?= base_url('assets/'); ?>dashboard/js/argon.js?v=1.2.0"></script>
+  <!-- Datatables -->
+  <!-- datepicker -->
+ 
+
   <!-- SweetAlert -->
   <script src="<?= base_url('assets/'); ?>dashboard/dist/sweetalert2.min.js"></script>
+
+   
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   
-  <script src="<?= base_url('assets/'); ?>dashboard/js/myscript.js"></script>
+  <script src="<?= base_url('assets/'); ?>vendor/select2.js"></script>
 
-<!-- datepicker -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <!-- select 2 -->
+      <script type="text/javascript">
+      $(document).ready(function() { 
+      $("#pimpinan").select2();
+      $("#karyawan").select2();
+      $("#unit").select2();
+      $("#gruprapat").select2();
+      $('#agenda').DataTable();
+      });
+      </script>
+  
+    
 
-<script src="<?= base_url('assets/'); ?>vendor/select2.js"></script>
+    
 
-    <!-- select 2 -->
-    <script>
-    $(document).ready(function() { 
-    $("#pimpinan").select2();
-    $("#karyawan").select2();
-    $("#unit").select2();
-    $("#gruprapat").select2();
-    });
-    </script>
-
-    <!-- Membuat datepicker -->
-    <script>
-    // set minDate to 0 for today's date
-    $('#datepicker').datepicker({ minDate: 0 });
-    </script>
+    
 
 
     <script>
@@ -44,12 +47,7 @@
     });
     </script>         
 
-    <!-- Membuat tooltip -->
-    <script>
-    $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-    });
-    </script>
+    
 
     <script>
 

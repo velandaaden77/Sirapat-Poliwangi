@@ -5,7 +5,7 @@
           <div class="row align-items-center py-5">
          
             <div class="col-lg-12 text-center">
-             <h1 class="text-white"><i class="fas fa-book"></i> Agenda Rapat</h1>
+             <h2 class="text-white"><i class="fas fa-book"></i>  Agenda Rapat</h2>
             </div>
             </div>
           
@@ -14,7 +14,7 @@
              </div>
 
     <!-- Page content -->
-    <div class="container-fluid mt--5">
+    <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-12">
 
@@ -24,7 +24,7 @@
 
           <div class="row mt-3 mb-3">
           <div class="col">
-            <h2 class="box-title">Daftar Agenda Rapat</h2>
+            <h3 class="box-title">Daftar Agenda Rapat</h3>
           </div>
 
           <div class="col">
@@ -39,13 +39,14 @@
 
         <section class="content">
         <div class="table-responsive">
-      <table class="table table-hover">
+
+      <table class="table table-hover" id="agenda">
       <thead class="thead-light">
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NAMA AGENDA</th>
           <th scope="col">TANGGAL</th>
-          <th scope="col">TEMPAT</th>
+          <!-- <th scope="col">TEMPAT</th> -->
           <th scope="col">GRUP</th>
           <th scope="col">AKSI</th>
         </tr>
@@ -59,11 +60,11 @@
           <th scope="row"><?= $i ?></th>
           <td><?= $data->nama_agenda; ?></td>
           <td><?= $data->tanggal; ?></td>
-          <td><?= $data->tempat ?></td>
+          <!-- <td><?= $data->tempat ?></td> -->
           <td><?= $data->nama_grup; ?></td>
 
           <td>
-          <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i></button>
+          <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i></button>
           
           
           <?= anchor('sirapat/admin/agenda/edit/'.$data->id, 
@@ -103,14 +104,7 @@
 
             <div class="row">
 
-            <?php if($data->status == 1) { ?>
-            <div class="col-lg-4 text-center">
-            <img src="<?= base_url('assets/file/qr-code/').$data->qrcode ?>" class="img-thumbnail"><br>
-            <h5><?= $data->nama_karyawan ?></h5>
-            </div>
-            <?php }else{ ?>
-
-            <?php } ?>
+            
 
             <div class="col-lg-8">
             <div class="row">
@@ -225,14 +219,20 @@
         
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
 
-          
-              <a href="<?= base_url('sirapat/admin/agenda/print/'.$data->id) ?>" target="_blank" class="btn btn-primary" >
-
+            <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $data->id])->row(); 
+            if(empty($validasi)){
+            ?>
+              <a href="<?= base_url('sirapat/admin/agenda/print/'.$data->id) ?>" target="_blank" class="btn btn-primary btn-sm disabled" >
               <i class="fa fa-print">Print</i></a>
-              <a href="<?= base_url('sirapat/admin/agenda/pdf/'.$data->id) ?>" target="_blank" class="btn btn-danger" >
+              <a href="<?= base_url('sirapat/admin/agenda/pdf/'.$data->id) ?>" target="_blank" class="btn btn-danger btn-sm disabled" >
               <i class="fa fa-file">PDF</i></a>
+            <?php }else{ ?>
+              <a href="<?= base_url('sirapat/admin/agenda/print/'.$data->id) ?>" target="_blank" class="btn btn-primary btn-sm" >
+              <i class="fa fa-print">Print</i></a>
+              <a href="<?= base_url('sirapat/admin/agenda/pdf/'.$data->id) ?>" target="_blank" class="btn btn-danger btn-sm" >
+              <i class="fa fa-file">PDF</i></a>
+            <?php } ?>
             </div>
           </div>
         </div>
@@ -246,9 +246,10 @@
         
       </tbody>
       </table> 
+     
       </div>
       <!-- endtabel -->
-
+              
     
       
       </section>
@@ -260,30 +261,13 @@
           </div>
           </div>
 
-<script>
-function deletedata($id) {
-
-Swal.fire({
-    title: 'Apakaah anda yakin',
-    text: "Data Agenda Akan dihapus",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Hapus Data!'
-
-}, 
-function() {
-  $.ajax({
-    url: "<?= base_url('sirapat/admin/agenda/del/'); ?>",
-    type: "get",
-    data: {id:id},
-    success:function() {
-      Swal.fire('Data berhasil di hapus', 'success');
-    }
-  });
-});
 
   
-}
-</script>
+  <!-- Membuat tooltip -->
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    });
+    </script>
+
+     

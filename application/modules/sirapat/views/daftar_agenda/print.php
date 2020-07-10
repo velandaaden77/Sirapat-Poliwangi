@@ -3,213 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Rapat</title>
-</head>
-<body>
     
-        
 
-        <table align="center" width="100%">
+<title>Cetak Absensi</title>
+<style type="text/css">
+@media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
+.style1 {font-size: large}
+.style2 {font-size: medium}
+
+</style>
+</head>
+
+    <body>
+    <form>
+	<table width="910" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tbody>
+  
+  <!-- heading -->
+    <tr> 
+      <td width="15%"><div align="left">
+        <h2 align="center"><img src="<?= base_url('assets/dashboard/img/logo.png') ?>" width="133" height="124"></h2>
+      </div></td>
+      <td width="85%"><div align="center" class="style1"><strong>KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI<br>
+	  POLITEKNIK NEGERI BANYUWANGI </strong><br>
+      <span class="style2">Jl. Raya Jember - Banyuwangi KM 13, Rogojampi, Labanasem, Banyuwangi, Jawa Timur 68461</span><br>
+      <span class="style2">Website : http://www.poliwangi.ac.id E-Mail : politeknik@poliwangi.ac.id</span></div></td>
+    </tr>
+
+    <tr> 
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr noshade=""></td>
+    </tr>
+
+   
+
+    <tr>
+      <td colspan="2">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        
+       
+        <tr>
+          <td colspan="2"><div align="center" class="style1"></div></td>
+        </tr>
+       
+        <tr>
+          <td width="19%">Nomor</td>
+          <td width="81%">: <?= $agenda->nomor_agenda?> </td>
+       </tr>
+       
+        <tr>
+          <td><div align="left">Lampiran</div></td>
+          <td>: <?= $agenda->lampiran ?></td>
+        </tr>
+
+        <tr>
+          <td>Hal</td>
+          <td>: <?= $agenda->hal ?></td>
+        </tr>
+        <br>
+        
+		        
+          </tbody>
+          </table>
+          
+          </td>
+          </tr>
+
+
+        <tr>
+        <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            
+        <tr>
+            <td colspan="4" style="float:left;">Yth. Bapak/Ibu <?= $agenda->peserta_rapat ?></td>
+        </tr>
+        <tr>
+            <td colspan="4" style="float:left;">Politeknik Negeri Banyuwangi</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="float:left;">Ditempat</td>
+        </tr>
+       
+        <br>
+        <br>
+		        
+          </tbody>
+          </table>
+          </td>
+          </tr>
+
+
+        <tr>
+        <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            
+        <tr>
+            <td colspan="4" style="float:left;">Dengan Hormat,</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="float:left;">Mengundang Bapak/Ibu untuk hadir dalam rapat yang dilaksanakan pada :</td>
+        </tr>
+        <br>
+        <br>
+        </tbody>
+        </table>
+        </td>
+        </tr>
+
+        <tr>
+      <td colspan="2">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
         
         <tr>
-        <td colspan="3">
-        <div align="center" style="padding-left: 8%;">
-        <img src="<?= base_url('assets/dashboard/img/logo.png') ?>" 
-        style="position: absolute; margin-left: -9%;" width="120px" height="auto">
-        <span style="line-height: 1,1; font-weight: bold; font-family: 'Time News Roman', Times, serif">
-        KEMENTRIAN RISET, TEKNOLOGI, DAN PENDIDIKAN TINGGI<br>
-        POLITEKNIK NEGERI BANYUWANGI<br>
-        <a style="line-height: 1,1; font-size: 11px">Jl. Raya Jember KM 13 Labanasem, Kabat, Banyuwangi, 68462</a>
-        <br>
-        <a style="line-height: 1,1; font-size: 11px">Telepon / Fax : (0333) 636780</a>
-        <br>
-        <a style="line-height: 1,1; font-size: 11px">E-mail : poliwangi@poliwangi.ac.id</a>
-        <br>
-        <a style="line-height: 1,1; font-size: 11px">Jl. Raya Jember KM 13 Labanasem, Kabat, Banyuwangi, 68462</a>
-        <br>
-        </span> 
-
-        </div>
-        <hr />
-        <hr border="5">  
-        </td>
+          <td colspan="2"><div align="center" class="style1"></div></td>
         </tr>
-        
-
-        <tr>     
-        <td colspan="2">
-        <table border="0" cellpadding="1" style="width: 400px;">
-        <tbody>
-        <tr>         
-        <td width="93">
-        <span style="font-size: 12;">Nomor</span>
-        </td>         
-        <td width="8">
-        <span style="font-size: 12;">:</span>
-        </td>         
-        <td width="200">
-        <span style="font-size: 12l;"><?= $row->nomor_agenda ?></span>
-        </td>       
-        </tr>
-
-        <tr>         
-        <td>
-        <span style="font-size: 12;">Lampiran</span>
-        </td>         
-        <td>
-        <span style="font-size: 12;">:</span>
-        </td>         
-        <td>
-        <span style="font-size: 12;"><?= $row->lampiran ?></span>
-        </td>       
-        </tr>
-
-        <tr>         
-        <td>
-        <span style="font-size:12;">Hal</span>
-        </td>         
-        <td>
-        <span style="font-size: 12;">:</span>
-        </td>         
-        <td>
-        <span style="font-size: 12;"><?= $row->hal ?></span>
-        </td>       
-        </tr>
-        </tbody>
-        </table>
-        <br>   
-        <br>   
-        
-        </td>  
-         
-        
-        <td valign="top">
-        <div align="right">
-        <span style="font-size: 12;">Banyuwangi, <?= $row->tanggal ?></span>
-        </div>
-        </td>   
-        </tr>
-
-        <tr>     
-        <td width="302"></td>     
-        <td width="343"></td>     
-        <td width="339"></td>   
-        </tr>
-
-        <tr>     
-        <td>
-
-        <table border="0" style="width: 600px;">
-        <tbody>
-
-        <tr>         
-        <td width="150">
-        <span style="font-size: 12;">Yth. Bapak/Ibu </span><br>
-        <span class="colspan-2" style="font-size: 12;">Yang tergabung pada W A G Grup Pimpinan </span>
-        <span style="font-size: 12;">di Lingkungan Politeknik Negeri Banyuwangi</span>
-        </td>         
-        <td width="5">
-        
-        </td>         
-        <td width="140"></td>    
-           
-        </tr>
-        
-        </tbody>
-        </table>
-        <br>
        
+        <tr>
+          <td width="19%">Hari, Tanggal</td>
+          <td width="81%">: <?= $agenda->tanggal?> </td>
+       </tr>
+       
+        <tr>
+          <td><div align="left">Pukul</div></td>
+          <td>: <?= $agenda->jam_mulai ?>-<?= $agenda->jam_selesai ?> WIB</td>
+        </tr>
 
-        
+        <tr>
+          <td>Tempat</td>
+          <td>: <?= $agenda->tempat ?></td>
+        </tr>
+        <tr>
+          <td>Agenda</td>
+          <td>: <?= $agenda->nama_agenda ?></td>
+        </tr>
+        <br>
 
-        <table border="0" style="width: 400px;">
+        <tr>
+        <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
-
-        <tr>     
-        <td width="650">
-        <span style="font-size: 12;">Mengundang Ibu/bapak dosen untuk hadir dalam rapat yang dilaksanakan pada :</span>
+        <tr>
+            <td colspan="4" style="float:left;">Atas perhatianya kami sampaikan terimakasih.</td>
+        </tr>
+        <br>
+        <br>
+        </tbody>
+        </table>
         </td>
         </tr>
-        <tr> 
-               
-        <td width="80">
-        <span style="font-size: 12;">Hari/tanggal</span>
-        </td>           
-        <td width="10">
-        <span style="font-size: 12;">:</span>
-        </td>           
-        <td width="248">
-        <span style="font-size: 12;"><?= $row->tanggal ?></span>
-        </td>  
-             
+
+        <tr>
+        <td colspan="2" float="left">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody style="float:right; padding-right:17%;">
+        <tr>
+            <td colspan="4">Banyuwangi, <?= $agenda->tanggal?></td>
+        </tr>
+        <tr>
+            <td colspan="4"><?= $agenda->jabatan ?></td>
         </tr>
         <br>
-        <tr>           
-        <td>
-        <span style="font-size: 12;">Pukul</span>
-        </td>           
-        <td><span style="font-size: 12;">:</span>
-        </td>           
-        <td>
-        <span style="font-size: 12;">08.00 - selesai</span>
-        </td>         
-        </tr>
-
-        <tr>           
-        <td>
-        <span style="font-size: 12;">Tempat</span>
-        </td>           
-        <td>
-        <span style="font-size: 12;">:</span>
-        </td>           
-        <td>
-        <span style="font-size: 12;"><?= $row->tempat ?></span>
-        </td>        
-         </tr>
-        <tr>           
-        <td>
-        <span style="font-size: 12;">Agenda</span>
-        </td>           
-        <td>
-        <span style="font-size: 12;">:</span>
-        </td>           
-        <td>
-        <span style="font-size: 12;"><?= $row->nama_agenda ?></span>
-        </td>        
-         </tr>
-        </tbody>
-        </table>
-
-        <div align="right">
-        <span style="font-size: 12;">
-        Demikian surat ini kami sampaikan, kami harap ibu/bapa dapat menghadiri rapat ini. sekian dan terima kasih.</span> 
-        </div>
-        </div>
         <br>
-        </tr>
-
-        <div align="right">
-        <span style="font-size: 12;">-</span>
-        </div>
-        </td>     
-        <td>
-        </td>     
-        <td valign="top">
-        <div align="right">
-        <span style="font-size: 12;">Kajur Teknik Informatika</span>
-        </div>
-        <div align="right">
-        </div>
-        <div align="right">
-        <span style="font-size: 12;">-</span></div>
-        </td>   
-        </tr>
         </tbody>
         </table>
-        </body>
+        </td>
+        </tr>
+
+        <tr>
+        <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody style="float:right;">
+        <tr>
+            <td><img src="<?= base_url('assets/file/qr-code/').$agenda->qrcode ?>" class="img-thumbnail" style="width:50%"></td>
+        </tr>
+        
+        
+        </tbody>
         </table>
+        </td>
+        </tr>
+
+        <tr>
+        <td colspan="2">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody style="float:right; padding-right:10%;">
+        <tr>
+            <td colspan="4"><?= $agenda->nama_karyawan?></td>
+        </tr>
+        <tr>
+            <td colspan="4"><?= $agenda->nik_nip ?></td>
+        </tr>
+        
+        </tbody>
+        </table>
+        </td>
+        </tr>
+        
+		        
+          </tbody>
+          </table>
+          
+          </td>
+          </tr>
+
+          </tbody>
+          </table>
+          </form>
+
+          <table width="910" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+            
+            </tbody>
+            </table>
             
 
+            
 
-</body>
-</html>
+          </body>
+          </html>

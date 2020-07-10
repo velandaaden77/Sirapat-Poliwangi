@@ -29,7 +29,9 @@
 
             <div class="col-lg-6 pt-5">
 
-            <form method="POST" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data">
+            <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data" id="sendtelegram">
+
+            <!-- action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument -->
             <!-- <form action="<?= base_url('sirapat/admin/undangan/sendtelegram') ?>" method="post" enctype="multipart/form-data"> -->
 
             <div class="col-sm-12">
@@ -70,7 +72,6 @@
             </div>
 
             </div>
-
             
                 <!-- <label>
                     <span>chat_id :</span>
@@ -88,14 +89,38 @@
                     <span>&nbsp;</span>
                     <input type="submit" class="button" value="sendDocument"/></button>
                 </label>    -->
-            
-
           
           </div>
 
         </div>
       </div>
     </div>
+
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#sendtelegram').submit(function(e){
+            e.preventDefault(); 
+                 $.ajax({
+                     url:'https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument',
+                     type:"post",
+                     data:new FormData(this),
+                     processData:false,
+                     contentType:false,
+                     cache:false,
+                     async:false,
+                        success: function(data){
+                           
+                        }
+                 });
+            });
+
+        
+    });
+
+
+     
+</script>
 
 
    

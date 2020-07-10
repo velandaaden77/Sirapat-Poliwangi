@@ -83,7 +83,6 @@ class Validasi extends MY_Controller {
 
 		$where = ['id_agenda' => $agenda_id, 'id_validasi' =>$validasi_id];
  
-		// var_dump($where); die;
 		$data = [
 
 			'id_validasi' => $validasi_id,
@@ -114,6 +113,7 @@ class Validasi extends MY_Controller {
 
 		 $this->session->set_flashdata('message', 
 		 '<div class="alert alert-success" role="alert">Agenda telah Divalidasi</div>');
+		 redirect('sirapat/pimpinan/validasi');
 	 
 	}
  

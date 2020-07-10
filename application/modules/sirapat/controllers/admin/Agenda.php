@@ -31,7 +31,7 @@ class Agenda extends MY_Controller {
 
 		$data = [
 			'title' => 'Edit Data',
-			'daftar_agenda' =>  $this->m_unggah_agenda->edit_data($where, 'agenda_rapat')->result(),
+			'daftar_agenda' =>  $this->m_unggah_agenda->edit_data()->result(),
 		];
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -41,6 +41,18 @@ class Agenda extends MY_Controller {
 
     public function update(){
 
+		$this->form_validation->set_rules('nama_agenda', 'Agenda', 'required');
+		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+		$this->form_validation->set_rules('tempat', 'Tempat', 'required');
+		$this->form_validation->set_rules('jmmulai', 'Jam Mulai', 'required');
+		$this->form_validation->set_rules('jmselesai', 'Jam Selesai', 'required');
+		$this->form_validation->set_rules('unit', 'Unit', 'required');
+		$this->form_validation->set_rules('gruprapat', 'Grup Rapat', 'required');
+		$this->form_validation->set_rules('peserta_rapat', 'Peserta Rapat', 'required');
+		$this->form_validation->set_rules('nomor_agenda', 'Nomor Agenda', 'required');
+		$this->form_validation->set_rules('hal', 'Hal', 'required');
+		
+		$idagenda = $this->input->post('idagenda');
 			$nama_agenda = $this->input->post('nama_agenda');
 			$tanggal = $this->input->post('tanggal');
 			$tempat = $this->input->post('tempat');
@@ -51,7 +63,7 @@ class Agenda extends MY_Controller {
 			$peserta_rapat = $this->input->post('peserta_rapat');
 			$nomor_agenda = $this->input->post('nomor_agenda');
 			$hal = $this->input->post('hal');
-			$pimpinan = $this->input->post('pimpinan');
+			
 			$lampiran1 = $this->input->post('lampiran1');
 			$lampiran = $_FILES['lampiran']['name'];
 
@@ -92,7 +104,7 @@ class Agenda extends MY_Controller {
 				'peserta_rapat' => $peserta_rapat,
 				'nomor_agenda' => $nomor_agenda,
 				'hal' => $hal,
-				'id_pimpinan' => $pimpinan,
+				
 				'lampiran' => $lampiran1,
 				'lampiran_file' => $lampiran,
 				'file' => $file,
@@ -101,13 +113,16 @@ class Agenda extends MY_Controller {
 			];
 
 		$where = [
-			'id' => $this->uri->segment(5),
+			'id' => $idagenda,
 		];
 		
-		$this->m_unggah_agenda->update_data($where,$data, 'agenda_rapat');
+		$this->db->where($where);
+		$this->db->update('agenda_rapat', $data);
+		
 		$this->session->set_flashdata('message', 
 		'<div class="alert alert-success" role="alert">Agenda Telah Di Update</div>');
 		redirect('sirapat/admin/agenda');
+	
 	}
 
     public function del($id){
@@ -128,10 +143,10 @@ class Agenda extends MY_Controller {
 
         // $data['agenda'] = $this->db->get_where('agenda_rapat', ['id' => $id])->row();
 
-        $data['row'] = $this->agenda_m->get($id)->row();
+        $data['agenda'] = $this->agenda_m->print()->row();
         $html = $this->load->view('daftar_agenda/laporan_pdf', $data, true);
 
-        $this->pdf_generator->generate($html, 'Agenda-'.$data['row']->nama_agenda,'A4', 'landscape');
+        $this->pdf_generator->generate($html, 'Agenda-'.$data['agenda']->nama_agenda,'A4', 'potrait');
 
     }
 
@@ -143,7 +158,8 @@ class Agenda extends MY_Controller {
 
     public function print(){
 
-        $data['row'] = $this->agenda_m->get()->row();
+		$data['agenda'] = $this->agenda_m->print()->row();
+        // var_dump($data['agenda']); die;
         $this->load->view('daftar_agenda/print', $data);
 	}
 	
@@ -196,7 +212,20 @@ class Agenda extends MY_Controller {
         }else{
             redirect('sirapat/admin/agenda/validasi/'.$id_agenda);
         }
-    }
+	}
+	
+	public function json(){
+        $this->load->library('datatables');
+        $this->datatables->select('*');
+        $this->datatables->from('agenda_rapat');
+		return print_r($this->datatables->generate());
+		
+		
+	}
+	
+	public function tes(){
+		$this->load->view('daftar_agenda/datatables');
+	}
 
 	
 }

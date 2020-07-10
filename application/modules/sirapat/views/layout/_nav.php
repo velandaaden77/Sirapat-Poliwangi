@@ -4,28 +4,16 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-1 mt-2">
-        <ol class="breadcrumb breadcrumb-links bg-gradient-white">
-        <li class="breadcrumb-item" ><a href="#"><i class="fas fa-home"></i></a></li>
+        
+        
+        <h3 class="text-primary"><?= $title ?> </h3>
         
                 <!-- <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item active" aria-current="page">Data</li> -->
-                <?php foreach ($this->uri->segments as $segment): ?>
-                  <?php 
-                  $url = substr($this->uri->uri_string, 0, strpos($this->uri->uri_string, $segment)) . $segment;
-                  $is_active =  $url == $this->uri->uri_string;
-                  ?>
+                
 
-                  <li class="breadcrumb-item <?php echo $is_active ? 'active': '' ?>">
-                    <?php if($is_active): ?>
-                      <?php echo ucfirst($segment) ?>
-                      <?php else: ?>
-                        <?php echo ucfirst($segment) ?></a>
-                      <?php endif; ?>
-                    </li>
-                  <?php endforeach; ?>
-              </ol>
-        </nav>
+             
+        
 
         <!-- Navbar links -->
         <ul class="navbar-nav align-items-center  ml-md-auto ">

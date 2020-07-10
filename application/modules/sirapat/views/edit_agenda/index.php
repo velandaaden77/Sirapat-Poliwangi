@@ -1,6 +1,21 @@
+<!-- Header -->
+<div class="header bg-default pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-5">
+            <div class="col-lg-12 text-center">
+            <h2 class="text-white "><i class="far fa-edit"></i> Update Agenda Rapat</h2>
+            </div>
+          </div>
+            
+          
+                </div>
+            </div>
+            </div>
+
 <div class="content-wraper">
 <div class="content">
-<div class="container-fluid ">
+<div class="container-fluid mt--6 ">
       <div class="row">
         <div class="col-xl-12">
           <div class="card">
@@ -16,6 +31,7 @@
   <div class="col-lg-4">
   <div class="form-group">
     <label for="formGroupExampleInput2">Nomor Surat</label>
+    <input type="hidden" name="idagenda" value="<?= $this->uri->segment(5)?>">
     <input type="text" class="form-control" 
     id="formGroupExampleInput2" placeholder="Nomor Surat" name="nomor_agenda"  value="<?= $da->nomor_agenda ?>">
     <?= form_error('nomor_agenda', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -111,8 +127,8 @@
   <div class="form-group">
   <label for="formGroupExampleInput2">Grup Rapat</label>
 
-              <select name="gruprapat" id="gruprapat" class="form-control" value="<?= $da->id_tipegrup ?>">
-              <option >Select Menu</option>
+              <select name="gruprapat" id="gruprapat" class="form-control" >
+              <option value="<?= $da->id_tipegrup ?>"><?= $da->nama_grup ?></option>
               <?php 
               $grup = $this->db->get('grup_tipe')->result_array();
               foreach ($grup as $g) : ?>
@@ -127,8 +143,8 @@
   <div class="form-group">
   <label for="formGroupExampleInput2">Unit</label>
               
-              <select name="unit" id="unit" class="form-control" value="<?= $da->id_unit ?>">
-              <option >Pilih Unit</option>
+              <select name="unit" id="unit" class="form-control" >
+              <option value="<?= $da->id_unit ?>"><?= $da->unit ?></option>
               <?php 
               $unit = $this->db->get('karyawan_unit')->result_array();
               foreach ($unit as $u) : ?>
@@ -139,21 +155,6 @@
   </div>
   </div>
 
-  <div class="col-lg-4">
-  <div class="form-group">
-  <label for="formGroupExampleInput2">Pimpinan</label>
-
-              <select name="pimpinan" id="pimpinan" class="form-control" value="<?= $da->id_pimpinan ?>">
-              <option value="<?= set_value('pimpinan'); ?>">Pilih Pimpinan</option>
-              <?php 
-              $karyawan = $this->db->get('karyawan')->result_array();
-              foreach ($karyawan as $k) : ?>
-              <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
-              <?php endforeach; ?>
-              </select>
-              <?= form_error('pimpinan', '<small class="text-danger pl-1">', '</small>'); ?>
-  </div>
-  </div>
 
  
  <!-- start -->
@@ -162,8 +163,8 @@
 
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <button type="reset" class="btn btn-danger">Hapus</button>
+  <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
+  <button type="reset" class="btn btn-danger"><i class="fas fa-trash"></i> Reset</button>
 
             <?php } ?>
 </form>
@@ -175,3 +176,4 @@
 </div>
 </div>
 </div>
+

@@ -1,10 +1,25 @@
-<div class="container-fluid ">
+<!-- Header -->
+<div class="header bg-default pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-5">
+            <div class="col-lg-12 text-center">
+            <h2 class="text-white "><i class="fa fa-calendar-plus"></i> Create Agenda Rapat</h2>
+            </div>
+          </div>
+            
+          
+                </div>
+            </div>
+            </div>
+
+<div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-12">
           <div class="card">
          
             <div class="card-header bg-transparent">
-            <h2 class="box-title mb-3">Unggah Agenda Rapat</h2>
+            
 
 <?= $this->session->flashdata('message'); ?>
 <?= form_open_multipart('sirapat/admin/TambahAgenda'); ?>
@@ -137,21 +152,7 @@
   </div>
   </div>
 
-  <div class="col-lg-4">
-  <div class="form-group">
-  <label for="formGroupExampleInput2">Pimpinan</label>
-
-              <select name="pimpinan" id="pimpinan" class="form-control">
-              <option value="<?= set_value('pimpinan'); ?>">Pilih Pimpinan</option>
-              <?php 
-              $karyawan = $this->db->get('karyawan')->result_array();
-              foreach ($karyawan as $k) : ?>
-              <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
-              <?php endforeach; ?>
-              </select>
-              <?= form_error('pimpinan', '<small class="text-danger pl-1">', '</small>'); ?>
-  </div>
-  </div>
+  
 
   </div>
 
@@ -165,5 +166,13 @@
 </div>
 </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+ <!-- Membuat datepicker -->
+ <script>
+    // set minDate to 0 for today's date
+    $('#datepicker').datepicker({ minDate: 0 });
+ </script>
 
 

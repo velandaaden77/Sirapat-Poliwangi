@@ -26,8 +26,18 @@ class M_unggah_agenda extends CI_Model {
 		// $this->db->delete($table);
 	}
   
-	public function edit_data($where,$table){
-		return $this->db->get_where($table, $where);
+	public function edit_data(){
+
+		// return $this->db->get_where($table, $where);
+
+	$this->db->select('*');
+    $this->db->from('agenda_rapat');
+    $this->db->join('grup_rapat', 'agenda_rapat.id_tipegrup = grup_rapat.id_grup ');
+    $this->db->join('grup_tipe', 'grup_tipe.id = grup_rapat.id_tipe ');
+    $this->db->join('karyawan_unit', 'agenda_rapat.id_unit = karyawan_unit.id ');
+    $this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
+    $query = $this->db->get();
+    return $query;
 	}
 
 	public function update_data($where,$data,$table){
