@@ -21,18 +21,17 @@
      <div class="container-fluid mt--5">
       <div class="row justify-content-center">
         
-          <form action="<?= base_url('sirapat/superadmin/manajemen_grup/tambahgrup') ?>" method="post">
+          <form role="form" action="<?= base_url('sirapat/superadmin/manajemen_grup/tambahgrup') ?>" method="post">
           <div class="card text-center" style="width: 50rem; ">
-          <div class="card-header  bg-transparent">
-          <?= $this->session->flashdata('message') ?>     
-          </div>   
+
             <div class="card-body">
-            
+            <?= $this->session->flashdata('message') ?>     
               <div class="form-group">
                   <label for="formGroupExampleInput2">NAMA GROUP</label>
                   <input type="input" class="form-control" 
-                  id="grup" placeholder="Masukan nama grup" name="grup">
-                  <span class="help-block"><?= form_error('grup', '<small class="text-danger pl-1">', '</small>'); ?></span>
+                  id="grup" placeholder="Masukan nama grup" name="grup" autocomplete="off">
+                  <span class="help-block">
+                  <?= form_error('grup', '<small class="text-danger pl-1">', '</small>'); ?></span>
               </div> 
 
               <button type="submit" class="btn btn-primary">Tambah</button>
@@ -58,7 +57,7 @@
                     <div class="col">
                       <h5 class="card-title text-uppercase mb-0"><?= $g->nama_grup?></h5>
                       <span class="h5 font-weight-bold text-muted mb-0">ANNGOTA :</span>
-                      <span class="h5 font-weight-bold mb-0">10</span>
+                      <span class="h5 font-weight-bold mb-0"><?= $jmlgrup ?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">

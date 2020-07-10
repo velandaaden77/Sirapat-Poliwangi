@@ -9,6 +9,7 @@ class Manajemen_grup extends MY_Controller {
         is_logged_in();
         $this->load->helper('sirapat');
         $this->load->model('superadmin_m');
+        $this->load->library('form_validation');
     }
 
     public function index(){
@@ -22,6 +23,7 @@ class Manajemen_grup extends MY_Controller {
         $data['unit'] = $this->db->get('karyawan_unit')->result_array();
 
         $data['grup'] = $this->db->get('grup_tipe')->result();
+        $data['jmlgrup'] = $this->superadmin_m->jumlahanggota()->num_rows();
 
         $this->template->load('layout/template', 'superadmin/manajemen_grup', $data);
 
@@ -31,21 +33,27 @@ class Manajemen_grup extends MY_Controller {
         
         $this->form_validation->set_rules('grup', 'Grup', 'required');
 
-        if ($this->form_validation->run() == false){
+        if($this->form_validation->run() == false){
 
             $data['title'] = 'Manajemen Grup';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['unit'] = $this->db->get('karyawan_unit')->result_array();
             $data['grup'] = $this->db->get('grup_tipe')->result();
+            $data['jmlgrup'] = $this->superadmin_m->jumlahanggota()->num_rows();
+
+            // $this->session->set_flashdata('message', 
+            // '<div class="alert alert-danger" role="alert">Grup Sudah Ada!!</div>');
     
             $this->template->load('layout/template', 'superadmin/manajemen_grup', $data);
 
         }else{
 
-            $grup = $this->input->post('grup');
+            $grup = $this->input->post('grup', true);
 
             $data = [
                 'nama_grup' => $grup,
+                'password' => MD5(123),
+                'role_id' => 6,
             ];
 
             $this->db->insert('grup_tipe', $data);
