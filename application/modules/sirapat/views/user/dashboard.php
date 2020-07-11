@@ -8,7 +8,7 @@
             <h4 class="text-white font-italic font-weight-light">Di Sistem Informasi Manajemen Rapat Poliwangi</h4>
             </div>
           </div>
-            
+             
                 </div>
             </div>
             </div>
