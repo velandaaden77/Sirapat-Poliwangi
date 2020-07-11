@@ -24,5 +24,29 @@ class Dashboard extends MY_Controller {
 
 	}
 
+	public function check_access(){
+
+		$idgrup = $this->input->post('id_grup');
+		
+
+		$karyawan = $this->user_m->checkaccess($idgrup)->row();
+
+		// var_dump($karyawan); die;
+
+		if($karyawan->id_jabatan == 1){
+			redirect('sirapat/user/ketua/validasiagenda');
+
+			
+		}else{
+
+			if($karyawan->id_jabatan == 5){
+				redirect('sirapat/user/anggota/daftarrapat');
+			}else {
+				
+					redirect('sirapat/user/anggota/daftarrapat');
+		}
+			
+		}
+	}
 
 }
