@@ -24,8 +24,8 @@
             
             <div class="card-body px-lg-7 py-lg-6">
               <div class="text-center text-muted mb-4">
-                <h2>LOGIN USER</h2>
-                <a href="<?= base_url('auth/pimpinan/index'); ?>" class="btn btn-outline-primary btn-sm">Login Sebagai pimpinan ?</a>
+                <h2>LOGIN ADMIN</h2>
+                <a href="<?= base_url('auth/user/index'); ?>" class="btn btn-outline-primary btn-sm">Login Sebagai User ?</a>
               </div>
               <hr>
 

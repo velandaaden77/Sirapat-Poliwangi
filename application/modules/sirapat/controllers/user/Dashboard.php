@@ -7,26 +7,22 @@ class Dashboard extends MY_Controller {
 	public function __construct()
 	{
         parent::__construct();
-        is_logged_in();
-		$this->load->helper('sirapat');
-		$this->load->model('m_dashboard');
+        is_loginn();
+		$this->load->helper('user');
+		$this->load->model('user_m');
 		
 	}
 
 	public function index()
 	{ 
 
-		//$sess_data = $this->m_dashboard->ambil_data($this->session->userdata['email']);
 		$data['title'] = 'User Dashboard';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		// $data = array(
-
-		// 		'title' =>   'Dashboard',
-				
-			   
-		// );
+		$data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_karyawan')])->row_array();
 		
-        $this->template->load('layout/template', 'user/dashboard', $data);
+
+		$data['gruprapat'] = $this->user_m->getgruprapat()->result();
+		
+        $this->template->load('layout/user/template', 'user/dashboard', $data);
 
 	}
 
