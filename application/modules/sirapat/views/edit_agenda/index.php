@@ -5,6 +5,9 @@
           <div class="row align-items-center py-5">
             <div class="col-lg-12 text-center">
             <h2 class="text-white "><i class="far fa-edit"></i> Update Agenda Rapat</h2>
+            <?php $ag = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row(); ?>
+            <h4 class="text-white "><?= $ag->nama_agenda ?></h4>
+
             </div>
           </div>
             
@@ -21,7 +24,7 @@
           <div class="card">
          
             <div class="card-header bg-transparent">
-
+ 
             <?php foreach($daftar_agenda as $da) { ?>
 
               <?= form_open_multipart('sirapat/admin/Update'); ?>
@@ -138,25 +141,7 @@
               <?= form_error('gruprapat', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
- 
-  <div class="col-lg-4">
-  <div class="form-group">
-  <label for="formGroupExampleInput2">Unit</label>
-              
-              <select name="unit" id="unit" class="form-control" >
-              <option value="<?= $da->id_unit ?>"><?= $da->unit ?></option>
-              <?php 
-              $unit = $this->db->get('karyawan_unit')->result_array();
-              foreach ($unit as $u) : ?>
-              <option value="<?= $u['id']; ?>"><?= $u['unit']; ?></option>
-              <?php endforeach; ?>
-              </select>
-              <?= form_error('unit', '<small class="text-danger pl-1">', '</small>'); ?>
-  </div>
-  </div>
-
-
- 
+  
  <!-- start -->
   
  <!-- end -->
@@ -164,7 +149,6 @@
   </div>
 
   <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update</button>
-  <button type="reset" class="btn btn-danger"><i class="fas fa-trash"></i> Reset</button>
 
             <?php } ?>
 </form>

@@ -29,7 +29,7 @@
 
             <div class="col-lg-6 pt-5">
 
-            <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data" id="sendtelegram">
+            <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data" id="sendtelegram" target="_blank">
 
             <!-- action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument -->
             <!-- <form action="<?= base_url('sirapat/admin/undangan/sendtelegram') ?>" method="post" enctype="multipart/form-data"> -->
@@ -58,7 +58,7 @@
                 <label for="document">File </label>
                 <div class="custom-file">
                 <input type="file" class="custom-file-input" id="document" name="document">
-                <label class="custom-file-label" for="document"></label>
+               
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
     
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#sendtelegram').submit(function(e){
+        $('#sendtelegram').click(function(e){
             e.preventDefault(); 
                  $.ajax({
                      url:'https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument',
@@ -110,6 +110,8 @@
                      cache:false,
                      async:false,
                         success: function(data){
+
+                          alert:"Success";
                            
                         }
                  });
