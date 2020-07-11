@@ -18,7 +18,18 @@ class Grup_m extends CI_Model {
 
         $this->db->select ('*');
         $this->db->from('karyawan');
-        $this->db->join('karyawan_unit', 'karyawan.unit_id = karyawan_unit.id ');
+        
+        $query = $this->db->get();
+        return $query;
+
+    }
+
+    public function gr_rapat($id_karyawan,$id_tipe){
+
+        $this->db->select ('*');
+        $this->db->from('grup_rapat');
+        $this->db->where('id_karyawan',$id_karyawan);
+        $this->db->where('id_tipe',$id_tipe);
         $query = $this->db->get();
         return $query;
 

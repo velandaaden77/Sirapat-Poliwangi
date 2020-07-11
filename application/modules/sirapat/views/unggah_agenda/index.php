@@ -135,24 +135,7 @@
               <?= form_error('gruprapat', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
- 
-  <div class="col-lg-4">
-  <div class="form-group">
-  <label for="formGroupExampleInput2">Unit</label>
-              
-              <select name="unit" id="unit" class="form-control">
-              <option value="<?= set_value('unit'); ?>">Pilih Unit</option>
-              <?php 
-              $unit = $this->db->get('karyawan_unit')->result_array();
-              foreach ($unit as $u) : ?>
-              <option value="<?= $u['id']; ?>"><?= $u['unit']; ?></option>
-              <?php endforeach; ?>
-              </select>
-              <?= form_error('unit', '<small class="text-danger pl-1">', '</small>'); ?>
-  </div>
-  </div>
 
-  
 
   </div>
 

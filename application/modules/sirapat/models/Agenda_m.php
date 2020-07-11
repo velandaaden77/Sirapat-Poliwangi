@@ -16,11 +16,10 @@ class Agenda_m extends CI_Model {
 
     public function getagenda(){
 
-        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup, karyawan_unit.unit');
+        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup');
         $this->db->from('agenda_rapat');
-       
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
-        $this->db->join('karyawan_unit', 'agenda_rapat.id_unit = karyawan_unit.id ');
+        // $this->db->join('karyawan_unit', 'agenda_rapat.id_unit = karyawan_unit.id ');
         // $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
         $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
         $query = $this->db->get();
@@ -91,8 +90,10 @@ class Agenda_m extends CI_Model {
             $this->db->select('*');
             $this->db->from('agenda_rapat');
             $this->db->join('grup_rapat', 'grup_rapat.id_tipe = agenda_rapat.id_tipegrup');
+            $this->db->join('grup_tipe', 'grup_rapat.id_tipe = grup_tipe.id');
             $this->db->join('karyawan', 'grup_rapat.id_karyawan = karyawan.idkaryawan');
             $this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
+            $this->db->where(['grup_rapat.id_jabatan' => 1]);
             $query = $this->db->get();
             return $query;
             }

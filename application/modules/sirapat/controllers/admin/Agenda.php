@@ -171,8 +171,8 @@ class Agenda extends MY_Controller {
 
 		$data['daftar'] = $this->agenda_m->daftar_validasi()->result();
 
-		$data['pimpinan'] = $this->agenda_m->getpimpinan()->result_array();
-		// var_dump($data['pimpinan']);
+		$data['pimpinan'] = $this->agenda_m->getpimpinan()->row();
+		// var_dump($data['pimpinan']); 
         // $data['row']= $this->agenda_m->get();
 
         $this->template->load('layout/template','daftar_agenda/validasi', $data);
@@ -190,14 +190,14 @@ class Agenda extends MY_Controller {
 			'id_pimpinan' => $id_pimpinan,
 			'id_user' => $id_user,
 			'status' => 0,
-			'date_created' => time(),
+			'date_created' => date('Y-m-d'),
 		];
 
 		$this->db->insert('validasi_agenda', $data);
 
 		$this->session->set_flashdata('message', 
-		'<div class="alert alert-success" role="alert">Agenda telah dikirim ke pimpinan</div>');
-		redirect('sirapat/admin/agenda');
+		'<div class="alert alert-success" role="alert">Agenda telah dikirim ke pimpinan untuk divalidasi</div>');
+		redirect('sirapat/admin/agenda/validasi/'.$id_agenda);
 
 	}
 

@@ -57,7 +57,7 @@ class Anggota extends MY_Controller {
             // 'id_tipe' => $gruptipe,
             // 'id_karyawan' => $karyawan,
             'id_jabatan' => $grupjabatan,
-            
+             
         ];
 
         $where = ['id_grup' => $idgrup ];

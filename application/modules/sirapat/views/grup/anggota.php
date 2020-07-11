@@ -48,8 +48,12 @@
       <tbody>
 
       <?php $i=1 ?>
-        <?php foreach($anggota as $g) { ?>
-
+        <?php foreach($anggota as $g) {
+          if($g->jabatan=='Ketua'){
+            $ketua = '1';
+          }
+          ?>
+          
         <tr>
           <th scope="row"><?= $i ?></th>
           <td><?= $g->nama_grup ?></td>
@@ -96,8 +100,22 @@
                     <?php 
                     $grupjabatan = $this->db->get('grup_jabatan')->result_array();
                     foreach ($grupjabatan as $gj) : ?>
+
+                    <?php
+                   if($ketua=='1'){ 
+                     if($gj['jabatan']=='Ketua'){}else{ ?> 
+                     
                     <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
-                    <?php endforeach; ?>
+                     
+                     <?php }
+                     ?>
+
+                    <?php
+                   }else{
+                   ?>
+
+                    <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
+                    <?php } endforeach; ?>
                     </select>
                     <?= form_error('grupjabatan', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>
@@ -153,7 +171,17 @@
                     <select name="karyawan" id="karyawan" class="form-control">
                     <option value="">Pilih Karyawan</option>
                     <?php foreach ($karyawan as $k) : ?>
+                    <?php
+
+                      $gr_kar = $this->db->get_where('grup_rapat',['id_karyawan' => $k['idkaryawan'], 'id_tipe' => $this->session->userdata('idgrup')])->row();
+                     
+                      if(empty($gr_kar)){
+                        echo $this->session->userdata('idgrup');
+                        ?>  
+                      
                     <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
+                      <?php }else{} ?>
+                      
                     <?php endforeach; ?>
                     </select>
                     <?= form_error('karyawan', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -167,8 +195,24 @@
                     <?php 
                     $grupjabatan = $this->db->get('grup_jabatan')->result_array();
                     foreach ($grupjabatan as $gj) : ?>
+
+                   <?php
+                   if($ketua=='1'){ 
+                     if($gj['jabatan']=='Ketua'){}else{ ?> 
+                     
                     <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
-                    <?php endforeach; ?>
+
+                     
+                     <?php }
+                     ?>
+
+                    <?php
+                   }else{
+                   ?>
+
+                    <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
+
+                    <?php } endforeach; ?>
                     </select>
                     <?= form_error('grupjabatan', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>

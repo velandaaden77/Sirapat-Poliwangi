@@ -32,7 +32,7 @@ class Unggah_agenda extends MY_Controller {
 		$this->form_validation->set_rules('tempat', 'Tempat', 'required');
 		$this->form_validation->set_rules('jmmulai', 'Jam Mulai', 'required');
 		$this->form_validation->set_rules('jmselesai', 'Jam Selesai', 'required');
-		$this->form_validation->set_rules('unit', 'Unit', 'required');
+		// $this->form_validation->set_rules('unit', 'Unit', 'required');
 		$this->form_validation->set_rules('gruprapat', 'Grup Rapat', 'required');
 		$this->form_validation->set_rules('peserta_rapat', 'Peserta Rapat', 'required');
 		$this->form_validation->set_rules('nomor_agenda', 'Nomor Agenda', 'required');
@@ -53,7 +53,7 @@ class Unggah_agenda extends MY_Controller {
 			$tempat = $this->input->post('tempat');
 			$jammulai = $this->input->post('jmmulai');
 			$jamselesai = $this->input->post('jmselesai');
-			$unit = $this->input->post('unit');
+			// $unit = $this->input->post('unit');
 			$gruprapat = $this->input->post('gruprapat');
 			$peserta_rapat = $this->input->post('peserta_rapat');
 			$nomor_agenda = $this->input->post('nomor_agenda');
@@ -61,7 +61,7 @@ class Unggah_agenda extends MY_Controller {
 			
 			$lampiran1 = $this->input->post('lampiran1');
 			$lampiran = $_FILES['lampiran']['name'];
-
+ 
 			if($lampiran){
 				$config['allowed_types'] = 'doc|xls|pdf';
 				$config['max_size'] = '2048';
@@ -94,7 +94,7 @@ class Unggah_agenda extends MY_Controller {
 				'tempat' => $tempat,
 				'jam_mulai' => $jammulai,
 				'jam_selesai' => $jamselesai,
-				'id_unit' => $unit,
+				// 'id_unit' => $unit,
 				'id_tipegrup' => $gruprapat,
 				'peserta_rapat' => $peserta_rapat,
 				'nomor_agenda' => $nomor_agenda,

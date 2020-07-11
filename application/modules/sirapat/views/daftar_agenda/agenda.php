@@ -182,15 +182,6 @@
 
             <div class="row">
             <div class="col-sm-3">
-              <h5>Unit</h5>
-            </div>
-            <div class="col-sm-9">
-                <span>: <?= $data->unit ?></span>
-            </div>
-            </div>
-
-            <div class="row">
-            <div class="col-sm-3">
               <h5>Peserta Rapat</h5>
             </div>
             <div class="col-sm-9">
