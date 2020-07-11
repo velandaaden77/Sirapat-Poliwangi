@@ -9,7 +9,6 @@
             </div>
           </div>
             
-          
                 </div>
             </div>
             </div>
@@ -22,11 +21,28 @@
           <div class="card">
 
         <div class="card-body">
-        <div class="card-deck">
-        <?php foreach($gruprapat as $key => $data) { ?>
+
+        <?php 
+            $gr = $this->db->get_where('grup_rapat', ['id_karyawan' => $this->session->userdata('id_karyawan')])->row();
+            if(empty($gr)){ ?>
+
+        <div class="text-center">
+        <img src="<?= base_url('assets/dashboard/img/grupkosong.jpg')?>" class="mx-auto d-block" width="30%" alt="...">
+        <span class="font-italic">Maaf anda belum bergabung dengan grup apapun</span>
+        </div>
+        
+        <?php }else{ ?>
+
+
+        <div class="card-deck"> 
+        
+        
+
+        <?php foreach($gruprapat as $key => $data) : ?>
+        
             <div class="col-lg-3">
             <div class="card text-center" style="max-width: 18rem;">
-                <img src="<?= base_url('assets/dashboard/img/book2.jpg')?>" class="card-img-top" alt="...">
+                <img src="<?= base_url('assets/dashboard/img/gruprapat.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title"><?= $data->nama_grup?></h2>
                 <button type="button"
@@ -37,9 +53,11 @@
                 </div>
             </div>
             </div>
+        <?php  endforeach; ?>
         <?php } ?>
           
-          
+
+         
 
             
           
