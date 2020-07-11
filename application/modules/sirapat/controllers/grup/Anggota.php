@@ -50,12 +50,12 @@ class Anggota extends MY_Controller {
 
         $idgrup = $this->input->post('idgrup');
         $gruptipe = $this->input->post('gruptipe');
-        $karyawan = $this->input->post('karyawan');
+        $karyawan = $this->input->post('idkaryawan');
         $grupjabatan = $this->input->post('grupjabatan');
 
         $data = [
-            'id_tipe' => $gruptipe,
-            'id_karyawan' => $karyawan,
+            // 'id_tipe' => $gruptipe,
+            // 'id_karyawan' => $karyawan,
             'id_jabatan' => $grupjabatan,
             
         ];

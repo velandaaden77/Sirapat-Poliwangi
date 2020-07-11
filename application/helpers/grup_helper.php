@@ -30,7 +30,7 @@ function login(){
 
         if($userAccess->num_rows() < 1){
 
-            redirect('auth/blocked');
+            redirect('auth/grup/blocked');
         }
     }
 }

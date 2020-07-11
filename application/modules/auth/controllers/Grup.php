@@ -96,4 +96,10 @@ class Grup extends MX_Controller {
 			// $this->session->sess_destroy();
 			// redirect('Login-User');
 	}
+
+	public function blocked(){
+		$this->load->view('layout/auth_header');
+		$this->load->view('login/blocked');
+		$this->load->view('layout/auth_footer');
+	}
 }

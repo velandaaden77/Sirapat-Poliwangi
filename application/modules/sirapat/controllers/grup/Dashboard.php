@@ -19,6 +19,19 @@ class Dashboard extends MY_Controller {
 		
         $this->template->load('layout/grup/template', 'grup/dashboard', $data);
 
+
+	}
+
+	public function setting()
+	{ 
+	
+		$data['title'] = 'Setting Grup';
+		$data['grup'] = $this->db->get_where('grup_tipe', ['nama_grup' => $this->session->userdata('nama_grup')])->row_array();
+		
+		
+        $this->template->load('layout/grup/template', 'grup/setting', $data);
+
+
 	}
 
 

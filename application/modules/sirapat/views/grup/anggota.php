@@ -83,6 +83,7 @@
         <label for="formGroupExampleInput2">Nama Karyawan</label>
         <input type="hidden" name="idgrup" value="<?= $g->id_grup ?>">
         <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->session->userdata('idgrup') ?>">
+        <!-- <input type="text" class="form-control" disabled name="idkaryawan" value="<?= $g->idkaryawan ?>"> -->
         <input type="text" class="form-control" disabled name="karyawan" value="<?= $g->nama_karyawan ?>">
                     
         </div>

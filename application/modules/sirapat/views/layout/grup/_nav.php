@@ -36,13 +36,13 @@
               </a>
                 
               <div class="dropdown-menu  dropdown-menu-right ">
-                <a href="#!" class="dropdown-item">
+                <a href="<?= base_url('sirapat/grup/dashboard/setting'); ?>" class="dropdown-item">
                   <i class="ni ni-single-02 text-primary"></i>
-                  <span>My profile</span>
+                  <span>Setting</span>
                 </a>
                   
                 <div class="dropdown-divider"></div>
-                <a href="<?= base_url('auth/pimpinan/logout'); ?>" class="dropdown-item">
+                <a href="<?= base_url('auth/grup/logout'); ?>" class="dropdown-item">
                 <i class="fas fa-sign-out-alt text-primary"></i>
                   <span>Logout</span>
                 </a>
