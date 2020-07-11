@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends MY_Controller {
+class Anggota extends MY_Controller {
 
 
 	public function __construct()
@@ -13,15 +13,19 @@ class Dashboard extends MY_Controller {
 		
 	}
 
-	public function index()
+	public function daftarrapat()
 	{ 
 
-		$data['title'] = 'User Dashboard';
+		$data['title'] = 'Daftar Rapat';
 		$data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_karyawan')])->row_array();
 		$data['gruprapat'] = $this->user_m->getgruprapat()->result();
-		
-        $this->template->load('layout/user/template', 'user/dashboard', $data);
+        
+		$data['getallagenda']= $this->user_m->getallagenda()->result();
 
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/maincontent', $data);
+        $this->load->view('user/daftar_rapat', $data);
+        $this->load->view('layout/anggota/footer');
 	}
 
 

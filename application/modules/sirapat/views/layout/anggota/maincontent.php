@@ -1,8 +1,17 @@
+<div class="main-content" id="panel">
+
+<!-- navbar -->
 
 
 <nav class="navbar navbar-top navbar-expand navbar-light bg-white border-bottom fixed-top">
     
     <h2 class="ml-5 font-bold">SIRAPAT</h2>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ">
+      <a class="nav-item nav-link" href="#">Dashboard</a>
+      <a class="nav-item nav-link" href="#">DaftarRapat</a>
+    </div>
+    </div>
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
@@ -46,4 +55,6 @@
         </div>
       </div>
       </nav>
-     
+     <!-- end nabar -->
+
+     </div>
