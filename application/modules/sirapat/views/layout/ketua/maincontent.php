@@ -8,9 +8,9 @@
     <h2 class="ml-5 font-bold">SIRAPAT</h2>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ">
-      <a class="nav-item nav-link" href="#">Dashboard</a>
-      <a class="nav-item nav-link" href="#">DaftarRapat</a>
-      <a class="nav-item nav-link" href="#">ValidasiAgenda</a>
+      <a class="nav-item nav-link" href="<?= base_url('sirapat/user/dashboard') ?>">Dashboard</a>
+      <a class="nav-item nav-link" href="<?= base_url('sirapat/user/ketua/daftar_rapat/'.$this->uri->segment(5)) ?>">DaftarRapat</a>
+      <a class="nav-item nav-link" href="<?= base_url('sirapat/user/ketua/validasi_agenda') ?>">ValidasiAgenda</a>
       <a class="nav-item nav-link" href="#">ValidasiNotulen</a>
     </div>
     </div>

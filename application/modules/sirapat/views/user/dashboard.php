@@ -50,7 +50,7 @@
                 <img src="<?= base_url('assets/dashboard/img/gruprapat.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title"><?= $data->nama_grup?></h2>
-                <input type="text" name="id_grup" id="id_grup" value="<?= $data->id_tipe ?>">
+                <input type="hidden" name="id_grup" id="id_grup" value="<?= $data->id_tipe ?>">
                 <button type="submit"
                 class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat Grup</button>
                 </div>

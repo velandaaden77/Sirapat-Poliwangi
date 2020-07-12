@@ -21,6 +21,8 @@ class Ketua extends MY_Controller {
 		$data['gruprapat'] = $this->user_m->getgruprapat()->result();
         
 		$data['validasi']= $this->user_m->getvalidasi()->result();
+		$data['notifvalidasi']= $this->user_m->notifval()->result();
+
 		// echo json_encode($data['validasi']);
 
         $this->load->view('layout/ketua/header', $data);
@@ -86,46 +88,39 @@ class Ketua extends MY_Controller {
 		redirect('sirapat/user/ketua/validasiagenda/'.$idgrup);
 	}
 
-	public function validasi_m(){
+	public function validasimanual($idvalidasi, $idgrup){
 
-		$validasi_id = $this->input->post('validasiId');
-		$agenda_id = $this->input->post('agendaId');
-
-		$where = ['id_agenda' => $agenda_id, 'id_validasi' =>$validasi_id];
-		// var_dump($validasi_id); die;
- 
+		$where = ['id_validasi' => $idvalidasi];
+		// var_dump($where); die;
 		$data = [
 
-			'id_validasi' => $validasi_id,
-			'id_agenda' => $agenda_id,
-			'id_pimpinan' => $this->session->userdata('id_dosen'),
-			'qrcode' => 'ttdmanual.jpg',
+			'qrcode' => 'ttdmanual.png',
 			'status' => 1,
 			'date_validasi' => date('Y-m-d h:i:s'),
-
 		];
 
-		
-		$data2 = [
-
-			'id_validasi' => $validasi_id,
-			'id_pimpinan' => $this->session->userdata('id_dosen'),
-			'qrcode' => null,
-			'status' => 0,
-		];
- 
-		$result = $this->db->get_where('validasi_agenda', $where);
- 
-		if($result->status == 0 ){
-			$this->db->update('validasi_agenda', $data);
-		}else{
-			$this->db->update('validasi_agenda', $data2);
-		}
+		$this->db->where($where);
+		$this->db->update('validasi_agenda', $data);
 
 		 $this->session->set_flashdata('message', 
-		 '<div class="alert alert-success" role="alert">Agenda telah Divalidasi</div>');
-		 redirect('sirapat/user/ketua/validasiagenda');
+		 'Agenda telah divalidasi manual');
+		 redirect('sirapat/user/ketua/validasiagenda/'.$idgrup);
 	 
+	}
+
+	public function daftar_rapat(){
+
+		$data['title'] = 'Daftar Rapat';
+		$data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_karyawan')])->row_array();
+
+		$data['getallagenda']= $this->user_m->getallagenda()->result();
+
+
+		$this->load->view('layout/ketua/header', $data);
+        $this->load->view('layout/ketua/maincontent', $data);
+        $this->load->view('user/daftar_rapat', $data);
+		$this->load->view('layout/ketua/footer');
+		
 	}
 
 

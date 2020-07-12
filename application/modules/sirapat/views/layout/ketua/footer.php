@@ -56,6 +56,31 @@
   })
     
   })
+
+  
+    $(document).on('click', '.btn-validm', function(e) {
+
+    // mengehntikan aksi defeault
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+    title: 'Validasi Manual ?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Validasi!'
+    }).then((result) => {
+    if (result.value) {
+    
+        document.location.href = href;
+
+    }
+    })
+
+    })            
   </script>
 
  

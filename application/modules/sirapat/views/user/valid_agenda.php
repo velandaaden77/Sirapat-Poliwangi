@@ -17,7 +17,7 @@ a
              </div>
 
     <!-- Page content -->
-    <div class="container-fluid mt--5">
+    <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-12">
 
@@ -29,6 +29,15 @@ a
         <div class="card-body">
           <!-- <?= $this->session->flashdata('message') ?>         -->
           <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>
+
+      <?php foreach ($notifvalidasi as $n) { ?>
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <strong>Validasi Baru!!!</strong> <span class="font-italic"><?= $n->nama_agenda ?></span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <?php } ?>
 
       <section class="content">
       <table class="table table-hover table-responsive-md" id="validasiagenda">
@@ -80,10 +89,10 @@ a
           <?= anchor('sirapat/user/ketua/qrcode/'.$data->id_validasi.'/'.$this->uri->segment(5), 
           '<button class="btn btn-dark btn-sm"><i class="fas fa-fw fa-qrcode"></i> QR Code</button>')?>
 
-          <?= anchor('sirapat/user/ketua/qrcode/'.$data->id_validasi.'/'.$this->uri->segment(5), 
-          '<button class="btn btn-warning btn-sm"><i class="fas fa-fw fa-file-signature"></i> Validasi Manual</button>')?>
+          <a href="<?= base_url('sirapat/user/ketua/validasimanual/').$data->id_validasi.'/'.$this->uri->segment(5) ?>"
+          class="btn btn-warning btn-sm btn-validm"><i class="fas fa-fw fa-file-signature"></i> Validasi Manual</a>
 
-            <button onclick="Swal.fire()" class="btn btn-danger btn-sm">Tes</button>
+          
           <?php } ?>
           </td>
 

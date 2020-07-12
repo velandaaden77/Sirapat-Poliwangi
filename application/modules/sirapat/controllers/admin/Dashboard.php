@@ -9,7 +9,7 @@ class Dashboard extends MY_Controller {
 		parent::__construct();
 		is_logged_in();
 		$this->load->helper('sirapat');
-		$this->load->model('m_dashboard');
+		
 	}
 
 	public function index()
