@@ -1,4 +1,4 @@
-
+a
 
     <!-- content -->
     <!-- Header -->
@@ -27,10 +27,11 @@
         </div>
 
         <div class="card-body">
-          <?= $this->session->flashdata('message') ?>        
+          <!-- <?= $this->session->flashdata('message') ?>         -->
+          <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>
 
       <section class="content">
-      <table class="table table-hover table-responsive-md">
+      <table class="table table-hover table-responsive-md" id="validasiagenda">
       <thead class="thead-light">
         <tr>
           <th scope="col">NO</th>
@@ -39,7 +40,7 @@
           <th scope="col">TEMPAT</th>
           <th scope="col">STATUS</th>
           <th scope="col"></th>
-          <th scope="col"></th>
+          <!-- <th scope="col"></th> -->
         </tr>
       </thead>
       <tbody>
@@ -53,7 +54,7 @@
           <td><?= $data->tanggal; ?></td>
           <td><?= $data->tempat; ?></td>
 
-          <?php $validasi = $this->db->get_where('validasi_agenda', ['id_pimpinan' => $this->session->userdata('role_id_dosen')])->result();
+          <?php $validasi = $this->db->get_where('validasi_agenda', ['id_pimpinan' => $this->session->userdata('role_id_karyawan')])->result();
           if($data->status == 1){
           ?>
           <td><span class="text-primary">Sudah Di Validasi</span></td>
@@ -66,25 +67,38 @@
           <button class="btn btn-primary btn-sm" 
           data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-info"></i> Detail</button>
 
+          
+
           <?php if($data->status == 1 ){ ?>
+
+          <a href="<?= base_url('sirapat/user/ketua/batalvalidasi/').$data->id_validasi.'/'.$this->uri->segment(5) ?>"
+          class="btn btn-danger btn-sm btn-batal"><i class="fas fa-fw fa-undo"></i> Batal</a>
+            
+          
           <?php }else{ ?>
-            <?= anchor('sirapat/pimpinan/validasi/qrcode/'.$data->id_validasi, 
+
+          <?= anchor('sirapat/user/ketua/qrcode/'.$data->id_validasi.'/'.$this->uri->segment(5), 
           '<button class="btn btn-dark btn-sm"><i class="fas fa-fw fa-qrcode"></i> QR Code</button>')?>
+
+          <?= anchor('sirapat/user/ketua/qrcode/'.$data->id_validasi.'/'.$this->uri->segment(5), 
+          '<button class="btn btn-warning btn-sm"><i class="fas fa-fw fa-file-signature"></i> Validasi Manual</button>')?>
+
+            <button onclick="Swal.fire()" class="btn btn-danger btn-sm">Tes</button>
           <?php } ?>
           </td>
 
-          <?php if($data->status == 1 ){ ?>
+          <!-- <?php if($data->status == 1 ){ ?>
           <?php }else{ ?>
           <td>
 
           <div class="form-check">
             <input class="form-check-input" type="checkbox" 
-            data-validasi="<?=$data->id_validasi?>" data-agenda="<?=$data->id_agenda?>">
+            data-validasi="<?=$data->id_validasi?>" data-agenda="<?=$data->id_agenda?>" data-grup="<?=$data->id_tipe?>">
             <span>Validasi Manual</span>
           </div>
           
           </td>
-          <?php } ?>
+          <?php } ?> -->
 
            
       <!-- Modal -->
@@ -189,23 +203,12 @@
 
               <div class="row">
               <div class="col-sm-3">
-                <h5>Unit</h5>
-              </div>
-              <div class="col-sm-9">
-                  <span>: <?= $data->unit ?></span>
-              </div>
-              </div>
-
-              <div class="row">
-              <div class="col-sm-3">
                 <h5>Peserta Rapat</h5>
               </div>
               <div class="col-sm-9">
                   <span>: <?= $data->peserta_rapat ?></span>
               </div>
               </div>
-
-              
 
               <div class="row">
               <div class="col-sm-3">
@@ -255,4 +258,21 @@
           </div>
 
     <!-- end content -->
+
+    <!-- <script type="text/javascript">
+  ambildata( );
+  function ambildata() {
+    $.ajax({
+      type: 'post',
+      url:"<?= base_url('sirapat/user/ketua/validasiagenda') ?>",
+      datatype: 'json',
+      success: function() {
+        console.log();
+        
+      }
+    });
+  }
+  </script> -->
+
+  
         

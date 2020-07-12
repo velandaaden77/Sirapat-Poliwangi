@@ -34,16 +34,16 @@ class Dashboard extends MY_Controller {
 		// var_dump($karyawan); die;
 
 		if($karyawan->id_jabatan == 1){
-			redirect('sirapat/user/ketua/validasiagenda');
+			redirect('sirapat/user/ketua/validasiagenda/'.$idgrup);
 
 			
 		}else{
 
 			if($karyawan->id_jabatan == 5){
-				redirect('sirapat/user/anggota/daftarrapat');
+				redirect('sirapat/user/anggota/daftarrapat/'.$idgrup);
 			}else {
 				
-					redirect('sirapat/user/anggota/daftarrapat');
+					redirect('sirapat/user/anggota/daftarrapat/'.$idgrup);
 		}
 			
 		}

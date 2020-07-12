@@ -19,5 +19,6 @@
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>dashboard/css/argon.css" type="text/css">
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>dashboard/dist/sweetalert2.min.css">
   <link href="<?= base_url('assets/'); ?>vendor/select2.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" >
 </head>
 <body>
