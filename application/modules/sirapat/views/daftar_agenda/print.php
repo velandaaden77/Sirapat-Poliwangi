@@ -15,6 +15,10 @@
 .style2 {font-size: medium}
 
 </style>
+
+<script>
+window.print();
+</script>
 </head>
 
     <body>

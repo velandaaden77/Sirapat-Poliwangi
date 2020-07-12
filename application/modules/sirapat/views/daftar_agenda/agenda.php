@@ -35,7 +35,7 @@
             </div>
             </div>
             </div>
-          <?= $this->session->flashdata('message') ?>        
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>        
 
         <section class="content">
         <div class="table-responsive">
@@ -65,13 +65,31 @@
 
           <td>
           <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i></button>
+          <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $data->id])->row();  
+          if($validasi->status == 1){
+          ?>
+
+          <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
+          '<button class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="bottom" title="Dikirim ke pimpinan"><i class="fa fa-check"></i></button>')?>
+
+            <?php if($data->status_agenda == 1 ) { ?>
+            <a href="" 
+            class="btn btn-primary btn-sm disabled" ><i class="fa fa-info"></i> Sudah Terlaksana</a>
+
+          <?php }else{ ?>
+            <a href="<?= base_url('sirapat/admin/agenda/update_status/' . $data->id); ?>" 
+            class="btn btn-info btn-sm btn-status"><i class="fa fa-info"></i> Belum Terlaksana</a>
+          <?php } ?>
+
+
+          <?php }else{ ?>
           
           
           <?= anchor('sirapat/admin/agenda/edit/'.$data->id, 
           '<button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="edit"><i class="fa fa-edit"></i></button>')?>
          
 
-         <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $data->id])->row(); 
+         <?php 
          if(empty($validasi)){
          ?>
           <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
@@ -86,7 +104,7 @@
             class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" data-placement="bottom" title="hapus"><i class="fa fa-trash"></i></a>
           </td>
 
-
+         <?php } ?>
       <!-- Modal -->
       <div class="modal fade" id="detailmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

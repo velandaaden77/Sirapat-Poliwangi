@@ -10,9 +10,8 @@
   <!-- Datatables -->
   <!-- datepicker -->
  
-
-  <!-- SweetAlert -->
-  <script src="<?= base_url('assets/'); ?>dashboard/dist/sweetalert2.min.js"></script>
+ <!-- SweetAlert -->
+ <script src="<?= base_url('assets/'); ?>vendor/sweetalert2/sweetalert2.all.js"></script>
 
    
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -32,6 +31,62 @@
       });
       </script>
   
+  <!-- Sweet Alert -->
+  <script type="text/javascript">
+  const  swal = $('.swal').data('swal');
+  if(swal){
+    Swal.fire({
+      title: 'Sukses!',
+      text: swal,
+      icon: 'success'
+    })
+  }
+  
+    $(document).on('click', '.btn-status', function(e) {
+
+    // mengehntikan aksi defeault
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+    title: 'Apakah rapat sudah terlaksana?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sudah!'
+    }).then((result) => {
+    if (result.value) {
+        document.location.href = href;
+    }
+    })
+
+    })    
+
+            // tombol hapus
+    $(document).on('click', '.tombol-hapus', function(e) {
+
+    // mengehntikan aksi defeault
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal.fire({
+    title: 'Hapus Agenda ?',
+    text: "",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Hapus!'
+    }).then((result) => {
+    if (result.value) {
+        document.location.href = href;
+    }
+    })
+
+    })            
+  </script>
     
 
     

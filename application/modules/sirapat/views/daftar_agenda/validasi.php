@@ -79,7 +79,7 @@
           <th scope="col">STATUS</th>
           <th scope="col">QR CODE</th>
 
-          <th scope="col">AKSI</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -101,16 +101,25 @@
           <?php } ?>
 
           <?php if($data->status == 1) { ?>
-          <td><img src="<?= base_url('assets/file/qr-code/').$data->qrcode ?>" class="img-thumbnail"
-          style="width: 50px;"></td>
+          <td>
+          <img src="<?= base_url('assets/file/qr-code/').$data->qrcode ?>" class="img-thumbnail"
+          style="width: 50px;">
+          </td>
+
           <?php }else{ ?>
           <td>-</td>
           <?php } ?>
+
+          <?php if($data->status == 1) { ?>
           
-          <td>
+          <?php }else{ ?>
+         <td>
             <a href="<?= base_url('sirapat/admin/agenda/delvalidasi/'.$data->id_validasi.'/'.$this->uri->segment(5)); ?>" 
             class="btn btn-danger btn-sm tombol-hapus"><i class="fa fa-window-close"></i> Batal</a>
-          </td>
+         </td>
+          <?php } ?>
+
+          
         </tr>
 
       <?php $i++; ?>

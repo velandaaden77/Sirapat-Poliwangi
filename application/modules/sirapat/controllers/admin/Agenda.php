@@ -127,7 +127,7 @@ class Agenda extends MY_Controller {
         $this->agenda_m->del($id);
         if($this->db->affected_rows() > 0){
             $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">Agenda Telah Dihapus</div>');
+            'Agenda Telah Dihapus');
             redirect('sirapat/admin/agenda');
         }else{
             redirect('sirapat/admin/agenda');
@@ -222,6 +222,24 @@ class Agenda extends MY_Controller {
 	
 	public function tes(){
 		$this->load->view('daftar_agenda/datatables');
+	}
+
+	public function update_status($id){
+
+		$where = ['id'=>$id];
+
+		$data = [
+		'status_agenda' => 1,
+		];
+
+		$this->db->where($where);
+		$this->db->update('agenda_rapat', $data);
+
+		$this->session->set_flashdata('message', 
+		'Rapat Sudah Dilaksanakan');
+		redirect('sirapat/admin/agenda');
+
+
 	}
 
 	

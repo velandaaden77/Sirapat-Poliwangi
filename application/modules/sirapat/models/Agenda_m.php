@@ -20,8 +20,9 @@ class Agenda_m extends CI_Model {
         $this->db->from('agenda_rapat');
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
         // $this->db->join('karyawan_unit', 'agenda_rapat.id_unit = karyawan_unit.id ');
-        // $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
+        $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
         $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $this->db->order_by('validasi_agenda.status', 'DESC');
         $query = $this->db->get();
         return $query;
 
