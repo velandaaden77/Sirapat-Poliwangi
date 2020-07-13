@@ -14,12 +14,9 @@ class Notulen_m extends CI_Model {
 
     public function getagenda(){
 
-    
     $this->db->where(['id_user' => $this->session->userdata('iduser')]);
     $this->db->where(['status_agenda' => 1]);
     return $this->db->get('agenda_rapat');
-
-   
 
     }
 
@@ -59,4 +56,17 @@ class Notulen_m extends CI_Model {
         $this->db->where('id_risalahrapat', $id);
         $this->db->delete('risalah_rapat');
     }
+
+    public function notulensi(){
+
+        $this->db->select('*');
+        $this->db->from('notulen');
+        $this->db->join('agenda_rapat', 'notulen.id_agenda = agenda_rapat.id');
+        $this->db->join('grup_tipe', 'grup_tipe.id = agenda_rapat.id_tipegrup');
+        // $this->db->join('grup_rapat', 'grup_rapat.id_tipe = grup_tipe.id');
+        $this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
+        $query = $this->db->get();
+        return $query;
+        
+        }
 }

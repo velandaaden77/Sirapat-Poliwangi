@@ -29,6 +29,7 @@
       $("#gruprapat").select2();
       $('#agenda').DataTable();
       $('#grupdata').DataTable();
+      $('#datatable').DataTable();
       });
       </script>
   
@@ -36,6 +37,7 @@
   <script type="text/javascript">
   const  swal = $('.swal').data('swal');
   const  swal1 = $('.swal1').data('swal1');
+  const  swal2 = $('.swal2').data('swal2');
   if(swal){
     Swal.fire({
       title: 'Sukses!',
@@ -53,9 +55,14 @@
 })
 
   }
-
-  
-
+  if(swal2){
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Data Kosong!',
+  footer: ''
+})
+  }
     $(document).on('click', '.btn-status', function(e) {
 
     // mengehntikan aksi defeault

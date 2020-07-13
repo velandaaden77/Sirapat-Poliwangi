@@ -6,7 +6,10 @@
             <div class="card-header bg-transparent">
             <h2 class="box-title mb-3">Berita Acara Rapat</h2>
 
-<?= $this->session->flashdata('message'); ?>
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
+            <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>
+            <div class="swal2" data-swal2="<?= $this->session->flashdata('message2'); ?>"></div>
+
 
 <?php  $beritaacara= $this->db->get_where('berita_acara', ['id_notulen' => $this->uri->segment(5)])->row(); 
 if(empty($beritaacara)) { ?>
@@ -19,8 +22,8 @@ if(empty($beritaacara)) { ?>
   <div class="form-group">
     <label for="formGroupExampleInput2">Tanggal</label>
     <input type="hidden" name="idnotulen" id="idnotulen" value="<?= $this->uri->segment(5); ?>">
-    <input  type="date" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Tanggal" name="tanggal" value="<?= set_value('tanggal'); ?>">
+    <input  type="text" class="form-control" 
+    id="datepicker3" placeholder="Tanggal" name="tanggal" autocomplete="off" value="<?= set_value('tanggal'); ?>">
     <?= form_error('tanggal', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -28,15 +31,15 @@ if(empty($beritaacara)) { ?>
   <div class="col-lg-12">
   <div class="form-group">
     <label for="formGroupExampleInput2">Hasil</label>
-    <textarea  type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Hasil" name="hasil" value="<?= set_value('hasil'); ?>"></textarea>
+    <input  type="text" class="form-control" 
+    id="formGroupExampleInput2" placeholder="Hasil" name="hasil" value="<?= set_value('hasil'); ?>"></input>
     <?= form_error('hasil', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
 
   </div>
 
-  <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+  <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</button>
   <button type="reset" class="btn btn-danger"><i class="fa fa-undo"></i> Reset</button>
   
   <?php $data = $this->db->get_where('notulen', ['idnotulen' => $this->uri->segment(5)])->row();?>
@@ -83,7 +86,7 @@ if(empty($beritaacara)) { ?>
                   <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editmodal<?= $i ?>"><i class="fa fa-edit"></i></button>
 
                   <a href="<?= base_url('sirapat/admin/notulen/delberitaacara/'.$beritaacara->id_beritaacara.'/'.$this->uri->segment(5)); ?>" 
-                  class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>
+                  class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>
                   </td>
 
                   <!-- Modal -->
@@ -106,10 +109,10 @@ if(empty($beritaacara)) { ?>
 
               <div class="col-lg-12">
               <div class="form-group">
-                <label for="formGroupExampleInput2">Subtopik</label>
+                <label for="formGroupExampleInput2">Tanggal</label>
                 <input type="hidden" id="id" name="id" value="<?= $beritaacara->id_beritaacara ?>" >
-                <input type="date" class="form-control" 
-                id="formGroupExampleInput2" placeholder="Tanggal" name="tanggal" value="<?= $beritaacara->tanggal ?>">
+                <input type="text" class="form-control" 
+                id="datepicker3" placeholder="Tanggal" name="tanggal" autocomplete="off" value="<?= $beritaacara->tanggal ?>">
                 <?= form_error('tanggal', '<small class="text-danger pl-1">', '</small>'); ?>
               </div>
               </div>
@@ -152,3 +155,13 @@ if(empty($beritaacara)) { ?>
 </div>
 </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+ <!-- Membuat datepicker -->
+ <script>
+    // set minDate to 0 for today's date
+    $('#datepicker').datepicker({ minDate: 0 });
+    $('#datepicker1').datepicker({ minDate: 0 });
+    $('#datepicker3').datepicker({ minDate: 0 });
+ </script>

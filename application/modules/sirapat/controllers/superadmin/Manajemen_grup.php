@@ -76,6 +76,7 @@ class Manajemen_grup extends MY_Controller {
         $data['title'] = 'Detail Grup';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['karyawan'] = $this->superadmin_m->getkaryawan()->result_array();
+        $data['jmlanggota'] = $this->superadmin_m->jumlahanggota()->num_rows();
         $this->template->load('layout/template', 'superadmin/detail_grup', $data);
 
     }

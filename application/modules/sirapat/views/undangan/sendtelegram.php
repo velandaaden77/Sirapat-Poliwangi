@@ -31,9 +31,6 @@
 
             <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data" id="sendtelegram" target="_blank">
 
-            <!-- action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument -->
-            <!-- <form action="<?= base_url('sirapat/admin/undangan/sendtelegram') ?>" method="post" enctype="multipart/form-data"> -->
-
             <div class="col-sm-12">
             <div class="form-group">
             <label for="formGroupExampleInput2">Grup Rapat</label>

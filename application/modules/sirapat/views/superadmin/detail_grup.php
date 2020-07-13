@@ -33,6 +33,7 @@
             <?= form_error('karyawan', '<div class="alert alert-danger" role="alert">', '</div>') ?>
             <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>     
 
+              <button type="button" disabled class="btn btn-secondary mb-5 mt-3">Jumlah Anggota : <?= $jmlanggota ?></button>
               <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a>
               <div class="col-lg-12">
               

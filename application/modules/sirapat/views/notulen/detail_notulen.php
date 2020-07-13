@@ -26,6 +26,9 @@
           <div class="card text-center">
             <div class="card-body">
 
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
+            <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>
+
             <div class="table-responsive">
             <table class="table table-hover tabel-light">
             <thead class="thead-dark">
@@ -81,9 +84,7 @@
                 <?php } ?>
 
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+               
             </div>
             <?php } ?>
 
@@ -95,33 +96,27 @@
                 <div class="card-body">
                 <h2 class="card-title">Risalah Rapat</h2>
                 <button type="button"
-                class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
+                class="btn btn-default" disabled><i class="fas fa-eye"></i> Lihat</button>
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
             </div>
 
             <div class="card text-center">
                 <img src="<?= base_url('assets/dashboard/img/book5.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">Permasalahan, Solusi, Batas Waktu</h5>
-                <button type="button" class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
+                <button type="button" class="btn btn-default" disabled><i class="fas fa-eye"></i> Lihat</button>
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
             </div>
 
             <div class="card text-center">
                 <img src="<?= base_url('assets/dashboard/img/book4.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Berita Acara Rapat</h2>
-                <button type="button" class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
+                <button type="button" class="btn btn-default" disabled><i class="fas fa-eye"></i> Lihat</button>
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
             </div>
             
            <?php }else{ 
@@ -135,11 +130,9 @@
                 <div class="card-body">
                 <h2 class="card-title">Risalah Rapat</h2>
                 <a href="<?= base_url('sirapat/admin/notulen/risalahrapat/'.$getnotulen->idnotulen); ?>"
-                class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a>
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+               
             </div>
          
 
@@ -148,22 +141,18 @@
                 <img src="<?= base_url('assets/dashboard/img/book5.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">Permasalahan, Solusi, Batas Waktu</h5>
-                <a href="<?= base_url('sirapat/admin/notulen/psbw/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                <a href="<?= base_url('sirapat/admin/notulen/psbw/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a>
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
             </div>
 
             <div class="card text-center">
                 <img src="<?= base_url('assets/dashboard/img/book4.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Berita Acara Rapat</h2>
-                <a href="<?= base_url('sirapat/admin/notulen/beritaacara/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                <a href="<?= base_url('sirapat/admin/notulen/beritaacara/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat</a>
                 </div>
-                <div class="card-footer" >
-                <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
             </div>
 
            <?php } ?>
@@ -198,7 +187,7 @@
                    <h3>Tanggal</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->tanggal ?></span>
+                    <span><?= $notulensi->tanggal ?></span>
                 </div>
                 </div>
 
@@ -207,7 +196,7 @@
                    <h3>Ruang Rapat</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->ruang_rapat ?></span>
+                    <span><?= $notulensi->ruang_rapat ?></span>
                 </div>
                 </div>
 
@@ -216,7 +205,7 @@
                    <h3>Waktu Mulai</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->waktu_mulai ?> WIB</span>
+                    <span><?= $notulensi->waktu_mulai ?> WIB</span>
                 </div>
                 </div>
 
@@ -225,7 +214,7 @@
                    <h3>Waktu Selesai</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->waktu_selesai ?> WIB</span>
+                    <span><?= $notulensi->waktu_selesai ?> WIB</span>
                 </div>
                 </div>
             
@@ -234,16 +223,16 @@
                    <h3>Nomor Surat</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->nomor_surat ?></span>
+                    <span><?= $notulensi->nomor_agenda ?></span>
                 </div>
                 </div>
 
                 <div class="row">
                 <div class="col-sm-3">
-                   <h3>Jenis Rapat</h3>
+                   <h3>Grup Rapat</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->jenis_rapat ?></span>
+                    <span><?= $notulensi->nama_grup ?></span>
                 </div>
                 </div>
 
@@ -252,7 +241,7 @@
                    <h3>Daftar Hadir</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->daftar_hadir ?></span>
+                    <span><?= $notulensi->daftar_hadir ?></span>
                 </div>
                 </div>
 
@@ -261,7 +250,7 @@
                    <h3>Total Hadir</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->total_hadir ?></span>
+                    <span><?= $notulensi->total_hadir ?></span>
                 </div>
                 </div>
                 <div class="row">
@@ -269,39 +258,39 @@
                    <h3>Ringkasan</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->ringkasan ?></span>
+                    <span><?= $notulensi->ringkasan ?></span>
                 </div>
                 </div>
-                <div class="row">
-                <div class="col-sm-3">
-                   <h3>Ketua Rapat</h3>
-                </div>
-                <div class="col-sm-9">
-                    <span><?= $notulen->ketua_rapat ?></span>
-                </div>
-                </div>
+
                 <div class="row">
                 <div class="col-sm-3">
                    <h3>Notulen</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->notulen ?></span>
+                    <span><?= $notulensi->notulen ?></span>
                 </div>
                 </div>
+
                 <div class="row">
+                
                 <div class="col-sm-3">
                    <h3>PIC</h3>
                 </div>
                 <div class="col-sm-9">
-                    <span><?= $notulen->pic ?></span>
-                </div>
+                    <span><?= $notulensi->pic ?></span>
                 </div>
 
+               
+              
+
+                
+                </div>
                 <div class="modal-footer">
-                <button type="button"
-                class="btn btn-primary float-left"><i class="fas fa-update"></i> Update</button>
-                <button type="button"
-                class="btn btn-light float-left"><i class="fas fa-update"></i> Close</button>
+                <a href="<?= base_url('sirapat/admin/notulen/editnotulensi/'.$notulensi->idnotulen.'/'.$this->uri->segment(5) )?>"
+                class="btn btn-primary float-left"><i class="fas fa-edit"></i> Edit</a>
+
+                <!-- <a href="<?= base_url('sirapat/admin/notulen/delnotulensi/'.$notulensi->idnotulen.'/'.$this->uri->segment(5))?>"
+                class="btn btn-danger float-left "><i class="fas fa-trash"></i> Hapus</a> -->
                 </div>
           </div>
         </div>

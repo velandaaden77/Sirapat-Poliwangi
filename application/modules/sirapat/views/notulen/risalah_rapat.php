@@ -1,14 +1,16 @@
 <div class="container-fluid ">
       <div class="row">
         <div class="col-xl-12">
-        <?= $this->session->flashdata('message'); ?>
+        
           <div class="card">
-          
+          <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
+            <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>
+            <div class="swal2" data-swal2="<?= $this->session->flashdata('message2'); ?>"></div>
             <div class="card-header bg-transparent">
             <h2 class="box-title mb-3">Risalah Rapat</h2>
 
 
-<form action="<?= base_url('sirapat/admin/notulen/tambahrisalah'); ?>" method="post">
+<form action="<?= base_url('sirapat/admin/notulen/tambahrisalah/'.$this->uri->segment(5)); ?>" method="post">
 
   <div class="row">
 
@@ -25,8 +27,8 @@
   <div class="col-lg-12">
   <div class="form-group">
     <label for="formGroupExampleInput2">Catatan Kaki</label>
-    <textarea  type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Catatan Kaki" name="catatankaki" value="<?= set_value('catatankaki'); ?>"></textarea>
+    <input  type="text" class="form-control" 
+    id="formGroupExampleInput2" placeholder="Catatan Kaki" name="catatankaki" value="<?= set_value('catatankaki'); ?>"></input>
     <?= form_error('catatankaki', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -68,8 +70,8 @@
                   
                   <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editmodal<?= $i ?>"><i class="fa fa-edit"></i></button>
 
-                  <a href="<?= base_url('sirapat/admin/notulen/delpsbw/'.$rs->id_risalahrapat.'/'.$this->uri->segment(5)); ?>" 
-                  class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>
+                  <a href="<?= base_url('sirapat/admin/notulen/delrisalah/'.$rs->id_risalahrapat.'/'.$this->uri->segment(5)); ?>" 
+                  class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>
 
                   </td>
 
@@ -112,7 +114,7 @@
               </div>
 
               </div>
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
               </div>
 
             </div>

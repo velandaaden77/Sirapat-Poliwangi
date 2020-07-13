@@ -10,7 +10,7 @@ class Role extends MY_Controller {
 
         is_logged_in();
 		$this->load->helper('sirapat');
-		$this->load->model('m_dashboard');
+		
 		
 		
 	}

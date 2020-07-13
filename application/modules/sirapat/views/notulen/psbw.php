@@ -6,7 +6,9 @@
             <div class="card-header bg-transparent">
             <h2 class="box-title mb-3">Permasalahan, Solusi, dan Batas Waktu</h2>
 
-<?= $this->session->flashdata('message'); ?>
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
+            <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>
+            <div class="swal2" data-swal2="<?= $this->session->flashdata('message2'); ?>"></div>
 
 <form action="<?= base_url('sirapat/admin/notulen/tambahpsbw'); ?>" method="post">
 
@@ -25,8 +27,8 @@
   <div class="col-lg-12">
   <div class="form-group">
     <label for="formGroupExampleInput2">Uraian / Permasalahan</label>
-    <textarea  type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Uraian / Permasalahan" name="uraian" value="<?= set_value('uraian'); ?>"></textarea>
+    <input type="text" class="form-control" 
+    id="formGroupExampleInput2" placeholder="Uraian / Permasalahan" name="uraian" value="<?= set_value('uraian'); ?>"></input>
     <?= form_error('uraian', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -34,8 +36,8 @@
   <div class="col-lg-12">
   <div class="form-group">
     <label for="formGroupExampleInput2">Solusi</label>
-    <textarea  type="text" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Solusi" name="solusi" value="<?= set_value('solusi'); ?>"></textarea>
+    <input  type="text" class="form-control" 
+    id="formGroupExampleInput2" placeholder="Solusi" name="solusi" value="<?= set_value('solusi'); ?>"></input>
     <?= form_error('solusi', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -52,8 +54,8 @@
   <div class="col-lg-6">
   <div class="form-group">
     <label for="formGroupExampleInput2">Batas Waktu</label>
-    <input  type="date" class="form-control" 
-    id="formGroupExampleInput2" placeholder="Batas Waktu" name="bataswaktu" value="<?= set_value('bataswaktu'); ?>">
+    <input  type="text" class="form-control" 
+    id="datepicker" placeholder="Batas Waktu" name="bataswaktu" autocomplete="off" value="<?= set_value('bataswaktu'); ?>">
     <?= form_error('bataswaktu', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
   </div>
@@ -106,7 +108,7 @@
                   <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editmodal<?= $i ?>"><i class="fa fa-edit"></i></button>
 
                   <a href="<?= base_url('sirapat/admin/notulen/delpsbw/'.$p->idpermasalahan.'/'.$this->uri->segment(5)); ?>" 
-                  class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>
+                  class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>
                   
                   </td>
 
@@ -171,15 +173,15 @@
               <div class="col-lg-12">
               <div class="form-group">
                 <label for="formGroupExampleInput2">Batas Waktu</label>
-                <input  type="date" class="form-control" 
-                id="formGroupExampleInput2" placeholder="Batas Waktu" name="bataswaktu" value="<?= $p->bataswaktu ?>">
+                <input  type="text" class="form-control" 
+                id="datepicker1" placeholder="Batas Waktu" name="bataswaktu" autocomplete="off" value="<?= $p->bataswaktu ?>">
                 <?= form_error('bataswaktu', '<small class="text-danger pl-1">', '</small>'); ?>
               </div>
               </div>
 
               </div>
               <button type="submit" class="btn btn-primary">Update</button>
-              <button type="reset" class="btn btn-primary">Reset</button>
+              <button type="reset" class="btn btn-danger">Reset</button>
               </div>
 
             </div>
@@ -203,3 +205,13 @@
 </div>
 </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+ <!-- Membuat datepicker -->
+ <script>
+    // set minDate to 0 for today's date
+    $('#datepicker').datepicker({ minDate: 0 });
+    $('#datepicker1').datepicker({ minDate: 0 });
+ </script>
