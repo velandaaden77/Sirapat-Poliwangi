@@ -31,22 +31,22 @@
             <?php endif ?>
               
             <?= form_error('karyawan', '<div class="alert alert-danger" role="alert">', '</div>') ?>
-            <?= $this->session->flashdata('message'); ?>
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>     
 
               <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a>
               <div class="col-lg-12">
               
               <div class="table-responsive">
-      <table class="table table-hover">
+      <table class="table table-hover" id="grupdata">
       <thead>
         <tr>
           <th scope="col">NO</th>
 
           <th scope="col">NAMA GRUP</th>
           <th scope="col">NAMA ANGGOTA</th>
+          <th scope="col">UNIT</th>
           <th scope="col">AKSI</th>
-          <!-- <th scope="col">NO HP</th>
-          <th scope="col">ALAMAT</th> -->
+          
         </tr>
       </thead>
       <tbody>
@@ -58,12 +58,10 @@
           <th scope="row"><?= $i ?></th>
           <td><?= $g->nama_grup ?></td>
           <td><?= $g->nama_karyawan ?></td>
+          <td><?= $g->unit ?></td>
           <td>
           
-          <a href="<?= base_url('sirapat/superadmin/detalkaryawan') ?>" 
-          data-toggle="modal" data-target="#detail<?= $i ?>" class="badge badge-info">Detail</a> 
-
-          <a href="<?= base_url('sirapat/superadmin/manajemen_grup/delanggota/').$g->id_grup.'/'.$this->uri->segment(5); ?>"  class="badge badge-danger">Delete</a> 
+          <a href="<?= base_url('sirapat/superadmin/manajemen_grup/delanggota/').$g->id_grup.'/'.$this->uri->segment(5); ?>"  class="badge badge-danger tombol-hapus">Hapus</a> 
           
           </td>
         </tr>
@@ -103,10 +101,20 @@
         <label for="formGroupExampleInput2">karyawan</label>
         <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->uri->segment(5) ?>">
 
-                    <select name="karyawan" id="karyawan" class="form-control">
+        <select name="karyawan" id="karyawan" class="form-control">
                     <option value="">Pilih Karyawan</option>
                     <?php foreach ($karyawan as $k) : ?>
+                    <?php
+
+                      $gr_kar = $this->db->get_where('grup_rapat',['id_karyawan' => $k['idkaryawan'], 'id_tipe' => $this->uri->segment(5)])->row();
+                     
+                      if(empty($gr_kar)){
+                        echo $this->session->userdata('idgrup');
+                        ?>  
+                      
                     <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
+                      <?php }else{} ?>
+                      
                     <?php endforeach; ?>
                     </select>
                     <?= form_error('karyawan', '<small class="text-danger pl-1">', '</small>'); ?>

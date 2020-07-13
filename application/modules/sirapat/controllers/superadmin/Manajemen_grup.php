@@ -40,9 +40,6 @@ class Manajemen_grup extends MY_Controller {
             $data['unit'] = $this->db->get('karyawan_unit')->result_array();
             $data['grup'] = $this->db->get('grup_tipe')->result();
             $data['jmlgrup'] = $this->superadmin_m->jumlahanggota()->num_rows();
-
-            // $this->session->set_flashdata('message', 
-            // '<div class="alert alert-danger" role="alert">Grup Sudah Ada!!</div>');
     
             $this->template->load('layout/template', 'superadmin/manajemen_grup', $data);
 
@@ -56,12 +53,18 @@ class Manajemen_grup extends MY_Controller {
                 'role_id' => 6,
             ];
 
-            $this->db->insert('grup_tipe', $data);
-
-            $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">Grup '. $grup . ' Telah Ditambahkan</div>');
+            $datagrup = $this->db->get_where('grup_tipe', ['nama_grup' => $grup])->result();
+            
+            if(empty($datagrup)){ 
+                $this->db->insert('grup_tipe', $data);
+                $this->session->set_flashdata('message', 'Grup Telah Ditambahkan');
     
             redirect('sirapat/superadmin/manajemen_grup');
+        }else{
+            $this->session->set_flashdata('message1', 'Grup telah ada!');
+            redirect('sirapat/superadmin/manajemen_grup');
+            }
+            
         }
     
     }
@@ -83,7 +86,7 @@ class Manajemen_grup extends MY_Controller {
         $this->db->delete('grup_rapat');
 
         $this->session->set_flashdata('message', 
-        '<div class="alert alert-danger" role="alert">Anggota Telah Dihapus!!!</div>');
+        'Anggota Telah Dihapus!!!');
     
         redirect('sirapat/superadmin/manajemen_grup/detailgrup/'.$idgrup);
 
@@ -102,9 +105,18 @@ class Manajemen_grup extends MY_Controller {
 
         $this->db->insert('grup_rapat', $data);
         $this->session->set_flashdata('message', 
-        '<div class="alert alert-success" role="alert">Anggota Telah Ditambahkan</div>');
+        'Anggota Telah Ditambahkan');
     
         redirect('sirapat/superadmin/manajemen_grup/detailgrup/'.$gruptipe);
+    }
+
+    public function delgrup($id){
+
+        $where = ['id' => $id];
+
+        $this->db->delete('grup_tipe', $where);
+        $this->session->set_flashdata('message', 'Grup telah dihapus!');
+        redirect('sirapat/superadmin/manajemen_grup');
     }
 
 }

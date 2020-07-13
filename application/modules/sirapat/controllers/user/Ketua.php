@@ -114,7 +114,6 @@ class Ketua extends MY_Controller {
 		$data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_karyawan')])->row_array();
 
 		$data['getallagenda']= $this->user_m->getallagenda()->result();
-		var_dump($data['getallagenda']); die;
 
 		$this->load->view('layout/ketua/header', $data);
         $this->load->view('layout/ketua/maincontent', $data);

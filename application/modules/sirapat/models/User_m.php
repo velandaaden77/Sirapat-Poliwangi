@@ -49,7 +49,22 @@ class User_m extends CI_Model {
 
     }
 
-    public function getallagenda($bulan){
+    public function getallagenda(){
+    
+        $this->db->select ('*');
+        $this->db->from('agenda_rapat');
+        // $this->db->join('grup_rapat', 'grup_rapat.id_tipe = agenda_rapat.id_tipegrup ');
+        $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
+        $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
+        $this->db->join('karyawan', 'karyawan.idkaryawan = validasi_agenda.id_pimpinan ');
+        $this->db->where(['agenda_rapat.id_tipegrup' => $this->uri->segment(5)]);
+        $this->db->where(['agenda_rapat.status_agenda' => 1]);
+        $query = $this->db->get();
+        return $query;
+        
+        }
+
+    public function filterdata($bulan){
     
         $this->db->select ('*');
         $this->db->from('agenda_rapat');

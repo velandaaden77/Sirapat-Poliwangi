@@ -25,7 +25,10 @@
           <div class="card text-center" style="width: 50rem; ">
 
             <div class="card-body">
-            <?= $this->session->flashdata('message') ?>     
+
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
+            <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>  
+
               <div class="form-group">
                   <label for="formGroupExampleInput2">NAMA GROUP</label>
                   <input type="input" class="form-control" 
@@ -55,13 +58,15 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase mb-0"><?= $g->nama_grup?></h5>
-                      <span class="h5 font-weight-bold text-muted mb-0">ANNGOTA :</span>
-                      <span class="h5 font-weight-bold mb-0"><?= $jmlgrup ?></span>
+                      <h4 class="card-title text-uppercase mb-0"><?= $g->nama_grup?></h4><br>
+                      <!-- <span class="h5 font-weight-bold text-muted mb-0">ANNGOTA :</span>
+                      <span class="h5 font-weight-bold mb-0"><?= $jmlgrup ?></span> -->
+                      <a href="<?= base_url('sirapat/superadmin/manajemen_grup/delgrup/').$g->id ?>" class="btn btn-danger btn-sm tombol-hapus">hapus grup</a>
                     </div>
+
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
+                      <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
                       </div>
                     </div>
                   </div>

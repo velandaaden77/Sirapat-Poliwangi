@@ -24,7 +24,7 @@ class Anggota extends MY_Controller {
 
         $this->load->view('layout/anggota/header', $data);
         $this->load->view('layout/anggota/maincontent', $data);
-        $this->load->view('user/daftar_rapat', $data);
+        $this->load->view('user/daftar_rapatanggota', $data);
         $this->load->view('layout/anggota/footer');
 	}
 

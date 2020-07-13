@@ -28,12 +28,14 @@
       $("#unit").select2();
       $("#gruprapat").select2();
       $('#agenda').DataTable();
+      $('#grupdata').DataTable();
       });
       </script>
   
   <!-- Sweet Alert -->
   <script type="text/javascript">
   const  swal = $('.swal').data('swal');
+  const  swal1 = $('.swal1').data('swal1');
   if(swal){
     Swal.fire({
       title: 'Sukses!',
@@ -41,7 +43,19 @@
       icon: 'success'
     })
   }
+
+  if(swal1){
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Data Sudah Ada!',
+  footer: ''
+})
+
+  }
+
   
+
     $(document).on('click', '.btn-status', function(e) {
 
     // mengehntikan aksi defeault
@@ -64,7 +78,7 @@
 
     })    
 
-            // tombol hapus
+    // tombol hapus
     $(document).on('click', '.tombol-hapus', function(e) {
 
     // mengehntikan aksi defeault
@@ -72,7 +86,7 @@
     const href = $(this).attr('href');
 
     Swal.fire({
-    title: 'Hapus Agenda ?',
+    title: 'Hapus Data ?',
     text: "",
     icon: 'warning',
     showCancelButton: true,
