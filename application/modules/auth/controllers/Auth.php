@@ -27,7 +27,7 @@ class Auth extends MX_Controller {
 		//Memvalidasi form
 		if($this->form_validation->run() == false){
 
-			$data['title'] = 'User Login';
+			$data['title'] = 'Login Admin';
 
             $this->load->view('layout/auth_header', $data);
             $this->load->view('login/login');

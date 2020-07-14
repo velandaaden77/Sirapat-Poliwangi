@@ -2,14 +2,12 @@
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header bg-gradient-blue py-9 py-lg-6 pt-lg-6" >
+    <div class="header bg-transparent py-9 py-lg-6 pt-lg-6" >
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-              <h1 class="text-white">SI RAPAT</h1>
-              <p class="text-lead text-white">Sistem Manajemen Rapat Berbasis Web <br>
-                Politeknik Negeri Banyuwangi</p>
+              
             </div>
           </div>
           </div>
@@ -19,13 +17,23 @@
     <!-- Page content -->
     <div class="container mt--8 pb-4">
       <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-7">
-          <div class="card bg-secondary border-0 mb-0">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="text-center mt-6">
+          <img src="<?= base_url('assets/dashboard/'); ?>img/logosirapat.png"  class="navbar-brand-img" width="50%" alt="...">
+          </div>
+          </div>
+        <div class="col-lg-6">
+
+        
+          <div class="card bg-transparent border-0 mb-0">
+            
             
             <div class="card-body px-lg-7 py-lg-6">
               <div class="text-center text-muted mb-4">
-                <h2>LOGIN USER</h2>
-               
+                <h2 class="text-white">LOGIN USER</h2>
+                <a href="<?= base_url('Login-User'); ?>" class="btn btn-outline-white btn-sm">Login Sebagai Admin ?</a>
+                <a href="<?= base_url('auth/grup'); ?>" class="btn btn-outline-white btn-sm">Login Grup ?</a>
               </div>
               <hr>
 
@@ -58,13 +66,13 @@
 
             <div class="row mt-4" >
             <div class="col-6">
-              <a href="<?= base_url('login/forgotpassword'); ?>" class="text-light"><small>Forgot password?</small></a>
+              <a href="<?= base_url('login/forgotpassword'); ?>" class="text-light"><small>Lupa Password?</small></a>
             </div>
             
           </div>
                 
-                <div class="text-center">
-                  <button type="submit" name="submit" class="btn btn-primary my-4">Login</button>
+                <div class="float-right">
+                  <button type="submit" name="submit" class="btn btn-primary my-4"><i class="fas fa-sign-in-alt"></i> Login</button>
                 </div>
               </form>
 

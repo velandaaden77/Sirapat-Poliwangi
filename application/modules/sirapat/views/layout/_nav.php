@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-top navbar-expand navbar-light bg-transparent border-bottom ">
+<nav class="navbar navbar-top navbar-expand navbar-light bg-secondary border-bottom ">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 

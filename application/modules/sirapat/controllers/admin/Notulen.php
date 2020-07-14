@@ -311,6 +311,8 @@ class Notulen extends MY_Controller {
         $tanggal = $this->input->post('tanggal');
         $hasil = $this->input->post('hasil');
 
+        
+
         $data = [
 
             'tanggal' => $tanggal,

@@ -1,4 +1,4 @@
-  <link rel="icon" href="<?= base_url('assets/'); ?>dashboard/img/Rapat.png" type="image/png">
+  <link rel="icon" href="<?= base_url('assets/'); ?>dashboard/img/logo.png" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
