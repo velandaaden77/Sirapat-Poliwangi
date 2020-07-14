@@ -1,12 +1,12 @@
 
 
-<nav class="navbar navbar-top navbar-expand navbar-light bg-secondary border-bottom ">
+<nav class="navbar navbar-top navbar-expand navbar-light border-bottom " style="background-color:#3C8DBC;">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         
         
-        <h3 class="text-primary"><?= $title ?> </h3>
+        <h3 class="text-white"><?= $title ?> </h3>
         
                 <!-- <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item active" aria-current="page">Data</li> -->
@@ -39,7 +39,7 @@
                     <img alt="Image placeholder" src="<?= base_url('assets/admin/img/profile/') . $user['foto']; ?>" >
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  text-primary font-weight-bold"><?= $user['nama'] ?></span>
+                    <span class="mb-0 text-sm  text-white font-weight-bold"><?= $user['nama'] ?></span>
                   </div>
                 </div>
               </a>

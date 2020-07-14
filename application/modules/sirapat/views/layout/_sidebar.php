@@ -1,5 +1,5 @@
  <!-- Sidenav -->
- <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-primary" id="sidenav-main">
+ <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
            
      <!-- Brand -->
@@ -66,7 +66,7 @@
             
                 <a class="nav-link" href="<?= base_url($m['url']); ?>">
                   <i class="<?= $m['icon']; ?>"></i>
-                  <span class="nav-link-text text-white"><?= $m['title']; ?></span>
+                  <span class="nav-link-text text-default"><?= $m['title']; ?></span>
                 </a>
               </li>
             
@@ -82,9 +82,9 @@
           <!-- Navigation -->
           <ul class="navbar-nav ">
           <li class="nav-item mb-4">
-              <a class="nav-link active bg-white" href="<?= base_url('auth/logout'); ?>">
-              <i class="fas fa-fw fa-sign-out-alt text-primary"></i>
-                <span class="nav-link-text text-primary font-weight-bold">Log Out</span>
+              <a class="nav-link active bg-secondary" href="<?= base_url('auth/logout'); ?>">
+              <i class="fas fa-fw fa-sign-out-alt text-default"></i>
+                <span class="nav-link-text text-default font-weight-bold">Log Out</span>
               </a>
             </li>
           </ul>

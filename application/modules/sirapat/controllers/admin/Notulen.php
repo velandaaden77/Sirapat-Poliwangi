@@ -419,7 +419,8 @@ class Notulen extends MY_Controller {
 				'date_created' => $date_created,
 			];
 
-           $this->db->where($idnotulen);
+
+           $this->db->where(['idnotulen' => $idnotulen]);
            $this->db->update('notulen', $data);
 
 			$this->session->set_flashdata('message', 'Notulen Telah Di Edit');
@@ -428,5 +429,37 @@ class Notulen extends MY_Controller {
     }
 
 }
+
+        public function printnotulen(){
+
+            $data['title'] = 'Print Notulen';
+            $data['notulensi']= $this->notulen_m->notulensi()->row();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('sirapat/notulen/print_notulen', $data);
+        }
+        public function printrisalah(){
+
+            $data['title'] = 'Print Risalah';
+            $data['risalah']= $this->db->get_where('risalah_rapat', ['id_notulen' => $this->uri->segment(5)])->result();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('sirapat/notulen/print_risalah', $data);
+
+        }
+        public function printpsbw(){
+
+            $data['title'] = 'Print Psbw';
+            $data['psbw']= $this->db->get_where('permasalahan', ['id_notulen' => $this->uri->segment(5)])->result();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('sirapat/notulen/print_psbw', $data);
+
+        }
+        public function printberitaacara(){
+
+            $data['title'] = 'Print Psbw';
+            $data['ber']= $this->db->get_where('berita_acara', ['id_notulen' => $this->uri->segment(5)])->row();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('sirapat/notulen/print_beritaacara', $data);
+
+        }
 
 }

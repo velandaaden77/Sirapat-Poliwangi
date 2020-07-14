@@ -1,7 +1,7 @@
 <div class="container-fluid ">
       <div class="row">
         <div class="col-xl-12">
-          <div class="card">
+          <div class="card mt-5">
          
             <div class="card-header bg-transparent">
             <h2 class="box-title mb-3">Permasalahan, Solusi, dan Batas Waktu</h2>

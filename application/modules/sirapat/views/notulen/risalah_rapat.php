@@ -2,7 +2,7 @@
       <div class="row">
         <div class="col-xl-12">
         
-          <div class="card">
+          <div class="card mt-5">
           <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
             <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>
             <div class="swal2" data-swal2="<?= $this->session->flashdata('message2'); ?>"></div>
