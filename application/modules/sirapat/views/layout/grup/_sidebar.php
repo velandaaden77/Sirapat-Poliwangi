@@ -1,12 +1,9 @@
  <!-- Sidenav -->
- <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-primary" id="sidenav-main">
+ <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
            
-     <!-- Brand -->
-     <div class="sidenav-header  align-items-center" >
-        <a class="navbar-brand" href="<?= base_url('user'); ?>">
-          <img src="<?= base_url('assets/dashboard/'); ?>img/a.png"  class="navbar-brand-img" alt="...">
-        </a>
+    <div class="text-center mt-3">
+      <img src="<?= base_url('assets/dashboard/'); ?>img/logobw.png" style="width: 60%" alt="...">
       </div>
         
       <div class="navbar-inner">
@@ -66,7 +63,7 @@
             
                 <a class="nav-link" href="<?= base_url($m['url']); ?>">
                   <i class="<?= $m['icon']; ?>"></i>
-                  <span class="nav-link-text text-white"><?= $m['title']; ?></span>
+                  <span class="nav-link-text text-default"><?= $m['title']; ?></span>
                 </a>
               </li>
             
@@ -83,8 +80,8 @@
           <ul class="navbar-nav ">
           <li class="nav-item mb-4">
               <a class="nav-link active bg-white" href="<?= base_url('auth/logout'); ?>">
-              <i class="fas fa-fw fa-sign-out-alt text-primary"></i>
-                <span class="nav-link-text text-primary font-weight-bold">Log Out</span>
+              <i class="fas fa-fw fa-sign-out-alt text-default"></i>
+                <span class="nav-link-text text-default font-weight-bold">Log Out</span>
               </a>
             </li>
           </ul>

@@ -1,5 +1,6 @@
        <!-- Header -->
- <div class="header bg-default pb-6">
+       <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+  background-position: center center; background-size: cover;">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-5">
@@ -19,13 +20,13 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-12">
-
+        <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div> 
         <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $this->uri->segment(5)])->row(); 
          if(empty($validasi)){
         ?>
         <div class="card text-center">
         <div class="card-header bg-transparent">
-        <?= $this->session->flashdata('message') ?>  
+        <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>      
 
         <form method="post" action="<?= base_url('sirapat/admin/agenda/sendvalidasi') ?>" >
 

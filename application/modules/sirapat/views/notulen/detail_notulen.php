@@ -1,11 +1,12 @@
   <!-- Header -->
-  <div class="header bg-default pb-6">
+  <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+  background-position: center center; background-size: cover;">
       <div class="container-fluid">
         <div class="header-body">
         <?php foreach($agenda as $a) { ?>
           <div class="row align-items-center py-5">
             <div class="col-lg-12 col-7 text-center">
-              <h6 class="h1 text-white d-inline-block"><?= $a->nama_agenda ?></h6><br>
+              <h6 class="h2 text-white d-inline-block"><?= $a->nama_agenda ?></h6><br>
               <span class="text-white text-italic"><?= $a->tanggal ?></span>
                 <!-- <hr class="bg-light"> -->
             </div>
@@ -52,8 +53,7 @@
             </table>
             </div>
 
-            <a href="<?= base_url('sirapat/admin/notulen/printnotulen/'.$this->uri->segment(5))?>"
-            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print Notulen</a>
+            
 
             </div>
             </div>
@@ -75,15 +75,18 @@
                 if(empty($notulen)){
                 ?>
                 <a href="<?= base_url('sirapat/admin/notulen/tambahnotulen/'.$a->id); ?>"
-                class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> Tambah</a>
 
                 <?php }else{ ?>
 
-                <button type='button'
-                class="btn btn-default" disabled><i class="fas fa-plus-circle"></i> Tambah</button>
+                <!-- <button type='button'
+                class="btn btn-default btn-sm" disabled><i class="fas fa-plus-circle"></i> Tambah</button> -->
 
                 <button type="button" data-toggle="modal" data-target="#lihatmodal<?= 1 ?>"
-                class="btn btn-danger"><i class="fas fa-file"></i> Lihat</button>
+                class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat</button>
+
+                <a href="<?= base_url('sirapat/admin/notulen/printnotulen/'.$this->uri->segment(5))?>"
+            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print Notulen</a>
 
                 <?php } ?>
 
@@ -100,7 +103,7 @@
                 <div class="card-body">
                 <h2 class="card-title">Risalah Rapat</h2>
                 <button type="button"
-                class="btn btn-default" disabled><i class="fas fa-eye"></i> Lihat</button>
+                class="btn btn-default btn-sm" disabled><i class="fas fa-eye"></i> Lihat</button>
                 </div>
                 
             </div>
@@ -109,7 +112,7 @@
                 <img src="<?= base_url('assets/dashboard/img/book5.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">Permasalahan, Solusi, Batas Waktu</h5>
-                <button type="button" class="btn btn-default" disabled><i class="fas fa-eye"></i> Lihat</button>
+                <button type="button" class="btn btn-default btn-sm" disabled><i class="fas fa-eye"></i> Lihat</button>
                 </div>
                 
             </div>
@@ -118,7 +121,7 @@
                 <img src="<?= base_url('assets/dashboard/img/book4.jpg')?>" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">Berita Acara Rapat</h2>
-                <button type="button" class="btn btn-default" disabled><i class="fas fa-eye"></i> Lihat</button>
+                <button type="button" class="btn btn-default btn-sm" disabled><i class="fas fa-eye"></i> Lihat</button>
                 </div>
                 
             </div>

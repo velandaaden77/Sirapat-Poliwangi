@@ -1,10 +1,10 @@
 
 
-<nav class="navbar navbar-top navbar-expand navbar-light bg-transparent border-bottom ">
+<nav class="navbar navbar-top navbar-expand navbar-light border-bottom " style="background-color:#3C8DBC;">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <h3 class="text-primary"><?= $title ?> </h3>
+        <h3 class="text-white"><?= $title ?> </h3>
 
         <!-- Navbar links -->
         <ul class="navbar-nav align-items-center  ml-md-auto ">
@@ -30,7 +30,7 @@
                     <img alt="Image placeholder" src="<?= base_url('assets/admin/img/profile/default.jpg'); ?>" >
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  text-primary font-weight-bold"><?= $grup['nama_grup'] ?></span>
+                    <span class="mb-0 text-sm  text-white font-weight-bold"><?= $grup['nama_grup'] ?></span>
                   </div>
                 </div>
               </a>

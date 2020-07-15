@@ -1,11 +1,12 @@
      <!-- Header -->
-     <div class="header bg-default pb-6">
+     <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+  background-position: center center; background-size: cover;">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-5">
          
             <div class="col-lg-12 text-center">
-             <h1 class="text-white"><i class="fas fa-users"></i> Absensi Karyawan</h1>
+             <h2 class="text-white"><i class="fas fa-users"></i> Absensi Karyawan</h2>
             </div>
 
             </div>

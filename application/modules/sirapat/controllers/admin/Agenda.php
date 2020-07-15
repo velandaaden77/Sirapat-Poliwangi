@@ -192,8 +192,7 @@ class Agenda extends MY_Controller {
 
 		$this->db->insert('validasi_agenda', $data);
 
-		$this->session->set_flashdata('message', 
-		'<div class="alert alert-success" role="alert">Agenda telah dikirim ke pimpinan untuk divalidasi</div>');
+		$this->session->set_flashdata('message', 'Agenda telah dikirim ke pimpinan untuk divalidasi');
 		redirect('sirapat/admin/agenda/validasi/'.$id_agenda);
 
 	}
@@ -204,7 +203,7 @@ class Agenda extends MY_Controller {
 		
         if($this->db->affected_rows() > 0){
             $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">Validasi telah dibatalkan</div>');
+            'Validasi telah dibatalkan');
             redirect('sirapat/admin/agenda/validasi/'.$id_agenda);
         }else{
             redirect('sirapat/admin/agenda/validasi/'.$id_agenda);

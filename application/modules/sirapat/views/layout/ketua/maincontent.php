@@ -3,15 +3,17 @@
 <!-- navbar -->
 
 
-<nav class="navbar navbar-top navbar-expand navbar-light bg-white border-bottom fixed-top">
+<nav class="navbar navbar-top navbar-expand navbar-light fixed-top border-bottom " style="background-color:#3C8DBC;">
     
-    <h2 class="ml-5 font-bold">SIRAPAT</h2>
+          <img src="<?= base_url('assets/dashboard/'); ?>img/logonav.png"  class="navbar-brand-img" alt="..." style="margin-left:20px" width="15%">
+    
+   
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav ">
-      <a class="nav-item nav-link" href="<?= base_url('sirapat/user/dashboard') ?>">Dashboard</a>
-      <a class="nav-item nav-link" href="<?= base_url('sirapat/user/ketua/daftar_rapat/'.$this->uri->segment(5)) ?>">DaftarRapat</a>
-      <a class="nav-item nav-link" href="<?= base_url('sirapat/user/ketua/validasiagenda/'.$this->uri->segment(5)) ?>">ValidasiAgenda</a>
-      <a class="nav-item nav-link" href="#">ValidasiNotulen</a>
+    <div class="navbar-nav text-white">
+      <a class="nav-item nav-link text-white" href="<?= base_url('sirapat/user/dashboard') ?>">Dashboard</a>
+      <a class="nav-item nav-link text-white" href="<?= base_url('sirapat/user/ketua/daftar_rapat/'.$this->uri->segment(5)) ?>">DaftarRapat</a>
+      <a class="nav-item nav-link text-white" href="<?= base_url('sirapat/user/ketua/validasiagenda/'.$this->uri->segment(5)) ?>">ValidasiAgenda</a>
+      <a class="nav-item nav-link text-white  " href="#">ValidasiNotulen</a>
     </div>
     </div>
       <div class="container-fluid">
@@ -34,7 +36,7 @@
                     <img alt="Image placeholder" src="<?= base_url('assets/admin/img/profile/') . $user['foto']; ?>" >
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  text-primary font-weight-bold"><?= $user['nama_karyawan'] ?></span>
+                    <span class="mb-0 text-sm  text-white font-weight-bold"><?= $user['nama_karyawan'] ?></span>
                   </div>
                 </div>
               </a>

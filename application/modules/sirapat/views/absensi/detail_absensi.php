@@ -1,11 +1,12 @@
      <!-- Header -->
-     <div class="header bg-default pb-6">
+     <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+  background-position: center center; background-size: cover;">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-5">
          <?php $agenda = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row()?>
             <div class="col-lg-12 text-center">
-             <h1 class="text-white"><i class="fas fa-users"></i> Absensi Rapat</h1>
+             <h2 class="text-white"><i class="fas fa-users"></i> Absensi Rapat</h2>
              <span class="text-white"><?= $agenda->nama_agenda?></span><br>
              <span class="text-white"><?= $agenda->tanggal?></span>
             </div>

@@ -1,5 +1,6 @@
      <!-- Header -->
-     <div class="header bg-default pt-5">
+     <div class="header pt-5" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+  background-position: center center; background-size: cover;">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-7">

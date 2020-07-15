@@ -2,13 +2,16 @@
  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
            
-     <!-- Brand -->
+     <!-- Brand
      <div class="sidenav-header  align-items-center" >
         <a class="navbar-brand" href="<?= base_url('user'); ?>">
           <img src="<?= base_url('assets/dashboard/'); ?>img/a.png"  class="navbar-brand-img" alt="...">
         </a>
+      </div> -->
+      <div class="text-center mt-3">
+      <img src="<?= base_url('assets/dashboard/'); ?>img/logobw.png" style="width: 60%" alt="...">
       </div>
-        
+
       <div class="navbar-inner">
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
