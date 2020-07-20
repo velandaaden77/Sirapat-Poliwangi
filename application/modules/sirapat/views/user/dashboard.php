@@ -41,11 +41,30 @@
         
         <?php foreach($gruprapat as $key => $data) : ?>
         <form role="form" method="post" action="<?= base_url('sirapat/user/dashboard/check_access'); ?>">
-        
-            
-            <div class="col-lg-12">
+        <div class="col-lg-12">
             <div class="row">
             <div class="col">
+        <?php if($data->id_jabatan == 1){ ?>
+
+         
+            
+            <div class="card text-center" style="max-width: 18rem;">
+                <img src="<?= base_url('assets/dashboard/img/gruprapat.jpg')?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h2 class="card-title"><?= $data->nama_grup?></h2>
+                <input type="hidden" name="id_grup" id="id_grup" value="<?= $data->id_tipe ?>">
+                <button type="submit"
+                class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat Grup</button>
+                <button type="submit"
+                class="btn btn-danger btn-sm"><i class="fas fa-eye"></i> Notif</button>
+                </div>
+                <div class="card-footer" >
+                <small class="text-muted">Sebagai : <?= $data->jabatan ?></small>
+                </div>
+            </div>
+
+        <?php }else{ ?>            
+            
             
             <div class="card text-center" style="max-width: 18rem;">
                 <img src="<?= base_url('assets/dashboard/img/gruprapat.jpg')?>" class="card-img-top" alt="...">
@@ -59,12 +78,13 @@
                 <small class="text-muted">Sebagai : <?= $data->jabatan ?></small>
                 </div>
             </div>
+           
+        <?php } ?>
+        </div>
             </div>
-            </div>
-            
             </div>
         </form>
-        <?php  endforeach; ?>
+        <?php endforeach; ?>
         <?php } ?>
         
 

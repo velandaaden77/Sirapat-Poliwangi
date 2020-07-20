@@ -5,7 +5,7 @@
         <div class="header-body">
           <div class="row align-items-center py-5">
             <div class="col-lg-12 text-center">
-            <h2 class="text-white "><i class="fa fa-calendar-plus"></i> Create Agenda Rapat</h2>
+            <h2 class="text-white "><i class="fa fa-calendar-plus"></i> Tambah Agenda Rapat</h2>
             </div>
           </div>
             
