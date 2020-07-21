@@ -37,7 +37,7 @@
               <form role="form" method="post" action="<?= base_url('auth/registration'); ?>">
 
                   <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
@@ -84,10 +84,10 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-home"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Prodi" type="text" id="prodi" name="prodi" 
-                    value="<?= set_value('prodi'); ?>">
+                    <input class="form-control" placeholder="Unit" type="text" id="unit" name="unit" 
+                    value="<?= set_value('unit'); ?>">
                   </div>
-                  <?= form_error('prodi', '<small class="text-danger pl-3">', '</small>'); ?> 
+                  <?= form_error('unit', '<small class="text-danger pl-3">', '</small>'); ?> 
                 </div>
                 </div>
                 
@@ -101,19 +101,6 @@
                     value="<?= set_value('email'); ?>">
                   </div>
                   <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?> 
-                </div>
-                </div>
-
-                <div class="col-lg-6">
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-phone-square-alt"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Nomor HP" type="text" id="no_hp" name="no_hp" 
-                    value="<?= set_value('no_hp'); ?>">
-                  </div>
-                  <?= form_error('no_hp', '<small class="text-danger pl-3">', '</small>'); ?> 
                 </div>
                 </div>
 
@@ -150,7 +137,7 @@
             
                 
                 <div class="float-right">
-                  <button type="submit" class="btn btn-primary my-3">Submit</button>
+                  <button type="submit" class="btn btn-primary my-3">Daftar</button>
                 </div>
                 
               </form>

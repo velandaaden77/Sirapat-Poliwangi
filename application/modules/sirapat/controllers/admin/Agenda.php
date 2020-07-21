@@ -19,11 +19,28 @@ class Agenda extends MY_Controller {
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
  
 		$data['getagenda'] = $this->agenda_m->getagenda()->result();
+		// var_dump($this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')])->result()); die;
 		$data['detailagenda'] = $this->agenda_m->detailagenda()->result();
 
         $this->template->load('layout/template','daftar_agenda/agenda', $data);
 
-    }
+	}
+
+    public function index2(){
+
+        $data['title'] = 'Agenda Rapat';
+       
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+ 
+		$data['statusagenda'] = $this->agenda_m->getstatusagenda()->result();
+		// var_dump($this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')])->result()); die;
+		$data['detailagenda'] = $this->agenda_m->detailagenda()->result();
+
+        $this->template->load('layout/template','daftar_agenda/statusagenda', $data);
+
+	}
+	
+
 
     public function edit($id)
 	{
@@ -88,8 +105,7 @@ class Agenda extends MY_Controller {
 				}
 			}
 
-			$file = 'default.doc';
-			$date_created = date('Y-m-d h:i:s');
+			$date_update = date('Y-m-d h:i:s');
 
 			$data = [
 				'nama_agenda' => $nama_agenda,
@@ -104,9 +120,9 @@ class Agenda extends MY_Controller {
 				
 				'lampiran' => $lampiran1,
 				'lampiran_file' => $lampiran,
-				'file' => $file,
+				
 				'id_user' => $this->session->userdata('iduser'),
-				'date_created' => $date_created,
+				'date_update' => $date_update,
 			];
 
 		$where = [
@@ -117,7 +133,7 @@ class Agenda extends MY_Controller {
 		$this->db->update('agenda_rapat', $data);
 		
 		$this->session->set_flashdata('message', 
-		'<div class="alert alert-success" role="alert">Agenda Telah Di Update</div>');
+		'Agenda Telah Di Update');
 		redirect('sirapat/admin/agenda');
 	
 	}
@@ -181,11 +197,13 @@ class Agenda extends MY_Controller {
 		$id_agenda = $this->input->post('id_agenda');
 		$id_pimpinan = $this->input->post('pimpinan');
 		$id_user = $this->session->userdata('iduser');
+		$id_grup = $this->input->post('grup');
 
 		$data = [
 			'id_agenda' => $id_agenda,
 			'id_pimpinan' => $id_pimpinan,
 			'id_user' => $id_user,
+			'id_grup' => $id_grup,
 			'status' => 0,
 			'date_created' => date('Y-m-d'),
 		];

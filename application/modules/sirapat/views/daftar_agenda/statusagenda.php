@@ -6,7 +6,7 @@
           <div class="row align-items-center py-5">
          
             <div class="col-lg-12 text-center">
-             <h2 class="text-white"><i class="fas fa-book"></i>  Agenda Rapat</h2>
+             <h2 class="text-white"><i class="fas fa-book"></i>  Status Agenda Rapat</h2>
             </div>
             </div>
           
@@ -25,20 +25,13 @@
 
           <div class="row mt-3 mb-3">
           <div class="col">
-          <a href="<?= base_url('sirapat/admin/agenda/index2'); ?>" class="btn btn-dark btn-sm">
-            <i class="fa fa-list "></i> Status Agenda Rapat 
+          <a href="<?= base_url('sirapat/admin/agenda/index'); ?>" class="btn btn-primary btn-sm">
+            <i class="fa fa-list "></i> Daftar Agenda Rapat
             </a>
             <!-- <h3 class="box-title">Daftar Agenda Rapat</h3> -->
           </div>
 
-          <div class="col">
-            <div class="float-right">
-            <a href="<?= base_url('sirapat/admin/UnggahAgenda'); ?>" class="btn btn-primary btn-sm">
-            <i class="fa fa-plus "></i> Tambah Agenda
-            </a>
-            </div>
-
-            </div>
+          
             </div>
             <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>        
 
@@ -60,9 +53,7 @@
       <tbody>
 
       <?php $i=1; ?>
-      <?php 
-      $agenda = $this->agenda_m->getagenda();
-      foreach ($getagenda as $key => $data) : ?>
+      <?php foreach ($statusagenda as $key => $data) : ?>
       
         <tr>
           <th scope="row"><?= $i ?></th>
@@ -74,32 +65,29 @@
           <td>
           <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i></button>
           <?php $validasi = $this->db->get_where('validasi_agenda', ['id_agenda' => $data->id])->row();  
-          if(empty($validasi)){
+          if($validasi->status == 1){
           ?>
 
-          
-          <?= anchor('sirapat/admin/agenda/edit/'.$data->id, 
-          '<button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="edit"><i class="fa fa-edit"></i></button>')?>
          
 
-         
-          <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
-          '<button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Belum dikirim"><i class="fa fa-check"></i></button>')?>
-          
-          
-          <a href="<?= base_url('sirapat/admin/agenda/del/' . $data->id); ?>" 
-            class="btn btn-danger btn-sm tombol-hapus" data-toggle="tooltip" data-placement="bottom" title="hapus"><i class="fa fa-trash"></i></a>
+            <?php if($data->status_agenda == 1 ) { ?>
+            <a href="" 
+            class="btn btn-outline-danger btn-sm disabled" ><i class="fa fa-info"></i> Sudah Terlaksana</a>
+
           <?php }else{ ?>
-            <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
-          '<button class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="bottom" title="Sudah Dikirim"><i class="fa fa-check"></i></button>')?>
-          
-          
+            <a href="<?= base_url('sirapat/admin/agenda/update_status/' . $data->id); ?>" 
+            class="btn btn-danger btn-sm btn-status"><i class="fa fa-info"></i> Belum Terlaksana</a>
           <?php } ?>
 
+          <?php }else{ ?>
+          
+          
+          
          
-          </td>
+          <?= anchor('sirapat/admin/agenda/validasi/'.$data->id, 
+          '<button class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="bottom" title="Menunguu Validasi"><i class="fa fa-check"></i></button>')?>
 
-         
+         <?php } ?>
       <!-- Modal -->
       <div class="modal fade" id="detailmodal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

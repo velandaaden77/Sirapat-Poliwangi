@@ -19,7 +19,7 @@ class Dashboard extends MY_Controller {
 		$data['title'] = 'User Dashboard';
 		$data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_karyawan')])->row_array();
 		$data['gruprapat'] = $this->user_m->getgruprapat()->result();
-		
+		$data['notifval'] = $this->user_m->notifval()->num_rows();
         $this->template->load('layout/user/template', 'user/dashboard', $data);
 
 	}

@@ -20,7 +20,7 @@ class Ketua extends MY_Controller {
 		$data['user'] = $this->db->get_where('karyawan', ['email' => $this->session->userdata('email_karyawan')])->row_array();
 		$data['gruprapat'] = $this->user_m->getgruprapat()->result();
         
-		$data['validasi']= $this->user_m->getvalidasi()->result();
+		$data['validasi']= $this->user_m->getvalidasi()->result();		
 		$data['notifvalidasi']= $this->user_m->notifval()->result();
 
 		// echo json_encode($data['validasi']);

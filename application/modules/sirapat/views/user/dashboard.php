@@ -44,7 +44,10 @@
         <div class="col-lg-12">
             <div class="row">
             <div class="col">
-        <?php if($data->id_jabatan == 1){ ?>
+        <?php 
+        $notif = $this->user_m->notif($data->id_tipe)->num_rows();
+        $notiff = $this->db->get_where('validasi_agenda', ['status' => 0, 'id_grup' => $data->id_tipe])->num_rows();
+        if($data->id_jabatan == 1){ ?>
 
          
             
@@ -53,10 +56,16 @@
                 <div class="card-body">
                 <h2 class="card-title"><?= $data->nama_grup?></h2>
                 <input type="hidden" name="id_grup" id="id_grup" value="<?= $data->id_tipe ?>">
+                <?php if($notiff == 0){?>
+                <?php }else{ ?>
+
+                <button type="button" class="btn btn-danger btn-sm">
+                  Perlu Divalidasi <span class="badge badge-light font-weight-bold"><?= $notiff ?></span>
+                  <!-- <span class="sr-only">unread messages</span> -->
+                </button>
+                <?php }?>
                 <button type="submit"
                 class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat Grup</button>
-                <button type="submit"
-                class="btn btn-danger btn-sm"><i class="fas fa-eye"></i> Notif</button>
                 </div>
                 <div class="card-footer" >
                 <small class="text-muted">Sebagai : <?= $data->jabatan ?></small>

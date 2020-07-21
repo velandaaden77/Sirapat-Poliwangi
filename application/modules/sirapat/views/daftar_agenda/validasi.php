@@ -26,6 +26,7 @@
         ?>
         <div class="card text-center">
         <div class="card-header bg-transparent">
+
         <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>      
 
         <form method="post" action="<?= base_url('sirapat/admin/agenda/sendvalidasi') ?>" >
@@ -37,6 +38,9 @@
         <label for="formGroupExampleInput2">Pimpinan Grup <?= $pimpinan->nama_grup ?></label>
         <input type="hidden" class="form-control " 
         id="pimpinan" name="pimpinan" value="<?= $pimpinan->idkaryawan ?>">
+        
+        <input type="hidden" class="form-control " 
+        id="grup" name="grup" value="<?= $agenda->id_tipegrup ?>">
         <input type="text" class="form-control text-center" disabled name="nama_pimpinan" value="<?= $pimpinan->nama_karyawan ?>">
                    
         
@@ -69,7 +73,7 @@
 
             <h2 class="box-title mt-2 mb-4 text-center">Status</h2>
 
-          <?= $this->session->flashdata('message') ?>        
+          
 
         <section class="content">
       <table class="table table-hover">

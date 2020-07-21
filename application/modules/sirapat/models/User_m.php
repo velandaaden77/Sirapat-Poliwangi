@@ -25,6 +25,7 @@ class User_m extends CI_Model {
         $this->db->join('grup_rapat', 'grup_rapat.id_karyawan = karyawan.idkaryawan ');
 
         $this->db->where(['validasi_agenda.id_pimpinan' => $this->session->userdata('id_karyawan')]);
+        $this->db->where(['validasi_agenda.id_grup' => $this->uri->segment(5)]);
         $this->db->where(['grup_rapat.id_tipe' => $this->uri->segment(5)]);
         $query = $this->db->get();
         return $query;
@@ -41,9 +42,28 @@ class User_m extends CI_Model {
         $this->db->join('grup_rapat', 'grup_rapat.id_karyawan = karyawan.idkaryawan ');
 
         $this->db->where(['validasi_agenda.id_pimpinan' => $this->session->userdata('id_karyawan')]);
+        $this->db->where(['validasi_agenda.id_grup' => $this->uri->segment(5)]);
         $this->db->where(['grup_rapat.id_tipe' => $this->uri->segment(5)]);
         $this->db->limit('2');
         $this->db->order_by('validasi_agenda.id_validasi', 'DESC');
+        $query = $this->db->get();
+        return $query;
+
+    }
+
+    public function notif($idtipe){
+
+        $this->db->select ('*');
+        $this->db->from('validasi_agenda');
+        $this->db->join('agenda_rapat', 'validasi_agenda.id_agenda = agenda_rapat.id ');
+        $this->db->join('karyawan', 'karyawan.idkaryawan = validasi_agenda.id_pimpinan');
+        $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
+        $this->db->join('grup_rapat', 'grup_rapat.id_karyawan = karyawan.idkaryawan ');
+
+        // $this->db->where(['validasi_agenda.id_pimpinan' => $this->session->userdata('id_karyawan')]);
+        // $this->db->where(['validasi_agenda.id_grup' => $this->uri->segment(5)]);
+        // $this->db->where(['grup_rapat.id_tipe' => $this->uri->segment(5)]);
+        $this->db->where('validasi_agenda.status' == 1);
         $query = $this->db->get();
         return $query;
 
