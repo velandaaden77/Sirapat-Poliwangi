@@ -45,7 +45,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input class="form-control" placeholder="nama grup" type="text" id="nama_grup" name="nama_grup" 
+                    <input class="form-control" placeholder="username" type="text" id="nama_grup" name="nama_grup" 
                     value="<?= set_value('nama_grup'); ?>">
                   </div>
                   <?= form_error('nama_grup', '<small class="text-danger pl-3">', '</small>'); ?> 

@@ -36,9 +36,13 @@
               </a>
                 
               <div class="dropdown-menu  dropdown-menu-right ">
-                <a href="<?= base_url('sirapat/grup/dashboard/setting'); ?>" class="dropdown-item">
+              <a href="<?= base_url('sirapat/grup/dashboard/editprofil') ?>" class="dropdown-item">
                   <i class="ni ni-single-02 text-primary"></i>
-                  <span>Setting</span>
+                  <span>Edit profil</span>
+                </a>
+                <a href="<?= base_url('sirapat/grup/dashboard/gantipassword') ?>" class="dropdown-item">
+                  <i class="fas fa-key text-primary"></i>
+                  <span>Ganti Password</span>
                 </a>
                   
                 <div class="dropdown-divider"></div>

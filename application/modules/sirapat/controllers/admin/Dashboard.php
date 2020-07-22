@@ -62,7 +62,7 @@ class Dashboard extends MY_Controller {
             $this->db->where('email', $email);
             $this->db->update('user');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your profile has been updated!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil telah diupdate!</div>');
             redirect('sirapat/admin/dashboard');
         }
 	}

@@ -6,7 +6,7 @@ class Grup_m extends CI_Model{
 
     public function cek_login($nama_grup, $password){
 
-        $this->db->where('nama_grup', $nama_grup);
+        $this->db->where('username', $nama_grup);
         $this->db->where('password', $password);
         return $this->db->get('grup_tipe');
 
@@ -18,7 +18,7 @@ class Grup_m extends CI_Model{
         $u = $nama_grup;
         $p = MD5($pass);
 
-        $query_cekLogin = $this->db->get_where('grup_tipe', array('nama_grup' => $u, 'password' =>$p));
+        $query_cekLogin = $this->db->get_where('grup_tipe', array('username' => $u, 'password' =>$p));
 
         if(count($query_cekLogin->result()) > 0){
 

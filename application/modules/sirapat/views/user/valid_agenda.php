@@ -2,7 +2,7 @@ a
 
     <!-- content -->
     <!-- Header -->
-    <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+    <div class="header pt-5" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
   background-position: center center; background-size: cover;">
       <div class="container-fluid">
         <div class="header-body">
@@ -10,6 +10,8 @@ a
          
             <div class="col-lg-12 text-center">
              <h2 class="text-white"><i class="fas fa-file-signature"></i> Daftar Validasi Agenda</h2>
+             <?php $grup = $this->db->get_where('grup_tipe', ['id' => $this->uri->segment(5)])->row()?>
+             <h3 class="text-white"> Grup <?= $grup->nama_grup?></h3>
             </div>
             </div>
           

@@ -49,6 +49,7 @@ class Manajemen_grup extends MY_Controller {
 
             $data = [
                 'nama_grup' => $grup,
+                'username' => $grup,
                 'password' => MD5(123),
                 'role_id' => 6,
             ];

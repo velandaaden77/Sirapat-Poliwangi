@@ -59,7 +59,7 @@ class Grup extends MX_Controller {
 				$this->session->set_userdata($session_data);
             }
             
-			if($session_data['role_id_dosen'] == 6 ){
+			if($session_data['role_id_grup'] == 6 ){
 				
 				redirect('sirapat/grup/dashboard');
 				
@@ -74,7 +74,7 @@ class Grup extends MX_Controller {
 		}else {
 			//membuat message akun password salah
 			$this->session->set_flashdata('message', 
-			'<div class="alert alert-danger" role="alert">Password Salah!</div>');
+			'<div class="alert alert-danger" role="alert">Password/Username Salah!</div>');
 
 			//Memindahkan halaman ke halaman index
 			redirect('auth/grup/index');
