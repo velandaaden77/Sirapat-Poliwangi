@@ -25,7 +25,7 @@
 
           <div class="row mt-3 mb-3">
           <div class="col">
-            <h2 class="box-title">Daftar Agenda Rapat</h2>
+            <h3 class="box-title">Daftar Rapat</h3>
           </div>
 
           <div class="col">
@@ -38,7 +38,7 @@
 
         <section class="content">
         <div class="table-responsive">
-      <table class="table table-hover">
+      <table class="table table-hover" id="absensi">
       <thead class="thead-light">
         <tr>
           <th scope="col">NO</th>
@@ -62,8 +62,15 @@
           <td><?= $data->nama_grup; ?></td>
 
           <td>
+          <?php $a = $this->db->get_where('absensi', ['id_agenda' => $data->id])->row();
+          if(empty($a)){
+          ?>
           <a href="<?= base_url('sirapat/admin/absensi/detail_absensi/'.$data->id); ?>" 
           class="btn btn-dark btn-sm"><i class="fa fa-forward"></i></a>
+          <?php }else{?>
+            <a href="<?= base_url('sirapat/admin/absensi/detail_absensi/'.$data->id); ?>" 
+          class="btn btn-danger btn-sm"><i class="fa fa-forward"></i></a>
+          <?php }?>
           </td>
 
         </tr>

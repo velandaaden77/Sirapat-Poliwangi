@@ -138,8 +138,22 @@
                 <h2 class="card-title">Risalah Rapat</h2>
                 <a href="<?= base_url('sirapat/admin/notulen/risalahrapat/'.$getnotulen->idnotulen); ?>"
                 class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat</a>
+                <?php 
+                $u = $this->uri->segment(5);
+                $r = "SELECT *
+                            FROM `risalah_rapat`
+                            JOIN `notulen` ON `notulen`.`idnotulen` = `risalah_rapat`.`id_notulen`
+                            WHERE `notulen`.`id_agenda` = $u"; 
+                            
+                $s = $this->db->query($r)->row(); 
+                if(empty($s)){
+                ?>
                 <a href="<?= base_url('sirapat/admin/notulen/printrisalah/'.$getnotulen->idnotulen); ?>"
-                class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                class="btn btn-danger btn-sm" disabled target="_blank"><i class="fas fa-print"></i> Print</a>
+                <?php }else{ ?>
+                  <a href="<?= base_url('sirapat/admin/notulen/printrisalah/'.$getnotulen->idnotulen); ?>"
+                  class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                <?php } ?>
                 </div>
                
             </div>
@@ -270,6 +284,16 @@
                 </div>
                 <div class="col-sm-9">
                     <span><?= $notulensi->ringkasan ?></span>
+                </div>
+                </div>
+
+                <?php $k = $this->notulen_m->ketuarapat($notulensi->id_agenda)->row() ?>
+                <div class="row">
+                <div class="col-sm-3">
+                   <h3>Ketua</h3>
+                </div>
+                <div class="col-sm-9">
+                    <span><?= $k->nama_karyawan ?></span>
                 </div>
                 </div>
 

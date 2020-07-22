@@ -40,7 +40,7 @@
           <?= $this->session->flashdata('message') ?>        
 
         <section class="content">
-        <div class="table-responsive">
+      <div class="table-responsive">
       <table class="table table-hover" id="daftar_rapat">
       <thead class="thead-light">
         <tr>
@@ -67,7 +67,7 @@
 
           <td>
           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i> Detail</button>
-          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-file"></i> Notulen</button>
+          <a href="<?= base_url('sirapat/user/laporan/index/'). $data->id?>" class="btn btn-danger btn-sm"><i class="fa fa-file"></i> Laporan</a>
           </td>
 
 

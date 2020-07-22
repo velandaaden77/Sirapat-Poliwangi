@@ -35,12 +35,13 @@ class Notulen extends MY_Controller {
 
     }
 
-    public function tambahnotulen(){
+    public function tambahnotulen($id){
 
-		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
-		$this->form_validation->set_rules('ruang_rapat', 'Ruang Rapat', 'required');
-		$this->form_validation->set_rules('waktumulai', 'Waktu Mulai', 'required');
-		$this->form_validation->set_rules('waktuselesai', 'Waktu Selesai', 'required');
+       
+		// $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+		// $this->form_validation->set_rules('ruang_rapat', 'Ruang Rapat', 'required');
+		// $this->form_validation->set_rules('waktumulai', 'Waktu Mulai', 'required');
+		// $this->form_validation->set_rules('waktuselesai', 'Waktu Selesai', 'required');
 		$this->form_validation->set_rules('daftar_hadir', 'Daftar Hadir', 'required');
 		$this->form_validation->set_rules('total_hadir', 'Total Hadir', 'required');
 		$this->form_validation->set_rules('pic', 'Pic', 'required');
@@ -51,13 +52,17 @@ class Notulen extends MY_Controller {
             $data['title'] = 'Tambah Notulen';
             
             $data['data_agenda']= $this->notulen_m->getdata()->result();
+            $data[a]= $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row();
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['notulen'] = $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->row();
             $this->template->load('layout/template', 'notulen/tambahnotulen', $data);
+
 
         }else{
 
         $id_agenda = $this->input->post('id_agenda');
         $tanggal = $this->input->post('tanggal');
+        // var_dump($tanggal); die;
         $ruangrapat = $this->input->post('ruang_rapat');
         $waktumulai = $this->input->post('waktumulai');
         $waktuselesai = $this->input->post('waktuselesai');
@@ -65,7 +70,29 @@ class Notulen extends MY_Controller {
         $totalhadir = $this->input->post('total_hadir');
         $pic = $this->input->post('pic');
         $ringkasan = $this->input->post('ringkasan');
-        // $foto_rapat = $_FILES['foto_rapat']['name'];
+        $foto_rapat = $_FILES['foto_rapat']['name'];
+        if ($foto_rapat) {
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './assets/dashboard/img/rapat/';
+            
+            $this->load->library('upload', $config);
+
+            if($this->upload->do_upload('foto_rapat')){
+
+                // // //Penghapusan file yang sama
+                // // $old_image = $data['notulen']['foto_rapat'];
+                // // if($old_image != 'default.jpg'){
+                // //     unlink(FCPATH . 'assets/dashboard/img/rapat/' . $old_image);
+                // }
+                //insert data file ke database
+                $new_image = $this->upload->data('file_name');
+                $this->db->set('foto_rapat', $new_image);
+            }else {
+                //jika tidak upload maka error
+                echo $this->upload->display_errors();
+            }
+        }
         $date_created = date('Y-m-d');
 
             $data = [
@@ -79,6 +106,7 @@ class Notulen extends MY_Controller {
 				'ringkasan' => $ringkasan,
                 'notulen' => $this->session->userdata('nama'),
                 'pic' => $pic,
+                'foto_rapat' =>$foto_rapat,
 				'date_created' => $date_created,
 			];
 
@@ -402,6 +430,28 @@ class Notulen extends MY_Controller {
         $pic = $this->input->post('pic');
         $ringkasan = $this->input->post('ringkasan');
         $foto_rapat = $_FILES['foto_rapat']['name'];
+        if ($foto_rapat) {
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']      = '2048';
+            $config['upload_path'] = './assets/dashboard/img/rapat/';
+            
+            $this->load->library('upload', $config);
+
+            if($this->upload->do_upload('foto_rapat')){
+
+                //Penghapusan file yang sama
+                $old_image = $data['notulen']['foto_rapat'];
+                if($old_image != 'default.jpg'){
+                    unlink(FCPATH . 'assets/dashboard/img/rapat/' . $old_image);
+                }
+                //insert data file ke database
+                $new_image = $this->upload->data('file_name');
+                $this->db->set('foto_rapat', $new_image);
+            }else {
+                //jika tidak upload maka error
+                echo $this->upload->display_errors();
+            }
+        }
         $date_created = date('Y-m-d');
 
             $data = [

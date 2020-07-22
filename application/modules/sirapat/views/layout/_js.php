@@ -30,6 +30,8 @@
       $('#agenda').DataTable();
       $('#grupdata').DataTable();
       $('#datatable').DataTable();
+      $('#notulen').DataTable();
+      $('#absensi').DataTable();
       });
       </script>
   

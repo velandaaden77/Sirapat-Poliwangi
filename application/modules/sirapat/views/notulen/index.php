@@ -27,7 +27,7 @@
             <div class="card-body">
 
             <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="notulen">
             <thead>
                 <tr>
                 <th scope="col">NO</th>
@@ -50,8 +50,15 @@
                 <td><?= $data->tempat ?></td>
                 <td><?= $data->nomor_agenda; ?></td>
                   <td >
+                  <?php $notulen = $this->db->get_where('notulen', ['id_agenda' => $data->id])->row();
+                  if(empty($notulen)) {
+                  ?>
                   <a href="<?= base_url('sirapat/admin/notulen/detail_notulen/'.$data->id); ?>" 
                   class="btn btn-dark btn-sm"><i class="fa fa-forward"></i></a>
+                  <?php }else{ ?>
+                  <a href="<?= base_url('sirapat/admin/notulen/detail_notulen/'.$data->id); ?>" 
+                  class="btn btn-danger btn-sm"><i class="fa fa-forward"></i></a>
+                  <?php } ?>
                   </td>
                 </tr>
 

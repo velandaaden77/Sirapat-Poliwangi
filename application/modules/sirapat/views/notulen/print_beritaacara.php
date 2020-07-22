@@ -55,10 +55,12 @@ $t = $this->db->query($title)->row();
         <hr class="line-title">
 
             <br>
-            
-            <h3 align="center">RISALAH RAPAT</h3>
-        <span align="center">Pada Hari ini, Tanggal: <?= $ber->tanggal ?>, Telah dilaksanakan 
-        Rapat: <?= $t->nama_agenda ?>, dengan hasil: <?= $ber->hasil?></span>
-
+            <?php $b = $this->db->get_where('berita_acara', ['id_notulen'=> $this->uri->segment(5)])->row()?>
+            <h3 align="center">BERITA ACARA</h3>
+            <?php if(empty($b)){ ?>
+            <?php }else{ ?>
+        <span align="center">Pada Hari ini, Tanggal: <?= $b->tanggal ?>, Telah dilaksanakan 
+        Rapat: <?= $t->nama_agenda ?>, dengan hasil: <?= $b->hasil?></span>
+            <?php } ?>
 </body>
 </html>

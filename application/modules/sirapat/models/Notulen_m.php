@@ -16,6 +16,7 @@ class Notulen_m extends CI_Model {
 
     $this->db->where(['id_user' => $this->session->userdata('iduser')]);
     $this->db->where(['status_agenda' => 1]);
+    $this->db->order_by('id', 'DESC');
     return $this->db->get('agenda_rapat');
 
     }
@@ -28,6 +29,18 @@ class Notulen_m extends CI_Model {
 
         return $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->result();
     
+    }
+
+    public function ketuarapat($id){
+        $this->db->select('*');
+        $this->db->from('agenda_rapat');
+        $this->db->join('grup_rapat', 'grup_rapat.id_tipe = agenda_rapat.id_tipegrup');
+        $this->db->join('karyawan', 'karyawan.idkaryawan = grup_rapat.id_karyawan');
+
+        $this->db->where(['agenda_rapat.id' => $id]);
+        $this->db->where(['grup_rapat.id_jabatan' => 1]);
+        $query = $this->db->get();
+        return $query;
     }
 
     public function getrisalah(){

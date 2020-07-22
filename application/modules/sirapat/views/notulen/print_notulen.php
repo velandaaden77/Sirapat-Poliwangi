@@ -140,8 +140,9 @@
                     </td>
         		</tr>
                 <tr>
+                <?php $k = $this->notulen_m->ketuarapat($this->uri->segment(5))->row(); ?>
                     <td align="left" style="border-collapse: collapse; border: 1px solid black; padding-left:10px; height:30px ">
-                    <span>1. Ketua Rapat  (………………………………)</span><br>
+                    <span>1. Ketua Rapat  (<?= $k->nama_karyawan?>)</span><br>
                     </td>
                     <td align="left" style="border-collapse: collapse; border: 1px solid black; padding-left:10px; height:30px ">
                     <span></span><br>
