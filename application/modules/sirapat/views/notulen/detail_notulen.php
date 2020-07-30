@@ -87,6 +87,7 @@
 
                 <a href="<?= base_url('sirapat/admin/notulen/printnotulen/'.$this->uri->segment(5))?>"
             class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print Notulen</a>
+                
 
                 <?php } ?>
 

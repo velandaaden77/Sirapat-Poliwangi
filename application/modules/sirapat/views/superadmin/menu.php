@@ -2,7 +2,8 @@
 
   
     <!-- Page content -->
-    <div class="container-fluid mt--5">
+    <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
+  background-position: center center; background-size: cover;">
       <div class="row">
         <div class="col-xl-12">
           <div class="card">

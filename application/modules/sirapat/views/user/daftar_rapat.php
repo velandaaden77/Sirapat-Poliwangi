@@ -149,7 +149,7 @@ if(empty($this->input->post('tahun')) || empty($this->input->post('bulan'))){}el
 
           <td>
           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i> Detail</button>
-          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-file"></i> Notulen</button>
+          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-file"></i> Laporan</button>
           </td>
 
 

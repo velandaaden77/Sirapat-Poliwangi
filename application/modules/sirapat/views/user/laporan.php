@@ -197,7 +197,7 @@
         <div class="card">
         <div class="card-header text-center">
             <a class="card-link" data-toggle="collapse" href="#foto">
-           <h3><i class="fas fa-photo"></i> Dokumentasi</h3>
+           <h3><i class="fas fa-camera"></i> Dokumentasi</h3>
             </a>
         </div>
         <div id="foto" class="collapse" data-parent="#accordion3">

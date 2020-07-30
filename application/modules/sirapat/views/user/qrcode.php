@@ -35,7 +35,7 @@
         <h3><?= $this->session->userdata('nama_karyawan') ?></h3><br>
 
         <form method="post" action="<?= base_url('sirapat/user/ketua/validasi/'.$this->uri->segment(6))?>">
-
+        
         
         <input type="hidden" class="form-control" 
         id="formGroupExampleInput2" placeholder="qrcode" name="id_validasi" value="<?= 

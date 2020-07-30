@@ -82,4 +82,17 @@ class Notulen_m extends CI_Model {
         return $query;
         
         }
+
+    public function pdf($id){
+
+        $this->db->select('*');
+        $this->db->from('notulen');
+        $this->db->join('agenda_rapat', 'notulen.id_agenda = agenda_rapat.id');
+        $this->db->join('grup_tipe', 'grup_tipe.id = agenda_rapat.id_tipegrup');
+        // $this->db->join('grup_rapat', 'grup_rapat.id_tipe = grup_tipe.id');
+        $this->db->where(['agenda_rapat.id' => $id]);
+        $query = $this->db->get();
+        return $query;
+        
+        }
 }

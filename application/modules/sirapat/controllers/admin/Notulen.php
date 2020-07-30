@@ -24,6 +24,15 @@ class Notulen extends MY_Controller {
 
     }
 
+    public function pdf($id){
+
+        $data['notulensi']= $this->notulen_m->pdf($id)->row();
+        $html = $this->load->view('sirapat/notulen/print_notulen', $data, true);
+
+        $this->pdf_generator->generate($html, 'Notulen-'.$data['notulensi']->idnotulen,'A4', 'potrait');
+
+    }
+
     public function viewnotulen(){
 
         $data['title'] = 'View Notulen';
@@ -52,7 +61,7 @@ class Notulen extends MY_Controller {
             $data['title'] = 'Tambah Notulen';
             
             $data['data_agenda']= $this->notulen_m->getdata()->result();
-            $data[a]= $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row();
+            $data['a']= $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row();
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['notulen'] = $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->row();
             $this->template->load('layout/template', 'notulen/tambahnotulen', $data);

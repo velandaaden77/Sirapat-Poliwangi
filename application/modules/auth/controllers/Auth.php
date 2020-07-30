@@ -87,7 +87,7 @@ class Auth extends MX_Controller {
 		}else {
 			//membuat message akun password salah
 			$this->session->set_flashdata('message', 
-			'<div class="alert alert-danger" role="alert">Password Salah!</div>');
+			'<div class="alert alert-danger" role="alert">Password/Email Salah!</div>');
 
 			//Memindahkan halaman ke halaman index
 			redirect('auth/index');

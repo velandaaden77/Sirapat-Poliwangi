@@ -32,6 +32,11 @@
 
             <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data" id="sendtelegram" target="_blank">
 
+              <?php
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('chat_id', 'Id Chat', 'required');
+                $this->form_validation->set_rules('caption', 'Caption', 'required');
+                ?>
             <div class="col-sm-12">
             <div class="form-group">
             <label for="formGroupExampleInput2">Grup Rapat</label>
@@ -45,9 +50,10 @@
 
             <div class="col-sm-12">
             <div class="form-group">
-                <label for="formGroupExampleInput2">Caption </label>
+                <label for="caption">Caption </label>
                 <input type="text" class="form-control" 
                 id="caption" placeholder="Caption" name="caption" autocomplete="off">
+                <?= form_error('caption', '<small class="text-danger pl-1">', '</small>'); ?>
             </div>
             </div>
 

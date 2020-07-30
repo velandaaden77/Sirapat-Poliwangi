@@ -56,7 +56,7 @@
        
         		<tr style="border-collapse: collapse; border: 1px solid black;">
         			<th style="border-collapse: collapse; border: 1px solid black;">
-                    <img src="<?= base_url('assets/dashboard/img/logo.png')?>" style="width: 120px">
+                    <img src="<?= base_url('assets/dashboard/img/logo.png')?>" type="image" style="width: 120px">
                     </th>
         			<th align="center" colspan="2" style="border-collapse: collapse; border: 1px solid black;"><h2>NOTULENSI RAPAT</h2></th>
         			
