@@ -64,7 +64,7 @@
 
             <div class="row mt-4" >
             <div class="col-6">
-              <a href="<?= base_url('login/forgotpassword'); ?>" class="text-light"><small>Lupa Password?</small></a>
+              <!-- <a href="<?= base_url('login/forgotpassword'); ?>" class="text-light"><small>Lupa Password?</small></a> -->
             </div>
           </div>
                 

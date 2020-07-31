@@ -30,7 +30,7 @@
   <div class="form-group ">
               <select name="tahun" class="form-control form-control-sm">
 
-              <option>Pilih Tahun</option>
+              <!-- <option>Pilih Tahun</option> -->
               <?php $tahun_now = date("Y");
               for($i=2020;$i<=$tahun_now;$i++){ ?>
 
@@ -71,37 +71,7 @@
 </div>
 </form>
 
-<?php 
 
-if(empty($this->input->post('tahun')) || empty($this->input->post('bulan'))){}else {
-
-  if($this->input->post('bulan') == '01'){
-		$bln2 = 'Januari';
-		}elseif($this->input->post('bulan') == '02'){
-			$bln2 = 'Februari';
-		}elseif($this->input->post('bulan') == '03'){
-			$bln2 = 'Maret';
-		}elseif($this->input->post('bulan') == '04'){
-			$bln2 = 'April';
-		}elseif($this->input->post('bulan') == '05'){
-			$bln2 = 'Mei';
-		}elseif($this->input->post('bulan') == '06'){
-			$bln2 = 'Juni';
-		}elseif($this->input->post('bulan') == '07'){
-			$bln2 = 'Juli';
-		}elseif($this->input->post('bulan') == '08'){
-			$bln2 = 'Agustus';
-		}elseif($this->input->post('bulan') == '09'){
-			$bln2 = 'September';
-		}elseif($this->input->post('bulan') == '10'){
-			$bln2 = 'Oktober';
-		}elseif($this->input->post('bulan') == '11'){
-			$bln2 = 'November';
-		}elseif($this->input->post('bulan') == '12'){
-			$bln2 = 'Desember';
-    }
-    
-    ?>
           <div class="card">
 
             <div class="card-header bg-transparent">
@@ -135,8 +105,9 @@ if(empty($this->input->post('tahun')) || empty($this->input->post('bulan'))){}el
       <tbody>
 
       <?php $i=1; 
-      $pencarian = $this->input->post('bulan');
-      $getallagenda= $this->user_m->getallagenda($pencarian)->result();
+      $pencarian = $this->input->post('tahun').'-'.$this->input->post('bulan');
+      
+      $getallagenda= $this->user_m->filterdata($pencarian)->result();
       ?>
       <?php foreach ($getallagenda as $key => $data) : ?>
       
@@ -149,7 +120,7 @@ if(empty($this->input->post('tahun')) || empty($this->input->post('bulan'))){}el
 
           <td>
           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i> Detail</button>
-          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-file"></i> Laporan</button>
+          <a href="<?= base_url('sirapat/user/laporan/index/'). $data->id?>" class="btn btn-danger btn-sm"><i class="fa fa-file"></i> Laporan</a>
           </td>
 
 
@@ -272,6 +243,21 @@ if(empty($this->input->post('tahun')) || empty($this->input->post('bulan'))){}el
               </div>
               </div>
 
+              <div class="row">
+            <div class="col-sm-3">
+              <h5>Isi Lampiran</h5>
+            </div>
+            <?php if(empty($data->lampiran_file)){ ?>
+              <div class="col-sm-9">
+            : -
+            </div>
+            <?php }else{ ?>
+            <div class="col-sm-9">
+            <a href="<?= base_url('assets/dashboard/file/').$data->lampiran_file?>"> <?= $data->lampiran_file ?></a>
+            </div>
+            <?php } ?>
+            </div>
+
             </div>
 
             </div>
@@ -312,4 +298,3 @@ if(empty($this->input->post('tahun')) || empty($this->input->post('bulan'))){}el
           </div>
           </div>
           </div>
-<?php } ?>

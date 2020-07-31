@@ -60,7 +60,7 @@ function checkabsen($id, $idkaryawan){
     $result = $ci->db->get('absensi');
 
     if($result->num_rows() > 0 ){
-        return "checked ='checked', disabled";
+        return "checked ='checked'";
     }
 
 }

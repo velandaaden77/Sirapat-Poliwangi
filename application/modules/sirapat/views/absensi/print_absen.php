@@ -4,43 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-
-<title>Cetak Absensi</title>
+    <?php $agenda = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row()?>
+<title>Absensi - <?= $agenda->nama_agenda ?></title>
 <style type="text/css">
 
 .style1 {font-size: large}
 .style2 {font-size: medium}
 
+@media print {
+                @page { margin: 0;}
+                body { margin: 1cm;}
+            }
+
 </style>
+<script type="text/javascript">
+    window.print(); 
+    </script>
 </head>
 
     <body>
     <form>
-	<table width="910" border="0" align="center" cellpadding="0" cellspacing="0">
-    <tbody>
+    <img src="<?php echo base_url() ?>assets/dashboard/img/logo.png" style="position: absolute"; width="100px" height="auto" >
+	<table width="100%" style="padding-left:5%">
+    
   
   <!-- heading -->
-    <tr> 
-      <td width="15%"><div align="left">
-        <h2 align="center"><img src="<?= base_url('assets/dashboard/img/logo.png') ?>" width="133" height="124"></h2>
-      </div></td>
-      <td width="85%"><div align="center" class="style1"><strong>KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI<br>
-	  POLITEKNIK NEGERI BANYUWANGI </strong><br>
-      <span class="style2">Jl. Raya Jember - Banyuwangi KM 13, Rogojampi, Labanasem, Banyuwangi, Jawa Timur 68461</span><br>
-      <span class="style2">Website : http://www.poliwangi.ac.id E-Mail : politeknik@poliwangi.ac.id</span></div></td>
-    </tr>
+            <tr>
+                <td align="center" >
+                <div style="margin-left:12%">
+                    <span style="line-height: 1.1; font-weight: bold; font-family: 'Times New Roman', Times, serif">
+                         KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI<br>
+                         POLITEKNIK NEGERI BANYUWANGI<br>
+                        <a style="line-height: 1.1; font-size: 11px"> Jl. Raya Jember KM 13 Labanasem, Kabat, Banyuwangi, 68461 </a> <br>
+                        <a style="line-height: 1.1; font-size: 11px"> Telepon / Faks : (0333) 636780 </a> <br>
+                        <a style="line-height: 1.1; font-size: 11px"> E-mail : poliwangi@poliwangi.ac.id ; Website : http://www.poliwangi.ac.id </a> <br>
+                    </span>
+                    </div>
+                </td>
+            </tr>
+            </table>
 
-    <tr> 
-      <td colspan="2"></td>
-    </tr>
-    <tr>
-      <td colspan="2"><hr noshade=""></td>
-    </tr>
+            <hr class="line-title">
 
-    <?php $agenda = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row()?>
-
-    <tr>
-      <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+   
+            <?php $agenda = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row()?>
+    
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
         <tr>
           <td colspan="2"><div align="center" class="style1"><strong>ABSENSI RAPAT</strong></div></td><br>
@@ -67,14 +76,12 @@
 		        
           </tbody>
           </table>
-          </td>
-          </tr>
+          
 
-          </tbody>
-          </table>
+          
           </form>
 
-            <table width="910" border="1" align="center" cellpadding="10" cellspacing="0">
+            <table width="100%" border="1" align="center" cellpadding="10" cellspacing="0">
             <thead>
             <tr>
                 <th>NO</th>

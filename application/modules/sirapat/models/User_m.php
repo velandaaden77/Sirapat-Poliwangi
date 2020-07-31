@@ -159,7 +159,7 @@ class User_m extends CI_Model {
 
     public function filterdata($bulan){
     
-        $this->db->select ('*');
+        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup, validasi_agenda.*, karyawan.*');
         $this->db->from('agenda_rapat');
         // $this->db->join('grup_rapat', 'grup_rapat.id_tipe = agenda_rapat.id_tipegrup ');
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
@@ -168,7 +168,7 @@ class User_m extends CI_Model {
 
         $this->db->where(['agenda_rapat.id_tipegrup' => $this->uri->segment(5)]);
         $this->db->where(['agenda_rapat.status_agenda' => 1]);
-        $this->db->like(['agenda_rapat.tanggal' => $bulan]);
+        $this->db->like(['agenda_rapat.date_created' => $bulan]);
         $query = $this->db->get();
         return $query;
         

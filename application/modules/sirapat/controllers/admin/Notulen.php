@@ -25,12 +25,31 @@ class Notulen extends MY_Controller {
     }
 
     public function pdf($id){
-
+        $data['title'] = 'Notulensi';
         $data['notulensi']= $this->notulen_m->pdf($id)->row();
         $html = $this->load->view('sirapat/notulen/print_notulen', $data, true);
-
         $this->pdf_generator->generate($html, 'Notulen-'.$data['notulensi']->idnotulen,'A4', 'potrait');
-
+    }
+    public function pdfr(){
+        $data['title'] = 'Risalah Rapat';
+            $data['risalah']= $this->db->get_where('risalah_rapat', ['id_notulen' => $this->uri->segment(5)])->result();
+           
+        $html = $this->load->view('sirapat/notulen/print_risalah', $data, true);
+        $this->pdf_generator->generate($html, 'Risalah-','A4', 'potrait');
+    }
+    public function pdfp(){
+        $data['title'] = 'Permasalahan';
+        $data['psbw']= $this->db->get_where('permasalahan', ['id_notulen' => $this->uri->segment(5)])->result();
+           
+        $html = $this->load->view('sirapat/notulen/print_psbw', $data, true);
+        $this->pdf_generator->generate($html, 'Permasalahan-','A4', 'landscape');
+    }
+    public function pdfb(){
+        $data['title'] = 'Berita Acara';
+        $data['ber']= $this->db->get_where('berita_acara', ['id_notulen' => $this->uri->segment(5)])->row();
+           
+        $html = $this->load->view('sirapat/notulen/print_beritaacara', $data, true);
+        $this->pdf_generator->generate($html, 'Permasalahan-','A4', 'potrait');
     }
 
     public function viewnotulen(){
@@ -420,14 +439,16 @@ class Notulen extends MY_Controller {
         
         if($this->form_validation->run() == false){
 
-            $data['title'] = 'Tambah Notulen';
-            
-            $data['data_agenda']= $this->notulen_m->getdata()->result();
+            $data['title'] = 'Edit Notulensi';
+
+            $data['notulen'] = $this->db->get_where('notulen', ['idnotulen' => $this->uri->segment(5)])->row();
+           
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $this->template->load('layout/template', 'notulen/tambahnotulen', $data);
+          
+            $this->template->load('layout/template', 'notulen/edit_notulensi', $data);
 
         }else{
-
+            $notulen = $this->db->get_where('notulen', ['idnotulen' => $this->uri->segment(5)])->row();
         $idagenda = $this->input->post('idagenda');
         $idnotulen = $this->input->post('idnotulen');
         $tanggal = $this->input->post('tanggal');
@@ -449,7 +470,7 @@ class Notulen extends MY_Controller {
             if($this->upload->do_upload('foto_rapat')){
 
                 //Penghapusan file yang sama
-                $old_image = $data['notulen']['foto_rapat'];
+                $old_image = $notulen->foto_rapat;
                 if($old_image != 'default.jpg'){
                     unlink(FCPATH . 'assets/dashboard/img/rapat/' . $old_image);
                 }

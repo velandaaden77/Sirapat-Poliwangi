@@ -63,19 +63,13 @@ class Unggah_agenda extends MY_Controller {
 			$lampiran = $_FILES['lampiran']['name'];
  
 			if($lampiran){
-				$config['allowed_types'] = 'doc|xls|pdf';
+				$config['allowed_types'] = 'docx|xls|pdf';
 				$config['max_size'] = '2048';
 				$config['upload_path'] = 'assets/dashboard/file/';
 
 				$this->load->library('upload', $config);
 
 				if($this->upload->do_upload('lampiran')){
-
-					//Penghapusan file yang sama
-					$old_lampiran = $data['user']['agenda'];
-					if($old_lampiran != 'default.doc'){
-						unlink(FCPATH . 'assets/dashboard/file/' . $old_lampiran);
-					}
 					//insert data file ke database
 					$new_lampiran = $this->upload->data('file_name');
 					$this->db->set('lampiran', $new_lampiran);

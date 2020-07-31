@@ -129,6 +129,23 @@
               </div>
               </div>
 
+              
+              <div class="row">
+            <div class="col-sm-3">
+              <h5>Isi Lampiran</h5>
+            </div>
+            <?php if(empty($data->lampiran_file)){ ?>
+              <div class="col-sm-9">
+            : -
+            </div>
+            <?php }else{ ?>
+            <div class="col-sm-9">
+            <a href="<?= base_url('assets/dashboard/file/').$data->lampiran_file?>"> <?= $data->lampiran_file ?></a>
+            </div>
+            <?php } ?>
+            </div>
+
+
             </div>
 
             </div>
@@ -204,8 +221,8 @@
             <div class="card-body">
             <div class="container-fluid text-center">
             <?php $notulensi = $this->user_m->notulen()->row(); ?>
-            <?php if(empty($notulensi)){ ?>
-            Data Masih Belum Di Input
+            <?php if(empty($notulensi->foto_rapat)){ ?>
+            Dokumentasi Kosong :)
             <?php }else{?>
             <img src="<?= base_url('assets/dashboard/img/rapat/'.$notulensi->foto_rapat) ?>">
             <?php } ?>

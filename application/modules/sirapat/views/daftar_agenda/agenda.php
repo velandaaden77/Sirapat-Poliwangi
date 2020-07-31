@@ -202,8 +202,6 @@
             </div>
             </div>
 
-
-
             <div class="row">
             <div class="col-sm-3">
               <h5>Nama Agenda</h5>
@@ -211,6 +209,21 @@
             <div class="col-sm-9">
                 <span class="text-weight-bold">: <?= $data->nama_agenda ?></span>
             </div>
+            </div>
+
+            <div class="row">
+            <div class="col-sm-3">
+              <h5>Isi Lampiran</h5>
+            </div>
+            <?php if(empty($data->lampiran_file)){ ?>
+              <div class="col-sm-9">
+            : -
+            </div>
+            <?php }else{ ?>
+            <div class="col-sm-9">
+            <a href="<?= base_url('assets/dashboard/file/').$data->lampiran_file?>"> <?= $data->lampiran_file ?></a>
+            </div>
+            <?php } ?>
             </div>
 
             </div>

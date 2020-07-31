@@ -30,10 +30,18 @@
             <h3 class="box-title">Anggota Rapat</h3>
           </div>
 
+
           <div class="col">
             <div class="float-right">
+            <?php $a = $this->db->get_where('absensi', ['id_agenda' => $this->uri->segment(5)])->row();
+            if(empty($a->id_agenda)){
+            ?>
+
+            <?php }else{ ?>
+
            <a href="<?= base_url('sirapat/admin/absensi/pdf/'.$agenda->id)?>" target="_blank" class="btn btn-danger btn-sm mb-3">PDF</a> 
            <a href="<?= base_url('sirapat/admin/absensi/printabsensi/'.$agenda->id)?>" target="_blank" class="btn btn-primary btn-sm mb-3">PRINT ABSENSI</a> 
+            <?php } ?>
             </div>
             </div>
             </div>

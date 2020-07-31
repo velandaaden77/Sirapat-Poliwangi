@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-top navbar-expand navbar-light fixed-top border-bottom " style="background-color:#3C8DBC;">
           <a href="<?= base_url('sirapat/user/dashboard'); ?>">
-          <img src="<?= base_url('assets/dashboard/'); ?>img/logonav.png"  class="navbar-brand-img" alt="..." style="margin-left:20px" width="15%">
+          <img src="<?= base_url('assets/dashboard/'); ?>img/logonav.png"  class="navbar-brand-img" alt="..." style="margin-left:20px" width="21%">
           </a>
 
       <div class="container-fluid">

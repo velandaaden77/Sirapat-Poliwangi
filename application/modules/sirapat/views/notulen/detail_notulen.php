@@ -86,7 +86,9 @@
                 class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat</button>
 
                 <a href="<?= base_url('sirapat/admin/notulen/printnotulen/'.$this->uri->segment(5))?>"
-            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print Notulen</a>
+            class="btn btn-secondary   btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                <a href="<?= base_url('sirapat/admin/notulen/pdf/'.$this->uri->segment(5))?>"
+            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-file"></i> PDF</a>
                 
 
                 <?php } ?>
@@ -153,7 +155,9 @@
                 class="btn btn-danger btn-sm" disabled target="_blank"><i class="fas fa-print"></i> Print</a>
                 <?php }else{ ?>
                   <a href="<?= base_url('sirapat/admin/notulen/printrisalah/'.$getnotulen->idnotulen); ?>"
-                  class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                  class="btn btn-secondary btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?= base_url('sirapat/admin/notulen/pdfr/'.$getnotulen->idnotulen)?>"
+            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-file"></i> PDF</a>
                 <?php } ?>
                 </div>
                
@@ -166,7 +170,9 @@
                 <div class="card-body">
                 <h5 class="card-title">Permasalahan, Solusi, Batas Waktu</h5>
                 <a href="<?= base_url('sirapat/admin/notulen/psbw/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat</a>
-                <a href="<?= base_url('sirapat/admin/notulen/printpsbw/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                <a href="<?= base_url('sirapat/admin/notulen/printpsbw/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-secondary btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                <a href="<?= base_url('sirapat/admin/notulen/pdfp/'.$getnotulen->idnotulen)?>"
+            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-file"></i> PDF</a>
                 </div>
                 
             </div>
@@ -176,7 +182,9 @@
                 <div class="card-body">
                 <h2 class="card-title">Berita Acara Rapat</h2>
                 <a href="<?= base_url('sirapat/admin/notulen/beritaacara/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Lihat</a>
-                <a href="<?= base_url('sirapat/admin/notulen/printberitaacara/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                <a href="<?= base_url('sirapat/admin/notulen/printberitaacara/'.$getnotulen->idnotulen); ?>" type="button" class="btn btn-secondary btn-sm" target="_blank"><i class="fas fa-print"></i> Print</a>
+                <a href="<?= base_url('sirapat/admin/notulen/pdfb/'.$getnotulen->idnotulen)?>"
+            class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-file"></i> PDF</a>
                 </div>
                 
             </div>

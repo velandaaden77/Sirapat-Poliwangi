@@ -7,8 +7,7 @@
             <h2 class="box-title mb-3">Notulensi Rapat</h2>
 
 <?= $this->session->flashdata('message'); ?>
-<?= form_open_multipart('sirapat/admin/notulen/updatenotulen'); ?>
-
+<form action="<?= base_url('sirapat/admin/notulen/updatenotulen/').$this->uri->segment(5).'/'.$this->uri->segment(6); ?>" method="POST" enctype="multipart/form-data">
   <div class="row">
  <input type="hidden" name="idnotulen" value="<?= $this->uri->segment(5)?>">
  <input type="hidden" name="idagenda" value="<?= $this->uri->segment(6) ?>">
@@ -85,12 +84,20 @@
   </div>
   </div>
 
-  <div class="col-lg-12">
+  <div class="col-lg-6">
+  <div class="form-group">
+    
+     <img src="<?= base_url('assets/dashboard/img/rapat/') . $notulen->foto_rapat; ?>" class="img-thumbnail">
+                        
+  </div>
+  </div>
+
+  <div class="col-lg-6">
   <div class="form-group">
     <label for="formGroupExampleInput2">Dokumentasi Rapat</label>
     <div class="custom-file">
-    <input type="file" class="custom-file-input" id="foto" name="foto_rapat">
-    <label class="custom-file-label" for="foto">Upload Foto</label>
+    <input type="file" class="custom-file-input" id="foto" name="foto_rapat" >
+   
     </div>
     <?= form_error('foto_rapat', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
@@ -101,7 +108,7 @@
   <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Edit</button>
   <button type="reset" class="btn btn-danger"><i class="fa fa-undo"></i> Reset</button>
 
-  <?php form_close(); ?>
+  </form>
 
 </div>
 </div>
