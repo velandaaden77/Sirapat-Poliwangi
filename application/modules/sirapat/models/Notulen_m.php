@@ -14,10 +14,33 @@ class Notulen_m extends CI_Model {
 
     public function getagenda(){
 
-    $this->db->where(['id_user' => $this->session->userdata('iduser')]);
-    $this->db->where(['status_agenda' => 1]);
-    $this->db->order_by('id', 'DESC');
-    return $this->db->get('agenda_rapat');
+   
+        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup');
+        $this->db->from('agenda_rapat');
+        $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
+        // $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
+        $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $this->db->where(['agenda_rapat.status_agenda' => 1] );
+        $this->db->order_by('agenda_rapat.id', 'DESC');
+        
+        $query = $this->db->get();
+        return $query;
+
+    }
+    public function filterdata($date,$g){
+
+    
+        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup');
+        $this->db->from('agenda_rapat');
+        $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
+        // $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
+        $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $this->db->where(['agenda_rapat.status_agenda' => 1] );
+        $this->db->order_by('agenda_rapat.id', 'DESC');
+        $this->db->like('agenda_rapat.date_created', $date);
+        $this->db->like('agenda_rapat.id_tipegrup', $g);
+        $query = $this->db->get();
+        return $query;
 
     }
 

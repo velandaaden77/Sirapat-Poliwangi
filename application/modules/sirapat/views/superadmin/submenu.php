@@ -14,7 +14,7 @@
             <?= form_error('menu', '<div class="alert alert-danger" role="alert">Password salah!', '</div>') ?>
             <?= $this->session->flashdata('message'); ?>
 
-              <a href="" class="btn btn-primary mb-3 mt-3" data-toggle="modal" data-target="#addsubmenu">Add Sub Menu</a>
+              <a href="" class="btn btn-primary mb-3 mt-3" data-toggle="modal" data-target="#addsubmenu">Tambah Sub Menu</a>
               <div class="col-lg-12">
               
       <table class="table table-hover">
@@ -44,10 +44,65 @@
           <td><?= $sm['is_active']; ?></td>
           <td>
           
-          <a href=""  class="badge badge-success">Edit</a> 
-          <a href=""  class="badge badge-danger">Delete</a> 
+          <a href="" class="badge badge-success" data-toggle="modal" data-target="#edit<?= $i ?>" class="badge badge-info">Edit</a> 
+          <a href="<?= base_url('sirapat/superadmin/menu/del/'.$sm['id']) ?>"  class="badge badge-danger tombol-hapus">Hapus</a>
           
           </td>
+
+
+<!-- Modal -->
+<div class="modal fade" id="edit<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit">Add Menu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form action="<?= base_url('sirapat/superadmin/menu/edit'); ?>" method="post">
+      <div class="modal-body">
+            <div class="form-group">
+            <input type="hidden" name="id" value="<?= $sm['id']; ?>">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="<?= $sm['title'] ?>">
+            </div>
+            
+            <div class="form-group">
+            <select name="menu_id" id="menu_id" class="form-control">
+            <option value="<?= $sm['menu_id']; ?>"><?= $sm['menu']; ?></option>
+            <?php foreach ($menu as $m) : ?>
+            <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+            <?php endforeach; ?>
+            </select>
+            </div>
+
+            <div class="form-group">
+            <input type="text" class="form-control" id="url" name="url" placeholder="Url" value="<?= $sm['url']; ?>">
+            </div>
+
+            <div class="form-group">
+            <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" value="<?= $sm['icon']; ?>">
+            </div>
+
+            <div class="form-group">
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="1" id="is_active" name="is_active" checked>
+            <label class="form-check-label" for="is_active">
+            Active ?
+            </label>
+            </div>
+            </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
         </tr>
 
       <?php $i++; ?>
@@ -75,7 +130,7 @@
         </button>
       </div>
 
-      <form acttion="<?= base_url('menu/submenu'); ?>" method="post">
+      <form action="<?= base_url('menu/submenu'); ?>" method="post">
       <div class="modal-body">
             <div class="form-group">
             <input type="text" class="form-control" id="title" name="title" placeholder="Title">

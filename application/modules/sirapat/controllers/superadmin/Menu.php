@@ -80,4 +80,52 @@ class Menu extends MY_Controller {
         }
 
     }
+
+    public function edit(){
+
+
+        $this->form_validation->set_rules('title', 'title', 'required');
+        $this->form_validation->set_rules('menu_id', 'Menu', 'required');
+        $this->form_validation->set_rules('url', 'URL', 'required');
+        $this->form_validation->set_rules('icon', 'icon', 'required');
+        
+
+        if ($this->form_validation->run() == false){
+
+            
+            $this->template->load('layout/template', 'superadmin/submenu', $data);
+
+        }else{
+
+            $data =[
+
+               
+                'title' => $this->input->post('title'),
+                'menu_id' => $this->input->post('menu_id'),
+                'url' => $this->input->post('url'),
+                'icon' => $this->input->post('icon'),
+                'is_active' => $this->input->post('is_active')
+            ];
+
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('user_sub_menu', $data);
+            $this->session->set_flashdata('message', 
+            '<div class="alert alert-success" role="alert">Sub Menu Telah Di Edit</div>');
+    
+            redirect('sirapat/superadmin/menu/submenu');
+
+
+        }
+
+    }
+
+    public function del($id){
+
+        $where = ['id' => $id];
+
+        $this->db->delete('user_sub_menu', $where);
+        $this->session->set_flashdata('message', 'Sub Menu telah dihapus!');
+        redirect('sirapat/superadmin/menu/submenu');
+    }
+
 }

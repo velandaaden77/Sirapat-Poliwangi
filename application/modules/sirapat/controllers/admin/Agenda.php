@@ -259,5 +259,19 @@ class Agenda extends MY_Controller {
 
 	}
 
+	public function filteragenda(){
+
+		$data['title'] = 'Agenda Rapat';
+       
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+ 
+		$data['statusagenda'] = $this->agenda_m->getstatusagenda()->result();
+		// var_dump($this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')])->result()); die;
+		$data['detailagenda'] = $this->agenda_m->detailagenda()->result();
+
+		$this->template->load('layout/template','daftar_agenda/statusagenda', $data);
+		
+	}
+
 	
 }

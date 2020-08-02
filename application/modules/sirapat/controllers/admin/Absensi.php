@@ -72,4 +72,14 @@ class Absensi extends MY_Controller {
 
         $this->pdf_generator->generate($html, 'Absensi','A4', 'potrait');
     }
+
+    public function filterabsen(){
+
+        
+        $data['title'] = 'Absensi Karyawan';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['getagenda'] = $this->absensi_m->getagenda()->result();
+        $this->template->load('layout/template','absensi/index', $data);
+
+    }
 }

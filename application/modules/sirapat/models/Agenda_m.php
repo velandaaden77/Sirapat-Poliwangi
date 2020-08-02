@@ -38,6 +38,23 @@ class Agenda_m extends CI_Model {
         $this->db->where(['validasi_agenda.status' => 1] );
         // $this->db->where(['agenda_rapat.status_agenda' => 1] );
         $this->db->order_by('validasi_agenda.status', 'ASC');
+       
+        $query = $this->db->get();
+        return $query;
+
+    }
+    public function filter($date,$g){
+
+        $this->db->select ('agenda_rapat.*, grup_tipe.nama_grup');
+        $this->db->from('agenda_rapat');
+        $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
+        $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
+        $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $this->db->where(['validasi_agenda.status' => 1] );
+        // $this->db->where(['agenda_rapat.status_agenda' => 1] );
+        $this->db->order_by('validasi_agenda.status', 'ASC');
+        $this->db->like('agenda_rapat.date_created', $date);
+        $this->db->like('agenda_rapat.id_tipegrup', $g);
         $query = $this->db->get();
         return $query;
 

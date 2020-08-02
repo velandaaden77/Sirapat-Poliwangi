@@ -2,8 +2,7 @@
 
   
     <!-- Page content -->
-    <div class="header pb-6" style="background-image: url(<?= base_url('assets/dashboard/img/footer.jpg')?>); background-repeat: no-repeat;
-  background-position: center center; background-size: cover;">
+    <div class="container-fluid mt-5">
       <div class="row">
         <div class="col-xl-12">
           <div class="card">
@@ -13,7 +12,7 @@
             <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>') ?>
             <?= $this->session->flashdata('message'); ?>
 
-              <a href="" class="btn btn-primary mb-3 mt-3" data-toggle="modal" data-target="#addrole">Add Role</a>
+              <a href="" class="btn btn-primary mb-3 mt-3" data-toggle="modal" data-target="#addrole">Tambah Role</a>
               <div class="col-lg-12">
               
       <table class="table table-hover">

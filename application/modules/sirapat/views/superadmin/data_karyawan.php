@@ -28,13 +28,32 @@
                 </div>
             <?php endif ?>
               
-            <?= form_error('karyawan', '<div class="alert alert-danger" role="alert">', '</div>') ?>
 
             <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
             <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>  
 
               <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addkaryawan">Tambah Karyawan</a>
               <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addunit">Tambah Unit</a>
+
+              <div class="float-right">
+              <form action="<?= base_url('sirapat/superadmin/data_karyawan/filterdata')?>" method="POST">
+              <div class="row">
+              <div class="form-group">
+                        <select name="unit" class="form-control form-control-sm mb-5 mt-3">
+                       <option>Pilih Unit</option>
+                        <?php foreach ($unit as $p) : ?>
+                        <option value="<?= $p['id']; ?>"><?= $p['unit']; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                        <?= form_error('unit', '<small class="text-danger pl-1">', '</small>'); ?>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-sm mb-5 mt-3"> Tampilkan </button>
+              </div>
+              </div>
+              </form>
+              </div>
+              
               <div class="col-lg-12">
               
               <div class="table-responsive">
@@ -56,7 +75,10 @@
       <tbody>
 
       <?php $i=1; ?>
-      <?php foreach ($karyawan as $dk) : ?>
+      <?php $k = $this->input->post('unit');
+      $d = $this->superadmin_m->filterdata($k)->result();
+      ?>
+      <?php foreach ($d as $dk) : ?>
       
 
         <tr>
@@ -71,8 +93,7 @@
           
           <a href="<?= base_url('sirapat/superadmin/detalkaryawan') ?>" 
           data-toggle="modal" data-target="#detail<?= $i ?>" class="badge badge-info">Detail</a> 
-          <a href="" 
-          data-toggle="modal" data-target="#edit<?= $i ?>" class="badge badge-success">Edit</a> 
+          <a href="<?= base_url('sirapat/superadmin/data_karyawan/edit/'.$dk->idkaryawan) ?>" class="badge badge-success">Edit</a> 
           <a href="<?= base_url('sirapat/superadmin/data_karyawan/del/'.$dk->idkaryawan) ?>"  class="badge badge-danger tombol-hapus">Hapus</a> 
           
           </td>
@@ -198,7 +219,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form acttion="<?= base_url('superadmin/ffeefdata_karyawan/edit') ?>" method="post">
+      <form action="<?= base_url('sirapat/superadmin/data_karyawan/edit') ?>" method="post">
       <div class="container-fluid">
      
             <div class="row">
@@ -291,11 +312,11 @@
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Edit</button>
       </div>
-      </form>
+      
     </div>
   </div>
 </div>
-
+</form>
       <?php $i++; ?>
       <?php endforeach; ?>
         

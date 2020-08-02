@@ -11,6 +11,26 @@ class Superadmin_m extends CI_Model {
         return $query;
 
     }
+    public function filterdata($k){
+
+        $this->db->select ('*');
+        $this->db->from('karyawan');
+        $this->db->join('karyawan_unit', 'karyawan.unit_id = karyawan_unit.id ');
+        $this->db->like(['karyawan.unit_id' => $k] );
+        $query = $this->db->get();
+        return $query;
+
+    }
+    public function editkaryawan(){
+
+        $this->db->select ('*');
+        $this->db->from('karyawan');
+        $this->db->join('karyawan_unit', 'karyawan.unit_id = karyawan_unit.id ');
+        $this->db->where(['karyawan.idkaryawan' => $this->uri->segment(5)] );
+        $query = $this->db->get();
+        return $query;
+
+    }
 
     public function joingrup(){
 

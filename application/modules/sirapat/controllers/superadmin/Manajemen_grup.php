@@ -121,4 +121,25 @@ class Manajemen_grup extends MY_Controller {
         redirect('sirapat/superadmin/manajemen_grup');
     }
 
+    public function editgrup(){
+        $grup = $this->input->post('grup');
+        $id =$this->input->post('id');
+
+        $data= ['nama_grup'=> $grup];
+        $g = $this->db->get_where('grup_tipe', ['nama_grup' => $grup])->result();
+
+        if(empty($g)){
+            $this->db->where('id', $id);
+            $this->db->update('grup_tipe', $data);
+            $this->session->set_flashdata('message', 'Grup Telah Di edit');
+            redirect('sirapat/superadmin/manajemen_grup/detailgrup/'.$id);
+        }else{
+
+        }
+        $this->session->set_flashdata('message1', 'Grup telah ada!');
+        redirect('sirapat/superadmin/manajemen_grup/detailgrup/'.$id);
+    }
 }
+
+
+    

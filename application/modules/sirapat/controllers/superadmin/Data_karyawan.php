@@ -125,7 +125,6 @@ class Data_karyawan extends MY_Controller {
 
             }else {
                 
-            $this->db->insert('karyawan_unit', $data);
             $this->session->set_flashdata('message1', 'Unit Sudah Ada!');
             redirect('sirapat/superadmin/data_karyawan');
 
@@ -135,27 +134,30 @@ class Data_karyawan extends MY_Controller {
     }
 
     public function edit(){
+        $data['title'] = 'Edit Karyawan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->template->load('layout/template', 'superadmin/edit_karyawan', $data);
 
+    }
+    public function update(){
+
+       
         $this->form_validation->set_rules('nik_nip', 'Nik/Nip', 'required');
         $this->form_validation->set_rules('unit', 'Unit', 'required');
         $this->form_validation->set_rules('nama_karyawan', 'Nama Karyawan', 'required');
         $this->form_validation->set_rules('ttl', 'TTL', 'required');
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|validemail');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('no_hp', 'No Hp', 'required|trim');
         // $this->form_validation->set_rules('foto', 'Foto', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-
+        $id = $this->input->post('idkaryawan');
         if ($this->form_validation->run() == false){
 
-            $data['title'] = 'Data Karyawan';
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $data['karyawan'] = $this->db->get('karyawan')->result_array();
-
-            $this->session->set_flashdata('message', 
-            '<div class="alert alert-danger" role="alert">Data Belum Terisi Lengkap</div>');
-    
-            $this->template->load('layout/template', 'superadmin/data_karyawan', $data);
+        $data['title'] = 'Edit Karyawan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->template->load('layout/template', 'superadmin/edit_karyawan', $data);
+            // redirect('sirapat/superadmin/data_karyawan/edit/'.$id);
 
         }else{
 
@@ -184,17 +186,29 @@ class Data_karyawan extends MY_Controller {
                 'date_updated' => date('Y-m-d h:i:s'),
             ];
 
-            $where = ['idkaryawan' => $id ];
-            var_dump($where); die;
-            $this->db->where($where);
+            // $where = ['idkaryawan' => $id ];
+            
+            $this->db->where('idkaryawan', $id);
             $this->db->update('karyawan', $data);
 
-            $this->session->set_flashdata('message', 
-            'Karyawan Telah Diedit');
+            $this->session->set_flashdata('message', 'Karyawan Telah Diedit');
     
             redirect('sirapat/superadmin/data_karyawan');
 
         }
+
+    }
+
+    public function filterdata(){
+
+        $data['title'] = 'Data Karyawan';
+    
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['karyawan'] = $this->superadmin_m->getkaryawan()->result();
+        $data['unit'] = $this->db->get('karyawan_unit')->result_array();
+
+        $this->template->load('layout/template', 'superadmin/data_karyawan', $data);
 
     }
 }

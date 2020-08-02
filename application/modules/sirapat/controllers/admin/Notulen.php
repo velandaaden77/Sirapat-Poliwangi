@@ -542,4 +542,16 @@ class Notulen extends MY_Controller {
 
         }
 
+        public function filternotulen(){
+
+            $data['title'] = 'Notulen';
+        
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            
+            $data['data_agenda']= $this->notulen_m->getagenda()->result();
+    
+            $this->template->load('layout/template', 'notulen/index', $data);
+
+        }
+
 }

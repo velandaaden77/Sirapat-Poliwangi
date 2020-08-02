@@ -30,12 +30,17 @@
                 <?= validation_errors(); ?>
                 </div>
             <?php endif ?>
+            <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
+            <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div> 
               
             <?= form_error('karyawan', '<div class="alert alert-danger" role="alert">', '</div>') ?>
             <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>     
 
               <button type="button" disabled class="btn btn-secondary mb-5 mt-3">Jumlah Anggota : <?= $jmlanggota ?></button>
               <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a>
+              
+              <a href="" class="btn btn-danger mb-5 mt-3" data-toggle="modal" data-target="#editgrup">Edit Grup</a>
+             
               <div class="col-lg-12">
               
               <div class="table-responsive">
@@ -126,7 +131,47 @@
 
       <div class="modal-footer">
       <div class="text-center">
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary">Tambah</button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editgrup" tabindex="-1" role="dialog" aria-labelledby="editgrup" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editgrup">Edit Grup</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+     
+      <div class="modal-body">
+
+      <form action="<?= base_url('sirapat/superadmin/manajemen_grup/editgrup'); ?>" method="post">
+        
+        <?php $g = $this->db->get_where('grup_tipe', ['id' => $this->uri->segment(5)])->row()?>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Nama Grup</label>
+              <input type="hidden" name="id" value="<?= $this->uri->segment(5) ?>">
+              <input type="text" class="form-control" 
+              id="Nama Grup" placeholder="Nama Grup" name="grup" value="<?= $g->nama_grup; ?>">
+              <span class="help-block"><?= form_error('grup', '<small class="text-danger pl-1">', '</small>'); ?></span>
+            </div>
+            </div>
+
+      </div>
+
+      <div class="modal-footer">
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Edit</button>
         </div>
         </div>
       </form>
