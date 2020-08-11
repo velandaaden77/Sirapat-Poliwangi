@@ -119,9 +119,11 @@
   <div class="col-lg-4">
   <div class="form-group">
     <label for="formGroupExampleInput2">Isi Lampiran</label>
+    
     <div class="custom-file">
+    <?= $da->lampiran_file ?>
     <input type="file" class="custom-file-input" id="lampiran" name="lampiran">
-    <label class="custom-file-label" for="lampiran">Choose file</label>
+    
     </div>
     <?= form_error('lampiran', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>

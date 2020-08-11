@@ -108,7 +108,7 @@
         <label for="formGroupExampleInput2">karyawan</label>
         <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->uri->segment(5) ?>">
 
-        <select name="karyawan" id="karyawan" class="form-control">
+        <select name="karyawan" id="kar" class="form-control">
                     <option value="">Pilih Karyawan</option>
                     <?php foreach ($karyawan as $k) : ?>
                     <?php
@@ -126,6 +126,8 @@
                     </select>
                     <?= form_error('karyawan', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>
+
+        
 
       </div>
 
@@ -181,3 +183,8 @@
 
       
       
+<script type="text/javascript">
+      $(document).ready(function() { 
+      $("#kar").select2();
+      }
+      </script>

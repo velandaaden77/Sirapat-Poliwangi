@@ -7,7 +7,8 @@ class Undangan extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		is_logged_in();
+        is_logged_in();
+        $this->load->library('Telegram/Telegram_lib');
 		
     }
 
@@ -120,4 +121,50 @@ class Undangan extends MY_Controller {
         
        
     }
+
+    public function kirim_laporan_rekap(){
+
+		$bulanini = date('M');
+
+		$lampiran = $_FILES['lampiran']['name'];
+       		// $extension  = ".".pathinfo($lampiran, PATHINFO_EXTENSION);
+
+		if($lampiran):
+			$config['allowed_types'] = 'docx|xls|pdf';
+			$config['max_size'] = '5000';
+			$config['upload_path'] = './assets/dashboard/file/';
+				// $config['file_name'] = 'Laporan_Rekap_Presensi '.$bulanini.$extension;
+			$this->load->library('upload', $config);
+
+			if($this->upload->do_upload('lampiran')):
+
+
+					// $new_lampiran = $this->upload->data($config['file_name']);
+					// $this->db->set('lampiran', $new_lampiran);
+
+				try {
+					// $this->telegram_lib->senddoc($nama_dokumen);
+					$this->telegram_lib->senddoc($config['upload_path'].$lampiran, 'Laporan Rekap Presensi Bulan '.$bulanini);
+
+
+					if ($this->telegram_lib->senddoc($config['upload_path'].$config['file_name'], 'no caption')):
+						$this->session->set_flashdata('message', 
+							'<div class="alert alert-success" role="alert">Laporan rekap telah dikirim</div>');
+						// $this->telegram_lib->sendmsg('Alhamdulillah Kekirim');
+					endif;
+
+
+					redirect('sirapat/admin/undangan/index');
+
+				} catch (Exception $e) {
+					$this->session->set_flashdata('message', 
+						'<div class="alert alert-danger" role="alert">Laporan rekap gagal dikirim</div>');
+				}
+
+			else: 
+					//jika tidak upload maka error
+				echo $this->upload->display_errors();
+			endif;
+		endif;
+	}
 }

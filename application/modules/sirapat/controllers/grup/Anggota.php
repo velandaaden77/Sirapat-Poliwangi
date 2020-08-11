@@ -20,7 +20,7 @@ class Anggota extends MY_Controller {
         $data['anggota'] = $this->grup_m->joingrup()->result();
         $data['karyawan'] = $this->grup_m->getkaryawan()->result_array();
 		$data['grup'] = $this->db->get_where('grup_tipe', ['nama_grup' => $this->session->userdata('nama_grup')])->row_array();
-
+// var_dump($data['anggota']); die;
         $this->template->load('layout/grup/template', 'grup/anggota', $data);
 
     }

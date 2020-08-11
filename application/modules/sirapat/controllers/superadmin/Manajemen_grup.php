@@ -102,6 +102,7 @@ class Manajemen_grup extends MY_Controller {
         $data = [
             'id_tipe' => $gruptipe,
             'id_karyawan' => $karyawan,
+            'id_jabatan' => 5,
             'date_created' => time(),
         ];
 

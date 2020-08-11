@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','form_validation','template', 'email');
+$autoload['libraries'] = array('database','session','form_validation','template', 'email', 'telegram/telegram_lib');
 
 /*
 | -------------------------------------------------------------------

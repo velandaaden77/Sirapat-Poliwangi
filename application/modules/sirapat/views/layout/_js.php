@@ -24,7 +24,7 @@
       <script type="text/javascript">
       $(document).ready(function() { 
       $("#pimpinan").select2();
-      $("#karyawan").select2();
+      $("#karyawann").select2();
       $("#unit").select2();
       $("#gruprapat").select2();
       $('#agenda').DataTable();
@@ -32,6 +32,7 @@
       $('#datatable').DataTable();
       $('#notulen').DataTable();
       $('#absensi').DataTable();
+      $('#kar').select2();
       });
       </script>
   

@@ -59,7 +59,11 @@
           <th scope="row"><?= $i ?></th>
           <td><?= $g->nama_grup ?></td>
           <td><?= $g->nama_karyawan ?></td>
+          <?php if($g->id_jabatan = 0){ ?>
+          <td>-</td>
+          <?php }else{ ?>
           <td><?= $g->jabatan ?></td>
+          <?php } ?>
           <td>
           
           <a href="" 

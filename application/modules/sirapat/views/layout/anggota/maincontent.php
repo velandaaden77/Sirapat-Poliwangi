@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ">
       <a class="nav-item nav-link text-white" href="<?= base_url('sirapat/user/dashboard') ?>">Dashboard</a>
-      <a class="nav-item nav-link text-white" href="<?= base_url('sirapat/user/ketua/daftar_rapat/'.$this->uri->segment(5)) ?>">DaftarRapat</a>
+      <a class="nav-item nav-link text-white" href="<?= base_url('sirapat/user/anggota/daftarrapat/'.$this->uri->segment(5)) ?>">DaftarRapat</a>
     </div>
     </div>
       <div class="container-fluid">

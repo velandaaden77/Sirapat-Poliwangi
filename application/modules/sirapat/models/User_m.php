@@ -92,7 +92,7 @@ class User_m extends CI_Model {
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
         $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
         $this->db->join('karyawan', 'karyawan.idkaryawan = validasi_agenda.id_pimpinan ');
-        $this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
+        $this->db->where(['agenda_rapat.id' => $this->uri->segment(6)]);
         $query = $this->db->get();
         return $query;
         

@@ -82,8 +82,9 @@ class Agenda extends MY_Controller {
 			$lampiran1 = $this->input->post('lampiran1');
 			$lampiran = $_FILES['lampiran']['name'];
 
+			$ag = $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row_array();
 			if($lampiran){
-				$config['allowed_types'] = 'doc|xls|pdf';
+				$config['allowed_types'] = 'docx|xls|pdf';
 				$config['max_size'] = '2048';
 				$config['upload_path'] = 'assets/dashboard/file/';
 
@@ -92,13 +93,13 @@ class Agenda extends MY_Controller {
 				if($this->upload->do_upload('lampiran')){
 
 					//Penghapusan file yang sama
-					$old_lampiran = $data['user']['agenda'];
+					$old_lampiran = $ag['lampiran_file'];
 					if($old_lampiran != 'default.doc'){
 						unlink(FCPATH . 'assets/dashboard/file/' . $old_lampiran);
 					}
 					//insert data file ke database
 					$new_lampiran = $this->upload->data('file_name');
-					$this->db->set('lampiran', $new_lampiran);
+					$this->db->set('lampiran_file', $new_lampiran);
 				}else {
 					//jika tidak upload maka error
 					echo $this->upload->display_errors();
@@ -119,7 +120,7 @@ class Agenda extends MY_Controller {
 				'hal' => $hal,
 				
 				'lampiran' => $lampiran1,
-				'lampiran_file' => $lampiran,
+				// 'lampiran_file' => $lampiran,
 				
 				'id_user' => $this->session->userdata('iduser'),
 				'date_update' => $date_update,

@@ -95,6 +95,36 @@
                 </label>    -->
           
           </div>
+          <?= $this->session->flashdata('message'); ?>
+          <div class="card">
+          <?= form_open_multipart('sirapat/admin/undangan/kirim_laporan_rekap'); ?>
+
+<div class="row">
+  <div class="col-8">
+  <img src="<?= base_url('assets/dashboard/img/message.jpg')?>" style="width: 90%;">
+ </div>
+ <div class="col-lg-4">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Pilih Lampiran</label>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="lampiran" name="lampiran">
+      <label class="custom-file-label" for="lampiran">Choose file</label>
+    </div>
+    <?= form_error('lampiran', '<small class="text-danger pl-1">', '</small>'); ?>
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Unggah</button>
+<!-- <button type="reset" class="btn btn-danger"><i class="fa fa-undo"></i>Reset</button> -->
+
+<?php form_close(); ?>
+          </div>
 
         </div>
       </div>

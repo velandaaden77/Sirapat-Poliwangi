@@ -117,7 +117,7 @@
 
           <td>
           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailmodal<?= $i ?>"><i class="fa fa-search-plus"></i> Detail</button>
-          <a href="<?= base_url('sirapat/user/laporan/index/'). $data->id?>" class="btn btn-danger btn-sm"><i class="fa fa-file"></i> Laporan</a>
+          <a href="<?= base_url('sirapat/user/laporan/index/').$this->uri->segment(5).'/'.$data->id?>" class="btn btn-danger btn-sm"><i class="fa fa-file"></i> Laporan</a>
           </td>
 
 
