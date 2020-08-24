@@ -31,7 +31,7 @@ class M_unggah_agenda extends CI_Model {
 		$this->db->select ('agenda_rapat.*, grup_tipe.nama_grup');
         $this->db->from('agenda_rapat');
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
-		$this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+		$this->db->where(['agenda_rapat.id_tipegrup' => $this->session->userdata('id_tipe')] );
 		$this->db->where(['agenda_rapat.id' => $this->uri->segment(5)]);
 		$query = $this->db->get();
 		return $query;

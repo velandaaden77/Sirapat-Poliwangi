@@ -19,7 +19,7 @@ class Notulen_m extends CI_Model {
         $this->db->from('agenda_rapat');
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
         // $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
-        $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $this->db->where(['agenda_rapat.id_tipegrup' => $this->session->userdata('id_tipe')] );
         $this->db->where(['agenda_rapat.status_agenda' => 1] );
         $this->db->order_by('agenda_rapat.id', 'DESC');
         
@@ -34,7 +34,7 @@ class Notulen_m extends CI_Model {
         $this->db->from('agenda_rapat');
         $this->db->join('grup_tipe', 'agenda_rapat.id_tipegrup = grup_tipe.id ');
         // $this->db->join('validasi_agenda', 'agenda_rapat.id = validasi_agenda.id_agenda ');
-        $this->db->where(['agenda_rapat.id_user' => $this->session->userdata('iduser')] );
+        $this->db->where(['agenda_rapat.id_tipegrup' => $this->session->userdata('id_tipe')] );
         $this->db->where(['agenda_rapat.status_agenda' => 1] );
         $this->db->order_by('agenda_rapat.id', 'DESC');
         $this->db->like('agenda_rapat.date_created', $date);

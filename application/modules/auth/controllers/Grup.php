@@ -54,6 +54,7 @@ class Grup extends MX_Controller {
 
 				$session_data['idgrup'] = $ck->id;
                 $session_data['nama_grup'] = $ck->nama_grup;
+                $session_data['username'] = $ck->username;
                 $session_data['role_id_grup'] = $ck->role_id;
                 
 				$this->session->set_userdata($session_data);
@@ -87,6 +88,7 @@ class Grup extends MX_Controller {
 
 		$this->session->unset_userdata('idgrup');
 		$this->session->unset_userdata('nama_grup');
+		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('role_id_grup');
         
         $this->session->set_flashdata('message', 

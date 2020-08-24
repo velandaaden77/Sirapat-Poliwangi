@@ -16,7 +16,7 @@ class Agenda extends MY_Controller {
 
         $data['title'] = 'Agenda Rapat';
        
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
  
 		$data['getagenda'] = $this->agenda_m->getagenda()->result();
 		// var_dump($this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')])->result()); die;
@@ -30,7 +30,7 @@ class Agenda extends MY_Controller {
 
         $data['title'] = 'Agenda Rapat';
        
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
  
 		$data['statusagenda'] = $this->agenda_m->getstatusagenda()->result();
 		// var_dump($this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')])->result()); die;
@@ -51,7 +51,7 @@ class Agenda extends MY_Controller {
 			'daftar_agenda' =>  $this->m_unggah_agenda->edit_data()->result(),
 		];
 
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 
 		$this->template->load('layout/template', 'edit_agenda/index', $data);
 	}
@@ -63,7 +63,7 @@ class Agenda extends MY_Controller {
 		$this->form_validation->set_rules('tempat', 'Tempat', 'required');
 		$this->form_validation->set_rules('jmmulai', 'Jam Mulai', 'required');
 		$this->form_validation->set_rules('jmselesai', 'Jam Selesai', 'required');
-		$this->form_validation->set_rules('gruprapat', 'Grup Rapat', 'required');
+		// $this->form_validation->set_rules('gruprapat', 'Grup Rapat', 'required');
 		$this->form_validation->set_rules('peserta_rapat', 'Peserta Rapat', 'required');
 		$this->form_validation->set_rules('nomor_agenda', 'Nomor Agenda', 'required');
 		$this->form_validation->set_rules('hal', 'Hal', 'required');
@@ -114,7 +114,7 @@ class Agenda extends MY_Controller {
 				'tempat' => $tempat,
 				'jam_mulai' => $jammulai,
 				'jam_selesai' => $jamselesai,
-				'id_tipegrup' => $gruprapat,
+				// 'id_tipegrup' => $gruprapat,
 				'peserta_rapat' => $peserta_rapat,
 				'nomor_agenda' => $nomor_agenda,
 				'hal' => $hal,
@@ -122,7 +122,7 @@ class Agenda extends MY_Controller {
 				'lampiran' => $lampiran1,
 				// 'lampiran_file' => $lampiran,
 				
-				'id_user' => $this->session->userdata('iduser'),
+				// 'id_user' => $this->session->userdata('id_karyawan'),
 				'date_update' => $date_update,
 			];
 
@@ -181,7 +181,7 @@ class Agenda extends MY_Controller {
  
 		$data['title'] = 'Validasi';
 		
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 
 		$data['daftar'] = $this->agenda_m->daftar_validasi()->result();
 
@@ -197,7 +197,7 @@ class Agenda extends MY_Controller {
 
 		$id_agenda = $this->input->post('id_agenda');
 		$id_pimpinan = $this->input->post('pimpinan');
-		$id_user = $this->session->userdata('iduser');
+		$id_user = $this->session->userdata('id_karyawan');
 		$id_grup = $this->input->post('grup');
 
 		$data = [
@@ -264,7 +264,7 @@ class Agenda extends MY_Controller {
 
 		$data['title'] = 'Agenda Rapat';
        
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
  
 		$data['statusagenda'] = $this->agenda_m->getstatusagenda()->result();
 		// var_dump($this->db->get_where('agenda_rapat', ['id_user' => $this->session->userdata('iduser')])->result()); die;

@@ -21,6 +21,46 @@
     <div class="container-fluid mt--5">
       <div class="row">
         <div class="col-xl-12">
+
+        <div class="card ">
+        <div class="card-body">
+        <form action="<?= base_url('sirapat/superadmin/manajemen_grup/addanggota'); ?>" method="post">
+        <div class="row ">
+        <div class="col-lg-6">
+        <div class="form-group">
+        <!-- <label for="formGroupExampleInput2">karyawan</label> -->
+        <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->uri->segment(5) ?>">
+
+        <select name="karyawan" id="gruprapat" class="form-control">
+                    <option value="">Pilih Karyawan</option>
+                    <?php foreach ($karyawan as $k) : ?>
+                    <?php
+
+                      $gr_kar = $this->db->get_where('grup_rapat',['id_karyawan' => $k['idkaryawan'], 'id_tipe' => $this->uri->segment(5)])->row();
+                     
+                      if(empty($gr_kar)){
+                        echo $this->session->userdata('idgrup');
+                        ?>  
+                      
+                    <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
+                      <?php }else{} ?>
+                      
+                    <?php endforeach; ?>
+                    </select>
+                    <?= form_error('karyawan', '<small class="text-danger pl-1">', '</small>'); ?>
+        </div>
+        </div>
+        
+      <div class="col-lg-6">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tambah Anggota</button>
+        <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#editgrup"><i class="fas fa-edit"></i> Edit Grup</a>
+        </div>
+        </div>
+      
+      </form>
+        </div>
+        </div>
+
           <div class="card">
          
             <div class="card-header bg-transparent">
@@ -32,14 +72,15 @@
             <?php endif ?>
             <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>  
             <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div> 
+            <div class="swal2" data-swal2="<?= $this->session->flashdata('message2'); ?>"></div> 
               
             <?= form_error('karyawan', '<div class="alert alert-danger" role="alert">', '</div>') ?>
             <div class="swal" data-swal="<?= $this->session->flashdata('message'); ?>"></div>     
 
               <button type="button" disabled class="btn btn-secondary mb-5 mt-3">Jumlah Anggota : <?= $jmlanggota ?></button>
-              <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a>
+              <!-- <a href="" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a> -->
               
-              <a href="" class="btn btn-danger mb-5 mt-3" data-toggle="modal" data-target="#editgrup">Edit Grup</a>
+             
              
               <div class="col-lg-12">
               
@@ -49,7 +90,7 @@
         <tr>
           <th scope="col">NO</th>
 
-          <th scope="col">NAMA GRUP</th>
+          <!-- <th scope="col">NAMA GRUP</th> -->
           <th scope="col">NAMA ANGGOTA</th>
           <th scope="col">UNIT</th>
           <th scope="col">AKSI</th>
@@ -63,7 +104,7 @@
 
         <tr>
           <th scope="row"><?= $i ?></th>
-          <td><?= $g->nama_grup ?></td>
+          <!-- <td><?= $g->nama_grup ?></td> -->
           <td><?= $g->nama_karyawan ?></td>
           <td><?= $g->unit ?></td>
           <td>
@@ -108,7 +149,7 @@
         <label for="formGroupExampleInput2">karyawan</label>
         <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->uri->segment(5) ?>">
 
-        <select name="karyawan" id="kar" class="form-control">
+        <select name="karyawan" id="gruprapat" class="form-control">
                     <option value="">Pilih Karyawan</option>
                     <?php foreach ($karyawan as $k) : ?>
                     <?php
@@ -167,6 +208,22 @@
               id="Nama Grup" placeholder="Nama Grup" name="grup" value="<?= $g->nama_grup; ?>">
               <span class="help-block"><?= form_error('grup', '<small class="text-danger pl-1">', '</small>'); ?></span>
             </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Username</label>
+              <input type="text" class="form-control" 
+              id="username" placeholder="Username grup" name="username" value="<?= $g->username; ?>">
+              <span class="help-block"><?= form_error('username', '<small class="text-danger pl-1">', '</small>'); ?></span>
+            </div>
+            <!-- </div> -->
+            
+            <div class="form-group">
+              <label for="formGroupExampleInput2">ID Grup Telegram</label>
+             
+              <input type="text" class="form-control" 
+              id="Idgrup" placeholder="Id Grup Telegram" disabled name="idgrup" value="<?= $g->id_grup_tele; ?>">
+              <span class="help-block"><?= form_error('idgrup', '<small class="text-danger pl-1">', '</small>'); ?></span>
+            </div>
             </div>
 
       </div>
@@ -183,8 +240,3 @@
 
       
       
-<script type="text/javascript">
-      $(document).ready(function() { 
-      $("#kar").select2();
-      }
-      </script>

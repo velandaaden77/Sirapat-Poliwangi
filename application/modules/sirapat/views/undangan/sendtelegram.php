@@ -30,7 +30,7 @@
 
             <div class="col-lg-6 pt-5">
 
-            <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAE9wgUy9lQjXJfiyUsSAcGob4yFk8in1i8/sendDocument" enctype="multipart/form-data" id="sendtelegram" target="_blank">
+            <form role="form" method="post" action="https://api.telegram.org/bot1283571393:AAFUK0H1SvcIyD3YvYTt8b6CA1DtMQGZkzs/sendDocument" enctype="multipart/form-data" id="sendtelegram" target="_blank">
 
               <?php
                 $this->load->library('form_validation');

@@ -115,7 +115,7 @@
             <div class="row">
 
             <div class="col-lg-4">
-            <img src="<?= base_url('assets/dashboard/img/profile/') . $dk->foto ?>" class="img-thumbnail"><br>
+            <img src="<?= base_url('assets/dashboard/img/profile/').$dk->foto ?>" class="img-thumbnail"><br>
             </div>
             
 

@@ -5,13 +5,15 @@
 	"homepage": "https://github.com/alzen8work/ci_hmvc",
 	"license": "MIT",
 	"require": {
-		"php": ">=5.2.4"
+		"php": ">=7.2",
+		"longman/telegram-bot": "*"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
 	},
 	"require-dev": {
-		"mikey179/vfsStream": "1.1.*",
-		"phpunit/phpunit": "4.* || 5.*"
+		
+		"mikey179/vfsstream": "1.1.*",
+		"phpunit/phpunit": "^9.3"
 	}
 }

@@ -17,7 +17,7 @@ class Dashboard extends MY_Controller {
 		
 		//$sess_data = $this->m_dashboard->ambil_data($this->session->userdata['email']);
 		$data['title'] = 'Dashboard';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 		
         $this->template->load('layout/template', 'dashboard/index', $data);
 
@@ -26,7 +26,7 @@ class Dashboard extends MY_Controller {
 	public function editprofil()
     {
         $data['title'] = 'Edit Profil';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required');
 
@@ -58,12 +58,13 @@ class Dashboard extends MY_Controller {
                 }
             }
 
-            $this->db->set('nama', $name);
-            $this->db->where('email', $email);
-            $this->db->update('user');
+            $this->db->set('email', $name);
+            $this->db->where('id_karyawan', $this->session->userdata('id_karyawan'));
+            $this->db->where('id_tipe', $this->session->userdata('id_tipe'));
+            $this->db->update('grup_rapat');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil telah diupdate!</div>');
-            redirect('sirapat/admin/dashboard');
+            redirect('sirapat/admin/dashboard/editprofil');
         }
 	}
 	
@@ -71,7 +72,7 @@ class Dashboard extends MY_Controller {
     public function gantipassword()
     {
         $data['title'] = 'Ganti Password';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[3]|matches[new_password2]');
@@ -83,8 +84,9 @@ class Dashboard extends MY_Controller {
 			$current_password = $this->input->post('current_password');
 			$curpass = MD5($current_password);
             $new_password = $this->input->post('new_password1');
-			// var_dump($current_password, $new_password); die;
-            if ($curpass != $data['user']['password']) {
+            // var_dump($current_password, $new_password); die;
+            $p = $this->db->get_where('grup_rapat', ['email' => $this->session->userdata('email')])->row_array();
+            if ($curpass != $p['password']) {
                 $this->session->set_flashdata('message2', '<div class="alert alert-danger" role="alert">Password lama salah!</div>');
                 redirect('sirapat/admin/dashboard/gantipassword');
             } else {
@@ -97,7 +99,7 @@ class Dashboard extends MY_Controller {
 
                     $this->db->set('password', $password_hash);
                     $this->db->where('email', $this->session->userdata('email'));
-                    $this->db->update('user');
+                    $this->db->update('grup_rapat');
 
                     $this->session->set_flashdata('message', 'Password telah diganti!');
 					redirect('sirapat/admin/dashboard/gantipassword');

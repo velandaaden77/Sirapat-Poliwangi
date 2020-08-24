@@ -121,9 +121,15 @@
   </div>
   </div>
 
-  <div class="col-lg-4">
+  <!-- <div class="col-lg-4">
   <div class="form-group">
   <label for="formGroupExampleInput2">Grup Rapat</label>
+  <?php $grup = $this->db->get_where('grup_tipe', ['id' => $this->session->userdata('id_tipe')])->row() ?>
+  <input type="hidden"  class="form-control" 
+    id="formGroupExampleInput2" placeholder="gruprapat" name="gruprapat" value="<?= $grup->id; ?>"></input>
+  <input type="text"  class="form-control" 
+    id="formGroupExampleInput2" disabled value="<?= $grup->nama_grup; ?>"></input>
+   
 
               <select name="gruprapat" id="gruprapat" class="form-control">
               <option value="<?= set_value('gruprapat'); ?>">Select Menu</option>
@@ -135,7 +141,7 @@
               </select>
               <?= form_error('gruprapat', '<small class="text-danger pl-1">', '</small>'); ?>
   </div>
-  </div>
+  </div> -->
 
 
   </div>

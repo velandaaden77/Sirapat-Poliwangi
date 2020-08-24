@@ -23,7 +23,7 @@
       <div class="row justify-content-center">
         
           <form role="form" action="<?= base_url('sirapat/superadmin/manajemen_grup/tambahgrup') ?>" method="post">
-          <div class="card text-center" style="width: 50rem; ">
+          <div class="card" style="width: 50rem; ">
 
             <div class="card-body">
 
@@ -31,11 +31,26 @@
             <div class="swal1" data-swal1="<?= $this->session->flashdata('message1'); ?>"></div>  
 
               <div class="form-group">
-                  <label for="formGroupExampleInput2">NAMA GROUP</label>
+                  <label for="formGroupExampleInput2">NAMA GRUP</label>
                   <input type="input" class="form-control" 
                   id="grup" placeholder="Masukan nama grup" name="grup" autocomplete="off">
                   <span class="help-block">
                   <?= form_error('grup', '<small class="text-danger pl-1">', '</small>'); ?></span>
+              </div> 
+              <div class="form-group">
+                  <label for="formGroupExampleInput2">USERNAME</label>
+                  <input type="input" class="form-control" 
+                  id="username" placeholder="Masukan username" name="username" autocomplete="off">
+                  <span class="help-block">
+                  <?= form_error('username', '<small class="text-danger pl-1">', '</small>'); ?></span>
+              </div> 
+
+              <div class="form-group">
+                  <label for="formGroupExampleInput2">ID GRUP TELEGRAM</label>
+                  <input type="input" class="form-control" 
+                  id="idgrup" placeholder="Masukan id grup telegram" name="idgrup" autocomplete="off">
+                  <span class="help-block">
+                  <?= form_error('idgrup', '<small class="text-danger pl-1">', '</small>'); ?></span>
               </div> 
 
               <button type="submit" class="btn btn-primary">Tambah</button>

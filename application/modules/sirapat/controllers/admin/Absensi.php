@@ -15,7 +15,7 @@ class Absensi extends MY_Controller {
     public function index(){
 
         $data['title'] = 'Absensi Karyawan';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 		$data['getagenda'] = $this->absensi_m->getagenda()->result();
         $this->template->load('layout/template','absensi/index', $data);
 
@@ -25,7 +25,7 @@ class Absensi extends MY_Controller {
 
         $data['getanggota'] = $this->absensi_m->getanggota()->result();
         $data['title'] = 'Detail Absensi';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
         $this->template->load('layout/template', 'absensi/detail_absensi', $data);
 
     }
@@ -40,7 +40,7 @@ class Absensi extends MY_Controller {
        $data = [
            'id_agenda' => $agenda_id,
            'id_karyawan' => $karyawan_id,
-           'id_user' => $this->session->userdata('iduser'),
+           'id_user' => $this->session->userdata('id_karyawan'),
            'status' => 'hadir',
            'date_created' => date('Y-m-d h:i:s'),
        ];
@@ -77,7 +77,7 @@ class Absensi extends MY_Controller {
 
         
         $data['title'] = 'Absensi Karyawan';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
 		$data['getagenda'] = $this->absensi_m->getagenda()->result();
         $this->template->load('layout/template','absensi/index', $data);
 

@@ -62,7 +62,7 @@ class Data_karyawan extends MY_Controller {
                 'date_created' => date('Y-m-d h:i:s'),
             ];
 
-            $datakaryawan = $this->db->get_where('karyawan', ['nama_karyawan' => $nama_karyawan])->result();
+            $datakaryawan = $this->db->get_where('karyawan', ['nik_nip' => $nik_nip])->result();
             
             if(empty($datakaryawan)){ 
 
@@ -186,14 +186,22 @@ class Data_karyawan extends MY_Controller {
                 'date_updated' => date('Y-m-d h:i:s'),
             ];
 
+            $datakaryawan = $this->db->get_where('karyawan', ['nik_nip' => $nik_nip])->result();
+            
+            if(empty($datakaryawan)){ 
+                $this->db->where('idkaryawan', $id);
+                $this->db->update('karyawan', $data);
+                $this->session->set_flashdata('message', 'Karyawan Telah Diedit');
+                redirect('sirapat/superadmin/data_karyawan');
+            }else{
+
+                $this->session->set_flashdata('message1', 'Karyawan Sudah Ada!');
+                redirect('sirapat/superadmin/data_karyawan');
+
+            }
             // $where = ['idkaryawan' => $id ];
             
-            $this->db->where('idkaryawan', $id);
-            $this->db->update('karyawan', $data);
-
-            $this->session->set_flashdata('message', 'Karyawan Telah Diedit');
-    
-            redirect('sirapat/superadmin/data_karyawan');
+          
 
         }
 

@@ -129,11 +129,17 @@
   </div>
   </div>
 
-  <div class="col-lg-4">
+  <!-- <div class="col-lg-4">
   <div class="form-group">
   <label for="formGroupExampleInput2">Grup Rapat</label>
+  <?php $grup = $this->db->get_where('grup_tipe', ['id' => $this->session->userdata('id_tipe')])->row() ?>
+  <input type="hidden"  class="form-control" 
+    id="formGroupExampleInput2" placeholder="gruprapat" name="gruprapat" value="<?= $grup->id; ?>"></input>
+  <input type="text"  class="form-control" 
+    id="formGroupExampleInput2" disabled value="<?= $grup->nama_grup; ?>"></input>
+   
 
-              <select name="gruprapat" id="gruprapat" class="form-control" >
+              <!-- <select name="gruprapat" id="gruprapat" class="form-control" >
               <option value="<?= $da->id_tipegrup ?>"><?= $da->nama_grup ?></option>
               <?php 
               $grup = $this->db->get('grup_tipe')->result_array();
@@ -141,9 +147,9 @@
               <option value="<?= $g['id']; ?>"><?= $g['nama_grup']; ?></option>
               <?php endforeach; ?>
               </select>
-              <?= form_error('gruprapat', '<small class="text-danger pl-1">', '</small>'); ?>
-  </div>
-  </div>
+              <?= form_error('gruprapat', '<small class="text-danger pl-1">', '</small>'); ?> -->
+  <!-- </div>
+  </div> -->
   
  <!-- start -->
   

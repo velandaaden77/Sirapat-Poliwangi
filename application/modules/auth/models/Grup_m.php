@@ -26,6 +26,7 @@ class Grup_m extends CI_Model{
             foreach ($query_cekLogin->result() as $ck) {
                 $session_data['login'] = TRUE;
                 $session_data['idgrup'] = $ck->id;
+                $session_data['username'] = $ck->username;
                 $session_data['nama_grup'] = $ck->nama_grup;
                 $session_data['role_id_grup'] = $ck->role_id;
 

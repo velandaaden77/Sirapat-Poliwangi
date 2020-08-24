@@ -32,7 +32,7 @@
             <div class="card-body px-lg-7 py-lg-6">
               <div class="text-center text-muted mb-4">
                 <h2 class="text-white">LOGIN USER</h2>
-                <a href="<?= base_url('Login-User'); ?>" class="btn btn-outline-white btn-sm">Login Sebagai Admin ?</a>
+                <a href="<?= base_url('auth/admin'); ?>" class="btn btn-outline-white btn-sm">Login Sebagai Admin ?</a>
                 <a href="<?= base_url('auth/grup'); ?>" class="btn btn-outline-white btn-sm">Login Grup ?</a>
               </div>
               <hr>

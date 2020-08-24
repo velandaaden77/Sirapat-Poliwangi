@@ -23,13 +23,90 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-12">
+        <?php foreach($anggota as $g){
+          if($g->jabatan=='Ketua'){
+            $ketua = '1';
+          }}?>
+        <div class="card">
+        <div class="card-body">
+        <form action="<?= base_url('sirapat/grup/anggota/addanggota'); ?>" method="post">
+        <div class="row">
+        <div class="col-lg-4">
+       
+        <div class="form-group">
+        <!-- <label for="formGroupExampleInput2">Nama Karyawan</label> -->
+        <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->session->userdata('idgrup') ?>">
+
+       
+                    <select name="karyawan" id="karyawan" class="form-control">
+                    <option value="">Pilih Karyawan</option>
+                    <?php foreach ($karyawan as $k) : ?>
+                    <?php
+
+                      $gr_kar = $this->db->get_where('grup_rapat',['id_karyawan' => $k['idkaryawan'], 'id_tipe' => $this->session->userdata('idgrup')])->row();
+                     
+                      if(empty($gr_kar)){
+                        echo $this->session->userdata('idgrup');
+                        ?>  
+                      
+                    <option value="<?= $k['idkaryawan']; ?>"><?= $k['nama_karyawan']; ?></option>
+                      <?php }else{} ?>
+                      
+                    <?php endforeach; ?>
+                    </select>
+                    <?= form_error('karyawan', '<small class="text-danger pl-1">', '</small>'); ?>
+        </div>
+        </div>
+        <div class="col-lg-4">
+        <div class="form-group">
+        <!-- <label for="formGroupExampleInput2">Jabatan Grup</label> -->
+        
+                    <select name="grupjabatan" class="form-control form-control-sm">
+                    <option value="">Pilih Jabatan</option>
+                    <?php 
+                    $grupjabatan = $this->db->get('grup_jabatan')->result_array();
+                    foreach ($grupjabatan as $gj) : ?>
+
+                   <?php
+                   if($ketua=='1'){ 
+                     if($gj['jabatan']=='Ketua'){
+
+                     }else{ ?> 
+                     
+                    <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
+
+                     
+                     <?php } ?>
+
+                    
+
+                  <?php 
+                   }else{ ?>
+                    <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
+
+                    <?php } endforeach; ?>
+                    </select>
+                    <?= form_error('grupjabatan', '<small class="text-danger pl-1">', '</small>'); ?>
+        </div>
+        </div>
+        
+      <div class="col-lg-4">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tambah Anggota</button>
+        </div>
+        </div>
+        
+      </form>
+        </div>
+        </div>
+
+
           <div class="card">
          
             <div class="card-header bg-transparent">
 
             <?= $this->session->flashdata('message'); ?>
 
-              <a href="" class="btn btn-primary btn-sm mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a>
+              <!-- <a href="" class="btn btn-primary btn-sm mb-5 mt-3" data-toggle="modal" data-target="#addanggota">Tambah Anggota</a> -->
               <div class="col-lg-12">
               
     <div class="table-responsive">
@@ -38,8 +115,9 @@
         <tr>
           <th scope="col">NO</th>
 
-          <th scope="col">NAMA GRUP</th>
+          <!-- <th scope="col">NAMA GRUP</th> -->
           <th scope="col">NAMA ANGGOTA</th>
+          <th scope="col">UNIT</th>
           <th scope="col">GRUP JABATAN</th>
           <th scope="col">AKSI</th>
           <!-- <th scope="col">NO HP</th>
@@ -57,8 +135,9 @@
           
         <tr>
           <th scope="row"><?= $i ?></th>
-          <td><?= $g->nama_grup ?></td>
+          <!-- <td><?= $g->nama_grup ?></td> -->
           <td><?= $g->nama_karyawan ?></td>
+          <td><?= $g->unit ?></td>
           <?php if($g->id_jabatan = 0){ ?>
           <td>-</td>
           <?php }else{ ?>
@@ -90,6 +169,7 @@
       <form action="<?= base_url('sirapat/grup/anggota/editanggota'); ?>" method="post">
         <div class="form-group">
         <label for="formGroupExampleInput2">Nama Karyawan</label>
+        <input type="hidden" name="idkar" value="<?= $g->id_karyawan ?>">
         <input type="hidden" name="idgrup" value="<?= $g->id_grup ?>">
         <input type="hidden" id="gruptipe" name="gruptipe" value="<?= $this->session->userdata('idgrup') ?>">
         <!-- <input type="text" class="form-control" disabled name="idkaryawan" value="<?= $g->idkaryawan ?>"> -->
@@ -203,18 +283,19 @@
 
                    <?php
                    if($ketua=='1'){ 
-                     if($gj['jabatan']=='Ketua'){}else{ ?> 
+                     if($gj['jabatan']=='Ketua'){
+
+                     }else{ ?> 
                      
                     <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
 
                      
-                     <?php }
-                     ?>
+                     <?php } ?>
 
-                    <?php
-                   }else{
-                   ?>
+                    
 
+                  <?php 
+                   }else{ ?>
                     <option value="<?= $gj['idjabatan']; ?>"><?= $gj['jabatan']; ?></option>
 
                     <?php } endforeach; ?>

@@ -5,7 +5,7 @@
         <div class="header-body">
           <div class="row align-items-center py-5">
             <div class="col-lg-12 text-center">
-            <h2 class="text-white ">Selamat Datang! <?= $user['nama'] ?> </h2>
+            <h2 class="text-white ">Selamat Datang! <?= $user['nama_karyawan'] ?> </h2>
             <h4 class="text-white font-italic font-weight-light">Di Sistem Informasi Manajemen Rapat Poliwangi</h4>
             </div>
           </div>

@@ -16,7 +16,7 @@ class Notulen extends MY_Controller {
 
         $data['title'] = 'Notulen';
         
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
         
         $data['data_agenda']= $this->notulen_m->getagenda()->result();
 
@@ -56,8 +56,7 @@ class Notulen extends MY_Controller {
 
         $data['title'] = 'View Notulen';
 
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        
+		$data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
         $data['data_agenda']= $this->notulen_m->getdata()->result();
         $this->template->load('layout/template', 'notulen/tambahnotulen', $data);
 
@@ -81,7 +80,7 @@ class Notulen extends MY_Controller {
             
             $data['data_agenda']= $this->notulen_m->getdata()->result();
             $data['a']= $this->db->get_where('agenda_rapat', ['id' => $this->uri->segment(5)])->row();
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
             $data['notulen'] = $this->db->get_where('notulen', ['id_agenda' => $this->uri->segment(5)])->row();
             $this->template->load('layout/template', 'notulen/tambahnotulen', $data);
 
@@ -123,6 +122,7 @@ class Notulen extends MY_Controller {
         }
         $date_created = date('Y-m-d');
 
+        $k = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row();
             $data = [
                 'id_agenda' => $id_agenda,
 				'tanggal' => $tanggal,
@@ -132,7 +132,7 @@ class Notulen extends MY_Controller {
 				'daftar_hadir' => $daftarhadir,
 				'total_hadir' => $totalhadir,
 				'ringkasan' => $ringkasan,
-                'notulen' => $this->session->userdata('nama'),
+                'notulen' => $k->nama_karyawan,
                 'pic' => $pic,
                 'foto_rapat' =>$foto_rapat,
 				'date_created' => $date_created,
@@ -155,7 +155,7 @@ class Notulen extends MY_Controller {
         $data['data_agenda']= $this->notulen_m->getdata()->result();
         $data['getnotulen'] = $this->notulen_m->getnotulen();
         $data['risalah_rapat']= $this->notulen_m->getrisalah()->result();
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
         $this->template->load('layout/template', 'notulen/risalah_rapat', $data);
 
     }
@@ -228,7 +228,7 @@ class Notulen extends MY_Controller {
         
         $data['title'] = 'Permasalahan, Solusi, Dan Batas Waktu';
         $data['pbsw']= $this->notulen_m->getpbsw()->result();
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
         $this->template->load('layout/template', 'notulen/psbw', $data);
 
     }
@@ -315,7 +315,7 @@ class Notulen extends MY_Controller {
     public function beritaacara(){
         
         $data['title'] = 'Berita Acara';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
         $this->template->load('layout/template', 'notulen/berita_acara', $data);
 
     }
@@ -400,7 +400,7 @@ class Notulen extends MY_Controller {
         $data['notulensi'] = $this->notulen_m->notulensi()->row();
         // $data['data_agenda']= $this->notulen_m->getdata()->result();
        
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
       
         $this->template->load('layout/template', 'notulen/detail_notulen', $data);
 
@@ -420,7 +420,7 @@ class Notulen extends MY_Controller {
 
         $data['notulen'] = $this->db->get_where('notulen', ['idnotulen' => $this->uri->segment(5)])->row();
        
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
       
         $this->template->load('layout/template', 'notulen/edit_notulensi', $data);
 
@@ -443,7 +443,7 @@ class Notulen extends MY_Controller {
 
             $data['notulen'] = $this->db->get_where('notulen', ['idnotulen' => $this->uri->segment(5)])->row();
            
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
           
             $this->template->load('layout/template', 'notulen/edit_notulensi', $data);
 
@@ -514,14 +514,14 @@ class Notulen extends MY_Controller {
 
             $data['title'] = 'Print Notulen';
             $data['notulensi']= $this->notulen_m->notulensi()->row();
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
             $this->load->view('sirapat/notulen/print_notulen', $data);
         }
         public function printrisalah(){
 
             $data['title'] = 'Print Risalah';
             $data['risalah']= $this->db->get_where('risalah_rapat', ['id_notulen' => $this->uri->segment(5)])->result();
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
             $this->load->view('sirapat/notulen/print_risalah', $data);
 
         }
@@ -529,7 +529,7 @@ class Notulen extends MY_Controller {
 
             $data['title'] = 'Print Psbw';
             $data['psbw']= $this->db->get_where('permasalahan', ['id_notulen' => $this->uri->segment(5)])->result();
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
             $this->load->view('sirapat/notulen/print_psbw', $data);
 
         }
@@ -537,7 +537,7 @@ class Notulen extends MY_Controller {
 
             $data['title'] = 'Print Psbw';
             $data['ber']= $this->db->get_where('berita_acara', ['id_notulen' => $this->uri->segment(5)])->row();
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();
             $this->load->view('sirapat/notulen/print_beritaacara', $data);
 
         }
@@ -546,7 +546,7 @@ class Notulen extends MY_Controller {
 
             $data['title'] = 'Notulen';
         
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['user'] = $this->db->get_where('karyawan', ['idkaryawan' => $this->session->userdata('id_karyawan')])->row_array();   
             
             $data['data_agenda']= $this->notulen_m->getagenda()->result();
     

@@ -32,6 +32,8 @@ class Manajemen_grup extends MY_Controller {
     public function tambahgrup(){
         
         $this->form_validation->set_rules('grup', 'Grup', 'required');
+        $this->form_validation->set_rules('username', 'Username Grup', 'required');
+        $this->form_validation->set_rules('idgrup', 'ID Grup', 'required');
 
         if($this->form_validation->run() == false){
 
@@ -46,15 +48,19 @@ class Manajemen_grup extends MY_Controller {
         }else{
 
             $grup = $this->input->post('grup', true);
+            $usgrup = $this->input->post('username', true);
+            $idgrup = $this->input->post('idgrup', true);
 
             $data = [
                 'nama_grup' => $grup,
-                'username' => $grup,
+                'username' => $usgrup,
                 'password' => MD5(123),
                 'role_id' => 6,
+                'id_grup_tele' => $idgrup,
             ];
 
-            $datagrup = $this->db->get_where('grup_tipe', ['nama_grup' => $grup])->result();
+            $datagrup = $this->db->get_where('grup_tipe', ['id_grup_tele' => $idgrup])->result();
+            // $datagrupid = $this->db->get_where('grup_tipe', ['id_grup_tele' => $idgrup])->result();
             
             if(empty($datagrup)){ 
                 $this->db->insert('grup_tipe', $data);
@@ -96,8 +102,17 @@ class Manajemen_grup extends MY_Controller {
 
     public function addanggota(){
 
+        $this->form_validation->set_rules('karyawan', 'Karyawan', 'required');
         $gruptipe = $this->input->post('gruptipe');
         $karyawan = $this->input->post('karyawan');
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata('message2', 'Data Harus Di isi!!');
+            redirect('sirapat/superadmin/manajemen_grup/detailgrup/'.$gruptipe);
+
+        }else{
+
+        
+       
 
         $data = [
             'id_tipe' => $gruptipe,
@@ -107,10 +122,10 @@ class Manajemen_grup extends MY_Controller {
         ];
 
         $this->db->insert('grup_rapat', $data);
-        $this->session->set_flashdata('message', 
-        'Anggota Telah Ditambahkan');
+        $this->session->set_flashdata('message', 'Anggota Telah Ditambahkan');
     
         redirect('sirapat/superadmin/manajemen_grup/detailgrup/'.$gruptipe);
+    }
     }
 
     public function delgrup($id){
@@ -124,10 +139,13 @@ class Manajemen_grup extends MY_Controller {
 
     public function editgrup(){
         $grup = $this->input->post('grup');
+        $usgrup = $this->input->post('username');
+        $idgrup = $this->input->post('idgrup');
         $id =$this->input->post('id');
 
-        $data= ['nama_grup'=> $grup];
-        $g = $this->db->get_where('grup_tipe', ['nama_grup' => $grup])->result();
+        $data= ['nama_grup'=> $grup, 'username' => $usgrup,
+        ];
+        $g = $this->db->get_where('grup_tipe', ['username' => $usgrup])->result();
 
         if(empty($g)){
             $this->db->where('id', $id);
